@@ -22,15 +22,32 @@ class UpdateLastSeenJob < ApplicationJob
 
   def agent_viewed(conversation, user)
     return unless conversation.open?
-    key = "conversation:last_seen:#{conversation.id}:#{user.id}"
-    return if ::Redis::Alfred.get(key)
 
-    ::Redis::Alfred.setex(key, true, 1.hour)
+    key = "conversation:last_seen:#{conversation.id}:#{user.id}"
+    key_exists = ::Redis::Alfred.get(key)
+    
+    Rails.logger.debug { "Checking if Redis key exists: #{key_exists}" }
+
+    if key_exists
+      Rails.logger.debug { "Redis key #{key} already exists, skipping message creation." }
+      return
+    end
+
+    Rails.logger.debug { "Setting Redis key #{key}" }
+    ::Redis::Alfred.setex(key, 1.hour, true)
+    
     params = {
       message_type: :activity,
       content_type: :text,
       content: "Conversa visualizada por #{user.id} - #{user.name}"
     }
-    Messages::MessageBuilder.new(user, conversation, params).perform
+
+    message = Messages::MessageBuilder.new(user, conversation, params).perform
+
+    if message.persisted?
+      Rails.logger.debug { "Message created successfully with id #{message.id}" }
+    else
+      Rails.logger.error { "Failed to create message" }
+    end
   end
 end
