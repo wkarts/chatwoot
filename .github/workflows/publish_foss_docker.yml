@@ -1,7 +1,7 @@
 # #
-# # This action will publish Chatwoot CE docker image.
-# # This is set to run against merges to develop, master
-# # and when tags are created.
+# # Esta ação publicará a imagem docker do Chatwoot CE.
+# # Isso está configurado para ser executado em mesclagens para desenvolver, dominar
+# # e quando as tags são criadas.
 # #
 
 name: Publish Chatwoot CE docker images for AMD64
