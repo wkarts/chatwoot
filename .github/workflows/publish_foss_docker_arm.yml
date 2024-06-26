@@ -37,16 +37,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Set up Docker tag
+      - name: Set up Docker tags
         id: docker_tag
         run: |
+          echo "TAGS=${IMAGE_NAME}:${GIT_REF}" >> $GITHUB_ENV
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-            echo "LATEST_TAG=latest" >> $GITHUB_ENV
-          elif [[ "${GITHUB_REF}" == refs/heads/develop ]]; then
-            echo "TAG=develop" >> $GITHUB_ENV
-          elif [[ "${GITHUB_REF}" == refs/heads/master ]]; then
-            echo "TAG=latest" >> $GITHUB_ENV
+            echo "TAGS=${TAGS},${IMAGE_NAME}:latest" >> $GITHUB_ENV
           fi
 
       - name: Login to DockerHub
@@ -62,6 +58,4 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/arm64
           push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:${{ env.TAG }}
-            ${{ env.LATEST_TAG:+ ${{ env.IMAGE_NAME }}:latest }}
+          tags: ${{ env.TAGS }}
