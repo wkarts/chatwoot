@@ -76,3 +76,7 @@ yarn-debug.log*
 .yarn-integrity
 
 /storybook-static
+
+# Ignore deploy workflow files
+.github/workflows/publish_foss_docker.yml
+.github/workflows/publish_foss_docker_arm.yml
