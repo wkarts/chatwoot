@@ -28,8 +28,8 @@ jobs:
 
       - name: Make custom changes
         run: |
-          sed -i 's/"name": "Chatwoot"/"name": "🅷🆄🅱"/g' public/manifest.json
-          sed -i 's/"short_name": "Chatwoot"/"short_name": "🅷🆄🅱"/g' public/manifest.json
+          sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
+          sed -i 's/"short_name": "Teste"/"short_name": "🅷🆄🅱"/g' public/manifest.json
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -46,6 +46,7 @@ jobs:
             echo "TAG=develop" >> $GITHUB_ENV
           elif [[ "${GITHUB_REF}" == refs/heads/master ]]; then
             echo "TAG=latest" >> $GITHUB_ENV
+          fi
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
