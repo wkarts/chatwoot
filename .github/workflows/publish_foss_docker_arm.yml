@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "TAGS=${IMAGE_NAME}:${GIT_REF}" >> $GITHUB_ENV
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "TAGS=${TAGS},${IMAGE_NAME}:latest" >> $GITHUB_ENV
+            echo "${IMAGE_NAME}:latest" >> $GITHUB_ENV/TAGS
           fi
 
       - name: Login to DockerHub
