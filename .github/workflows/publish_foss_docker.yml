@@ -40,9 +40,9 @@ jobs:
       - name: Set up Docker tags
         id: docker_tag
         run: |
-          echo "TAGS=${{ env.IMAGE_NAME }}:${{ env.TAG }}" >> $GITHUB_ENV
+          echo "TAGS=${IMAGE_NAME}:${GIT_REF}" >> $GITHUB_ENV
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "LATEST_TAG=${{ env.IMAGE_NAME }}:latest" >> $GITHUB_ENV
+            echo "TAGS=${TAGS},${IMAGE_NAME}:latest" >> $GITHUB_ENV
           fi
 
       - name: Login to DockerHub
@@ -58,6 +58,4 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: |
-            ${{ env.TAGS }}
-            ${{ env.LATEST_TAG }}
+          tags: ${{ env.TAGS }}
