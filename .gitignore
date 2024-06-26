@@ -86,3 +86,6 @@ yarn-debug.log*
 
 #Ignore Public
 public/manifest.json
+public/brand-assets/logo.svg
+public/brand-assets/logo_dark.svg
+public/brand-assets/logo_thumbnail.svg
