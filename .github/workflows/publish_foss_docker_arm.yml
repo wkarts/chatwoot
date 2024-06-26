@@ -42,6 +42,7 @@ jobs:
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+            echo "LATEST_TAG=latest" >> $GITHUB_ENV
           elif [[ "${GITHUB_REF}" == refs/heads/develop ]]; then
             echo "TAG=develop" >> $GITHUB_ENV
           elif [[ "${GITHUB_REF}" == refs/heads/master ]]; then
@@ -61,4 +62,6 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/arm64
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            ${{ env.IMAGE_NAME }}:${{ env.LATEST_TAG }}
