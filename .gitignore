@@ -89,3 +89,8 @@ public/manifest.json
 public/brand-assets/logo.svg
 public/brand-assets/logo_dark.svg
 public/brand-assets/logo_thumbnail.svg
+
+#Ignore app/views/..
+app/views/installation/onboarding/index.html.erb
+app/views/super_admin/application/_navigation.html.erb
+app/views/super_admin/devise/sessions/new.html.erb
