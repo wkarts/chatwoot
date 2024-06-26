@@ -28,8 +28,8 @@ jobs:
 
       - name: Make custom changes
         run: |
-          sed -i 's/"name": "🅷🆄🅱"/"name": "Chatwoot"/g' public/manifest.json
-          sed -i 's/"short_name": "🅷🆄🅱"/"short_name": "Chatwoot"/g' public/manifest.json
+          sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
+          sed -i 's/"short_name": "Teste"/"short_name": "🅷🆄🅱"/g' public/manifest.json
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -62,4 +62,3 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ env.TAG }}
-      
