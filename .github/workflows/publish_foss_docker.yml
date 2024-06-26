@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "TAGS=${IMAGE_NAME}:${GIT_REF}" >> $GITHUB_ENV
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "${IMAGE_NAME}:latest" >> $GITHUB_ENV/TAGS
+            echo "LATEST_TAG=${IMAGE_NAME}:latest" >> $GITHUB_ENV
           fi
 
       - name: Login to DockerHub
@@ -58,4 +58,7 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ env.TAGS }}
+          tags: |
+            ${{ env.TAGS }}
+            ${{ env.LATEST_TAG }}
+
