@@ -63,4 +63,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ env.IMAGE_NAME }}:${{ env.TAG }}${{ env.LATEST_TAG:+ ${{ env.IMAGE_NAME }}:latest }}
+            ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            ${{ env.LATEST_TAG:+ ${{ env.IMAGE_NAME }}:latest }}
