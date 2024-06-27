@@ -20,7 +20,7 @@
   enabled: true
   help_url: https://chwt.app/hc/help-center
 - name: agent_bots
-  enabled: false
+  enabled: true
   help_url: https://chwt.app/hc/agent-bots
 - name: macros
   enabled: true
@@ -61,11 +61,11 @@
 - name: auto_resolve_conversations
   enabled: true
 - name: custom_reply_email
-  enabled: false
+  enabled: true
 - name: custom_reply_domain
-  enabled: false
+  enabled: true
 - name: audit_logs
-  enabled: false
+  enabled: true
   premium: true
 - name: response_bot
   enabled: false
@@ -78,13 +78,13 @@
 - name: inbox_view
   enabled: true
 - name: sla
-  enabled: false
+  enabled: true
   premium: true
 - name: help_center_embedding_search
-  enabled: false
+  enabled: true
   premium: true
 - name: linear_integration
-  enabled: false
+  enabled: true
 - name: hide_all_chats_for_agent
   enabled: false
 - name: hide_contacts_for_agent
@@ -106,12 +106,12 @@
 # - name: channel_notifica_me
 #   enabled: false
 - name: channel_sms
-  enabled: false
+  enabled: true
 - name: channel_whatsapp
   enabled: true
 - name: channel_telegram
   enabled: true
 - name: channel_line
-  enabled: false
+  enabled: true
 - name: channel_api
   enabled: true
