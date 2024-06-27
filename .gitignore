@@ -99,3 +99,7 @@ app/views/super_admin/settings/show.html.erb
 #Ignore Config/..
 config/installation_config.yml
 config/features.yml
+
+#Ignore Emails...
+app/views/mailers/*
+app/views/mailers/*
