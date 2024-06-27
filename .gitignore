@@ -98,3 +98,4 @@ app/views/super_admin/settings/show.html.erb
 
 #Ignore Config/..
 config/installation_config.yml
+config/features.yml
