@@ -102,4 +102,4 @@ config/features.yml
 
 #Ignore Emails...
 app/views/mailers/*
-app/views/mailers/*
+app/views/devise/*
