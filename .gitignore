@@ -95,3 +95,6 @@ app/views/installation/onboarding/index.html.erb
 app/views/super_admin/application/_navigation.html.erb
 app/views/super_admin/devise/sessions/new.html.erb
 app/views/super_admin/settings/show.html.erb
+
+#Ignore Config/..
+config/installation_config.yml
