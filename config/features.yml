@@ -115,3 +115,5 @@
   enabled: true
 - name: channel_api
   enabled: true
+- name: hide_delete_message_for_agent
+  enabled: false
