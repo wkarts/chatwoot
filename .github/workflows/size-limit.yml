@@ -3,7 +3,7 @@ name: Run Size Limit Check
 on:
   pull_request:
     branches:
-      - develop
+      - develop-internal-chat
 
 jobs:
   test:
