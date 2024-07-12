@@ -16,6 +16,10 @@ class Internal::SendOnInternalService < Base::SendOnChannelService
     puts "@contact_inbox #{@contact_inbox.to_json}"
     puts "@conversation #{@conversation.to_json}"
 
+    # Check if a similar reply already exists to prevent duplication
+    existing_reply = @conversation.messages.find_by(source_id: message.id)
+    return if existing_reply
+
     reply = @conversation.messages.build(
       content: message.content,
       account_id: message.conversation.inbox.account_id,
@@ -37,7 +41,7 @@ class Internal::SendOnInternalService < Base::SendOnChannelService
       contact_attributes: contact_params
     ).perform
 
-    @conversation = contact_inbox.conversations.last
+    @conversation = @contact_inbox.conversations.last
     return if @conversation
 
     user = User.joins(:account_users).where(email: message.conversation.contact_inbox.contact.email,
@@ -49,7 +53,7 @@ class Internal::SendOnInternalService < Base::SendOnChannelService
         account_id: message.conversation.inbox.account_id,
         inbox_id: message.conversation.inbox.id,
         contact_id: message.sender.id,
-        contact_inbox_id: contact_inbox.id,
+        contact_inbox_id: @contact_inbox.id,
         assignee_id: user.id
       }
     )
