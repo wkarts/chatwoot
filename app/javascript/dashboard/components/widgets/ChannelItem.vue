@@ -57,7 +57,7 @@ export default {
         return this.enabledFeatures.channel_notifica_me;
       }
       if (key === 'internal') {
-        return this.enabledFeatures.internal;
+        return this.enabledFeatures.channel_internal;
       }
 
       return [
