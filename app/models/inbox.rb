@@ -128,7 +128,7 @@ class Inbox < ApplicationRecord
   def notifica_me?
     channel_type == 'Channel::NotificaMe'
   end
-
+  
   def internal?
     channel_type == 'Channel::Internal'
   end
