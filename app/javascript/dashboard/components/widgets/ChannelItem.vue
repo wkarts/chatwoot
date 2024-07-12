@@ -56,7 +56,9 @@ export default {
       if (key === 'notifica_me') {
         return this.enabledFeatures.channel_notifica_me;
       }
-
+      if (key === 'internal') {
+        return this.enabledFeatures.internal;
+      }
 
       return [
         'website',
@@ -67,6 +69,7 @@ export default {
         'telegram',
         'line',
         'notifica_me',
+        'internal',        
       ].includes(key);
     },
   },
