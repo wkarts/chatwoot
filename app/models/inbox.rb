@@ -125,6 +125,10 @@ class Inbox < ApplicationRecord
     channel_type == 'Channel::Whatsapp'
   end
 
+  def internal?
+    channel_type == 'Channel::Internal'
+  end
+  
   def notifica_me?
     channel_type == 'Channel::NotificaMe'
   end
