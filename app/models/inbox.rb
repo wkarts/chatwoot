@@ -124,15 +124,15 @@ class Inbox < ApplicationRecord
   def whatsapp?
     channel_type == 'Channel::Whatsapp'
   end
-
-  def internal?
-    channel_type == 'Channel::Internal'
-  end
   
   def notifica_me?
     channel_type == 'Channel::NotificaMe'
   end
 
+  def internal?
+    channel_type == 'Channel::Internal'
+  end
+  
   def assignable_agents
     (account.users.where(id: members.select(:user_id)) + account.administrators).uniq
   end
