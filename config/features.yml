@@ -117,5 +117,3 @@
   enabled: true
 - name: hide_delete_message_for_agent
   enabled: false
-- name: channel_internal
-  enabled: true  
