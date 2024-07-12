@@ -24,10 +24,9 @@ class Contacts::ContactableInboxesService
       website_contactable_inbox(inbox)
     when 'Channel::NotificaMe'
       notifica_me_contactable_inbox(inbox)
-    end
     when 'Channel::Internal'
       internal_contactable_inbox(inbox)
-    end    
+    end
   end
 
   def internal_contactable_inbox(inbox)
