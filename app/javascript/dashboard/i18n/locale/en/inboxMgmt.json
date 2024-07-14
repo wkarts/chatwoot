@@ -323,6 +323,19 @@
           "ERROR_MESSAGE": "We were not able to save the NotificaMe channel"
         }
       },
+      "INTERNAL_CHANNEL": {
+        "TITLE": "Internal Channel",
+        "DESC": "Internal channel and start conversation between agents.",
+        "CHANNEL_NAME": {
+          "LABEL": "Channel Name",
+          "PLACEHOLDER": "Please enter a channel name",
+          "ERROR": "This field is required"
+        },
+        "SUBMIT_BUTTON": "Create Internal Channel",
+        "API": {
+          "ERROR_MESSAGE": "We were not able to save the internal channel"
+        }
+      },      
       "EMAIL_CHANNEL": {
         "TITLE": "Email Channel",
         "DESC": "Integrate your email inbox.",
