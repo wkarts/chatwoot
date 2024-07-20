@@ -151,7 +151,7 @@ export default {
       inboxName: '',
       phoneNumber: '',
       apiKey: '',
-      url: 'https://unoapi.cloud',
+      url: 'https://api.hub.wwsoftwares.com.br',
       ignoreGroupMessages: true,
       ignoreHistoryMessages: true,
       sendAgentName: true,
