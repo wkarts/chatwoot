@@ -122,6 +122,10 @@
         </span>
       </label>
     </div>
+
+    <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
+      <button @click="generateToken">Generate API Key</button>
+    </div>
     
     <div class="w-full" style="margin-top: 20px">
       <woot-submit-button
@@ -167,6 +171,21 @@ export default {
     url: { required },
   },
   methods: {
+    generateToken() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < 64; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      if (this.apiKey) {
+        if (confirm('A token already exists. Do you want to replace it?')) {
+          this.apiKey = token;
+        }
+      } else {
+        this.apiKey = token;
+      }
+    },
     async createChannel() {
       this.$v.$touch();
       if (this.$v.$invalid) {
