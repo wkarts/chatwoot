@@ -1,121 +1,117 @@
 <template>
   <div class="my-2 mx-8 text-base">
-    <form class="flex flex-col" @submit.prevent="updateInbox()">
-      <div class="w-1/4">
-        <label :class="{ error: $v.url.$error }">
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
-          <input
-            v-model.trim="url"
-            type="text"
-            placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
-          />
-          <span v-if="$v.url.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-1/4">
-        <label :class="{ error: $v.apiKey.$error }">
-          <span>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
-          </span>
-          <input
-            v-model.trim="apiKey"
-            type="text"
-            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
-            @blur="$v.apiKey.$touch"
-          />
-          <span v-if="$v.apiKey.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.sendAgentName.$error }"
-        >
-          <woot-switch
-            v-model="sendAgentName"
-            :value="sendAgentName"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.LABEL') }}
-          <span v-if="$v.sendAgentName.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreGroupMessages.$error }"
-        >
-          <woot-switch
-            v-model="ignoreGroupMessages"
-            :value="ignoreGroupMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.LABEL') }}
-          <span v-if="$v.ignoreGroupMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
-        >
-          <woot-switch
-            v-model="ignoreHistoryMessages"
-            :value="ignoreHistoryMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.LABEL') }}
-          <span v-if="$v.ignoreHistoryMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.webhookSendNewMessages.$error }"
-        >
-          <woot-switch
-            v-model="webhookSendNewMessages"
-            :value="webhookSendNewMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.LABEL') }}
-          <span v-if="$v.webhookSendNewMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <img v-if="qrcode" :src="qrcode" />
-        <div v-if="notice">{{ notice }}</div>
-      </div>
-
-      <div class="my-4 w-auto">
-        <woot-submit-button
-          :loading="uiFlags.isUpdating"
-          :button-text="`${$t(
-            'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
-          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}`"
-          @click="connect = true"
+  <form class="flex flex-col" @submit.prevent="updateInbox()">
+    <div class="w-1/4">
+      <label :class="{ error: $v.url.$error }">
+        {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
+        <input
+          v-model.trim="url"
+          type="text"
+          :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
         />
-        <!-- <woot-submit-button
+        <span v-if="$v.url.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-1/4">
+      <label :class="{ error: $v.apiKey.$error }">
+        <span>
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
+        </span>
+        <input
+          v-model.trim="apiKey"
+          type="text"
+          :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
+          @blur="$v.apiKey.$touch"
+        />
+        <span v-if="$v.apiKey.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-3/4 pb-4 config-helptext">
+      <label :class="{ error: $v.sendAgentName.$error }" style="display: flex; align-items: center;">
+        <woot-switch
+          v-model="sendAgentName"
+          :value="sendAgentName"
+          style="flex: 0 0 auto; margin-right: 10px;"
+        />
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.LABEL') }}
+        <span v-if="$v.url.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-3/4 pb-4 config-helptext">
+      <label :class="{ error: $v.ignoreGroupMessages.$error }" style="display: flex; align-items: center;">
+        <woot-switch
+          v-model="ignoreGroupMessages"
+          :value="ignoreGroupMessages"
+          style="flex: 0 0 auto; margin-right: 10px;"
+        />
+        {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.LABEL') }}
+        <span v-if="$v.ignoreGroupMessages.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-3/4 pb-4 config-helptext">
+      <label :class="{ error: $v.ignoreHistoryMessages.$error }" style="display: flex; align-items: center;">
+        <woot-switch
+          v-model="ignoreHistoryMessages"
+          :value="ignoreHistoryMessages"
+          style="flex: 0 0 auto; margin-right: 10px;"
+        />
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.LABEL') }}
+        <span v-if="$v.ignoreHistoryMessages.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-3/4 pb-4 config-helptext">
+      <label :class="{ error: $v.webhookSendNewMessages.$error }" style="display: flex; align-items: center;">
+        <woot-switch
+          v-model="webhookSendNewMessages"
+          :value="webhookSendNewMessages"
+          style="flex: 0 0 auto; margin-right: 10px;"
+        />
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.LABEL') }}
+        <span v-if="$v.webhookSendNewMessages.$error" class="message">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.ERROR') }}
+        </span>
+      </label>
+    </div>
+
+    <div class="w-3/4 pb-4 config-helptext">
+      <img v-if="qrcode" :src="qrcode" />
+      <div v-if="notice">{{ notice }}</div>
+    </div>
+
+    <div class="my-4 w-auto">
+      <woot-submit-button
+        :loading="uiFlags.isUpdating"
+        :button-text="
+          $t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON')
+        "
+      />
+      <woot-submit-button
+        :loading="uiFlags.isUpdating"
+        :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')"
+        @click="connect = true"
+      />
+      <!-- <woot-submit-button
         :loading="uiFlags.isUpdating"
         :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
         @click="disconnect = true"
       /> -->
-      </div>
-    </form>
+    </div>
+  </form>
   </div>
 </template>
 <script type="module">
@@ -256,15 +252,5 @@ export default {
   ::v-deep input {
     margin-bottom: 0;
   }
-}
-
-.switch {
-  flex: 0 0 auto;
-  margin-right: 10px;
-}
-
-.switch-label {
-  display: flex;
-  align-items: center;
 }
 </style>
