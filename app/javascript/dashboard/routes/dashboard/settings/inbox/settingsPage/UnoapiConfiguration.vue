@@ -96,6 +96,8 @@
         </label>
       </div>
 
+      <button @click="generateToken">Generate API Key</button>
+
       <div class="w-3/4 pb-4 config-helptext">
         <img v-if="qrcode" :src="qrcode" />
         <div v-if="notice">{{ notice }}</div>
@@ -118,6 +120,7 @@
     </form>
   </div>
 </template>
+
 <script type="module">
 import { io } from 'socket.io-client';
 import alertMixin from 'shared/mixins/alertMixin';
@@ -223,6 +226,21 @@ export default {
       //   }
       // );
     },
+    generateToken() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < 64; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      if (this.apiKey) {
+        if (confirm('A token already exists. Do you want to replace it?')) {
+          this.apiKey = token;
+        }
+      } else {
+        this.apiKey = token;
+      }
+    },
     async updateInbox() {
       try {
         const payload = {
@@ -251,6 +269,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .whatsapp-settings--content {
   ::v-deep input {
