@@ -35,12 +35,17 @@
         <span>
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
         </span>
-        <input
-          v-model.trim="apiKey"
-          type="text"
-          :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
-          @blur="$v.apiKey.$touch"
-        />
+        <div class="flex items-center">
+          <input
+            v-model.trim="apiKey"
+            type="text"
+            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
+            @blur="$v.apiKey.$touch"
+          />
+          <button type="button" @click="generateAndSetToken" class="ml-2 p-2 bg-blue-500 text-white rounded">
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_TOKEN_BUTTON') }}
+          </button>
+        </div>
         <span v-if="$v.apiKey.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.ERROR') }}
         </span>
@@ -167,6 +172,19 @@ export default {
     url: { required },
   },
   methods: {
+    generateToken() {
+      const length = 64;
+      const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        token += charset[randomIndex];
+      }
+      return token;
+    },
+    generateAndSetToken() {
+      this.apiKey = this.generateToken();
+    },
     async createChannel() {
       this.$v.$touch();
       if (this.$v.$invalid) {
@@ -215,6 +233,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .switch {
   flex: 0 0 auto;
