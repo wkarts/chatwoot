@@ -245,6 +245,11 @@
           "PLACEHOLDER": "Por favor, digite um nome para caixa de entrada",
           "ERROR": "Este campo é obrigatório"
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Generate API Key",
+          "ERROR": "Generate API Key"
+        },           
         "URL": {
           "LABEL": "Unoapi URL",
           "PLACEHOLDER": "Insira um URL Unoapi",
