@@ -97,14 +97,6 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <woot-submit-button
-          :loading="false" <!-- Adjust this according to your loading state if needed -->
-          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY')"
-          @click="generateToken"
-        />
-      </div>
-      
-      <div class="w-3/4 pb-4 config-helptext">
         <img v-if="qrcode" :src="qrcode" />
         <div v-if="notice">{{ notice }}</div>
       </div>
@@ -122,6 +114,11 @@
         :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
         @click="disconnect = true"
         />
+        <woot-submit-button
+          :loading="uiFlags.isUpdating"
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY')"
+          @click="generateToken"
+        />        
       </div>
     </form>
   </div>
