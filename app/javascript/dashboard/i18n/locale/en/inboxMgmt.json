@@ -245,6 +245,11 @@
           "PLACEHOLDER": "Check to ignore groups messages.",
           "ERROR": "Check to ignore groups messages."
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Generate API Key",
+          "ERROR": "Generate API Key"
+        },           
         "URL": {
           "LABEL": "Unoapi URL",
           "PLACEHOLDER": "Please enter an Unoapi URL",
