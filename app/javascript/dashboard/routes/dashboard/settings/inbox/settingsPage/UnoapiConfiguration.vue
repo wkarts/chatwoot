@@ -116,8 +116,7 @@
         />
         <woot-submit-button
           :loading="uiFlags.isUpdating"          
-          :button-text='Generate API Key'
-          // :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY')"
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
           @click="generateToken"
         />
       </div>
