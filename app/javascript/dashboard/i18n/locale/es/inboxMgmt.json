@@ -235,11 +235,21 @@
           "PLACEHOLDER": "Check to ignore history on connect.",
           "ERROR": "Check to ignore history on connect."
         },
+        "WEBWOOK_SEND_NEW_MESSAGES": {
+          "LABEL": "Webhook send new messages",
+          "PLACEHOLDER": "Check to ignore history on connect.",
+          "ERROR": "Check to webhook send new messages."
+        },        
         "IGNORE_GROUPS": {
           "LABEL": "Ignore groups messages",
           "PLACEHOLDER": "Check to ignore groups messages.",
           "ERROR": "Check to ignore groups messages."
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Generate API Key",
+          "ERROR": "Generate API Key"
+        },        
         "URL": {
           "LABEL": "Unoapi URL",
           "PLACEHOLDER": "Por favor ingrese una URL de Unoapi",
