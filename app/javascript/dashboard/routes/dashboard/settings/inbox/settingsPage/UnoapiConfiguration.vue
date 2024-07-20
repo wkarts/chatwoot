@@ -104,9 +104,9 @@
       <div class="my-4 w-auto">
         <woot-submit-button
           :loading="uiFlags.isUpdating"
-          :button-text="${$t(
+          :button-text="`${$t(
             'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
-          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}"
+          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}`"
           @click="connect = true"
         />
         <woot-submit-button
@@ -114,18 +114,15 @@
           :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
           @click="disconnect = true"
         />
-        <!--
         <woot-submit-button
           :loading="uiFlags.isUpdating"
           :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY')"
           @click="generateToken"
         />
-        -->
       </div>
     </form>
   </div>
 </template>
-
 <script type="module">
 import { io } from 'socket.io-client';
 import alertMixin from 'shared/mixins/alertMixin';
@@ -193,13 +190,13 @@ export default {
       this.disconect = false;
     },
     listenerQrCode() {
-      const url = ${this.inbox.provider_config.url}
+      const url = `${this.inbox.provider_config.url}`
         .replace('https', 'wss')
         .replace('http', 'ws');
       const socket = io(url, { path: '/ws' });
       socket.on('broadcast', data => {
         if (data.phone !== this.inbox.provider_config.phone_number_id) {
-          this.notice = Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id};
+          this.notice = `Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id}`;
           this.qrcode = '';
           // broadcast phone is other
           return;
@@ -212,7 +209,7 @@ export default {
           this.notice = '';
         }
       });
-      // const url = ${this.inbox.provider_config.url}/ws;
+      // const url = `${this.inbox.provider_config.url}/ws`;
       // const cable = createConsumer(url);
       // cable.subscriptions.create(
       //   {
@@ -274,7 +271,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .whatsapp-settings--content {
   ::v-deep input {
