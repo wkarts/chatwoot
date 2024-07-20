@@ -20,12 +20,17 @@
           <span>
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
           </span>
-          <input
-            v-model.trim="apiKey"
-            type="text"
-            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
-            @blur="$v.apiKey.$touch"
-          />
+          <div class="flex items-center">
+            <input
+              v-model.trim="apiKey"
+              type="text"
+              :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
+              @blur="$v.apiKey.$touch"
+            />
+            <button type="button" @click="generateAndSetToken" class="ml-2 p-2 bg-blue-500 text-white rounded">
+              {{ $t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_TOKEN_BUTTON') }}
+            </button>
+          </div>
           <span v-if="$v.apiKey.$error" class="message">
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.ERROR') }}
           </span>
@@ -33,9 +38,7 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.sendAgentName.$error }"
-        >
+        <label :class="'switch-label ' + { error: $v.sendAgentName.$error }">
           <woot-switch
             v-model="sendAgentName"
             :value="sendAgentName"
@@ -49,9 +52,7 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreGroupMessages.$error }"
-        >
+        <label :class="'switch-label ' + { error: $v.ignoreGroupMessages.$error }">
           <woot-switch
             v-model="ignoreGroupMessages"
             :value="ignoreGroupMessages"
@@ -65,9 +66,7 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
-        >
+        <label :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }">
           <woot-switch
             v-model="ignoreHistoryMessages"
             :value="ignoreHistoryMessages"
@@ -81,9 +80,7 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.webhookSendNewMessages.$error }"
-        >
+        <label :class="'switch-label ' + { error: $v.webhookSendNewMessages.$error }">
           <woot-switch
             v-model="webhookSendNewMessages"
             :value="webhookSendNewMessages"
@@ -104,27 +101,20 @@
       <div class="my-4 w-auto">
         <woot-submit-button
           :loading="uiFlags.isUpdating"
-          :button-text="`${$t(
-            'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
-          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}`"
+          :button-text="`${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON')} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP.CONNECT')}`"
           @click="connect = true"
         />
-        <!-- <woot-submit-button
-        :loading="uiFlags.isUpdating"
-        :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
-        @click="disconnect = true"
-      /> -->
       </div>
     </form>
   </div>
 </template>
+
 <script type="module">
 import { io } from 'socket.io-client';
 import alertMixin from 'shared/mixins/alertMixin';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import { required } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
-// import { createConsumer } from '@rails/actioncable';
 
 export default {
   components: {},
@@ -174,12 +164,9 @@ export default {
     setDefaults() {
       this.apiKey = this.inbox.provider_config.api_key;
       this.url = this.inbox.provider_config.url;
-      this.ignoreGroupMessages =
-        this.inbox.provider_config.ignore_group_messages;
-      this.ignoreHistoryMessages =
-        this.inbox.provider_config.ignore_history_messages;
-      this.webhookSendNewMessages =
-        this.inbox.provider_config.webhook_send_new_messages;
+      this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
+      this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages;
+      this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages;
       this.sendAgentName = this.inbox.provider_config.send_agent_name;
       this.connect = false;
       this.disconect = false;
@@ -193,7 +180,6 @@ export default {
         if (data.phone !== this.inbox.provider_config.phone_number_id) {
           this.notice = `Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id}`;
           this.qrcode = '';
-          // broadcast phone is other
           return;
         }
         if (data.type === 'status') {
@@ -204,24 +190,6 @@ export default {
           this.notice = '';
         }
       });
-      // const url = `${this.inbox.provider_config.url}/ws`;
-      // const cable = createConsumer(url);
-      // cable.subscriptions.create(
-      //   {
-      //     channel: 'broadcast',
-      //     phone_number: this.inbox.provider_config.phone_number_id,
-      //   },
-      //   {
-      //     broadcast: data => {
-      //       console.log('broadcast');
-      //       this.qrcode = data;
-      //     },
-      //     connected: () => {
-      //       console.log('connected');
-      //       this.qrcode = 'waiting for qrcode';
-      //     },
-      //   }
-      // );
     },
     generateToken() {
       const length = 64;
@@ -232,6 +200,9 @@ export default {
         token += charset[randomIndex];
       }
       return token;
+    },
+    generateAndSetToken() {
+      this.apiKey = this.generateToken();
     },
     async updateInbox() {
       try {
@@ -261,6 +232,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .whatsapp-settings--content {
   ::v-deep input {
