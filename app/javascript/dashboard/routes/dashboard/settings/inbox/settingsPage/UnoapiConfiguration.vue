@@ -117,11 +117,11 @@
           )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}"
           @click="connect = true"
         />
-        <!-- <woot-submit-button
+        <woot-submit-button
         :loading="uiFlags.isUpdating"
         :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
         @click="disconnect = true"
-      /> -->
+        />
       </div>
     </form>
   </div>
