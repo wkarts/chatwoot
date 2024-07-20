@@ -132,11 +132,13 @@
         :loading="uiFlags.isCreating"
         :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.SUBMIT_BUTTON')"
       />
+      <!--
       <woot-submit-button
         :loading="uiFlags.isCreating"
         :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY')"
         @click="generateToken"
-      />        
+      /> 
+      -->
     </div>    
   </form>
 </template>
