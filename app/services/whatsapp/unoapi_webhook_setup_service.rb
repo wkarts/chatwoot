@@ -32,7 +32,18 @@ class Whatsapp::UnoapiWebhookSetupService
         header: :Authorization
       ],
       ignoreGroupMessages: whatsapp_channel.provider_config['ignore_group_messages'],
+      ignoreBroadcastStatuses: whatsapp_channel.provider_config['ignoreBroadcastStatuses'],
+      ignoreBroadcastMessages: whatsapp_channel.provider_config['ignoreBroadcastMessages'],
+      ignoreOwnMessages: whatsapp_channel.provider_config['ignoreOwnMessages'],
+      ignoreYourselfMessages: whatsapp_channel.provider_config['ignoreYourselfMessages'],
+      sendConnectionStatus: whatsapp_channel.provider_config['sendConnectionStatus'],
+      notifyFailedMessages: whatsapp_channel.provider_config['notifyFailedMessages'],
+      composingMessage: whatsapp_channel.provider_config['composingMessage'],
+      sendReactionAsReply: whatsapp_channel.provider_config['sendReactionAsReply'],
+      sendProfilePicture: whatsapp_channel.provider_config['sendProfilePicture'],
       ignoreHistoryMessages: whatsapp_channel.provider_config['ignore_history_messages'],
+      rejectCalls: whatsapp_channel.provider_config['rejectCalls'],      
+      messageCallsWebhook: whatsapp_channel.provider_config['messageCallsWebhook'],
       authToken: whatsapp_channel.provider_config['api_key']
     }
     response = HTTParty.post("#{url(whatsapp_channel)}/register", headers: headers(whatsapp_channel), body: body.to_json)
