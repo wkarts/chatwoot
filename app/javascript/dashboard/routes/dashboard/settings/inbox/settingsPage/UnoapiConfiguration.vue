@@ -67,6 +67,14 @@
       </div>      
       
       <div class="w-3/4 pb-4 config-helptext">
+        <woot-submit-button
+          :loading="uiFlags.isUpdating"          
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+          @click="generateToken"
+        />
+      </div>
+            
+      <div class="w-3/4 pb-4 config-helptext">
         <label
           :class="'switch-label ' + { error: $v.sendAgentName.$error }"
         >
@@ -292,11 +300,11 @@
           :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
           @click="disconnect = true"
         />
-        <woot-submit-button
-          :loading="uiFlags.isUpdating"          
-          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
-          @click="generateToken"
-        />
+       // <woot-submit-button
+       //   :loading="uiFlags.isUpdating"          
+       //   :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+       //   @click="generateToken"
+       // />
       </div>
     </form>
   </div>
