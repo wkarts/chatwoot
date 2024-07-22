@@ -240,6 +240,61 @@
           "PLACEHOLDER": "Selecione para ignorar mensagens de grupos.",
           "ERROR": "Selecione para ignorar mensagens de grupos."
         },
+        "REJECT_CALLS": {
+          "LABEL": "Rejeitar ligação",
+          "PLACEHOLDER": "Rejeitar ligação.",
+          "ERROR": "Rejeitar ligação."
+        },
+        "MESSAGE_CALLS_WEBHOOK": {
+          "LABEL": "Mensagem ao rejeitar ligação",
+          "PLACEHOLDER": "Mensagem ao rejeitar ligação.",
+          "ERROR": "Mensagem ao rejeitar ligação."
+        },
+        "IGNORE_BROADCAST_STATUSES": {
+          "LABEL": "Ignorar transmissão de status",
+          "PLACEHOLDER": "Selecione para ignorar transmissão de status.",
+          "ERROR": "Selecione para ignorar transmissão de status."
+        },
+        "IGNORE_BROADCAST_MESSAGES": {
+          "LABEL": "Ignorar mensagens de lista de transmissão",
+          "PLACEHOLDER": "Selecione para ignorar mensagens de lista de transmissão.",
+          "ERROR": "Selecione para ignorar mensagens de lista de transmissão."
+        },
+        "IGNORE_OWN_MESSAGES": {
+          "LABEL": "Ignorar próprias mensagens",
+          "PLACEHOLDER": "Selecione para ignorar próprias mensagens.",
+          "ERROR": "Selecione para ignorar próprias mensagens."
+        },
+        "IGNORE_YOURSELF_MESSAGES": {
+          "LABEL": "Ignore suas mensagens",
+          "PLACEHOLDER": "Selecione para ignore suas mensagens.",
+          "ERROR": "Selecione para ignore suas mensagens."
+        },
+        "SEND_CONNECTION_STATUS": {
+          "LABEL": "Exibir status de conexão",
+          "PLACEHOLDER": "Selecione para exibir status de conexão".",
+          "ERROR": "Selecione para exibir status de conexão"."
+        },
+        "NOTIFY_FAILED_MESSAGES": {
+          "LABEL": "Notificar mensagens com falha",
+          "PLACEHOLDER": "Selecione para notificar mensagens com falha.",
+          "ERROR": "Selecione para notificar mensagens com falha."
+        },
+        "COMPOSING_MESSAGE": {
+          "LABEL": "Compor mensagem",
+          "PLACEHOLDER": "Selecione para compor mensagem.",
+          "ERROR": "Selecione para compor mensagem."
+        },
+        "SEND_REACTION_AS_REPLY": {
+          "LABEL": "Mostre a reação como resposta",
+          "PLACEHOLDER": "Selecione para mostrar a reação como resposta.",
+          "ERROR": "Selecione para mostrar a reação como resposta."
+        },
+        "SEND_PROFILE_PICTURE": {
+          "LABEL": "Exibir a foto de perfil",
+          "PLACEHOLDER": "Selecione para exibir a foto de perfil.",
+          "ERROR": "Selecione para exibir a foto de perfil."
+        },        
         "INBOX_NAME": {
           "LABEL": "Nome da Caixa de Entrada",
           "PLACEHOLDER": "Por favor, digite um nome para caixa de entrada",
