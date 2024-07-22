@@ -371,8 +371,6 @@ export default {
     composingMessage: { required },
     sendReactionAsReply: { required },
     sendProfilePicture: { required },
-    //rejectCalls: { required },
-    //messageCallsWebhook: { required },    
   },
   watch: {
     inbox() {
