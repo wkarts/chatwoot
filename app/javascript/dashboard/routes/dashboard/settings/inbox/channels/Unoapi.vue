@@ -60,7 +60,15 @@
         </span>
       </label>
     </div>
-
+    
+    <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
+      <woot-submit-button
+        :loading="uiFlags.isUpdating"          
+        :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+        @click="generateToken"
+      />
+    </div>
+    
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
       <label
         :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
@@ -128,11 +136,11 @@
         :loading="uiFlags.isCreating"
         :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.SUBMIT_BUTTON')"
       />
-      <woot-submit-button
-        :loading="uiFlags.isUpdating"          
-        :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
-        @click="generateToken"
-      /> 
+     // <woot-submit-button
+     //   :loading="uiFlags.isUpdating"          
+     //   :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+     //   @click="generateToken"
+     // /> 
     </div>    
   </form>
 </template>
