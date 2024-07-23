@@ -32,40 +32,6 @@
         </label>
       </div>
 
-      <div class="w-1/4">
-        <label :class="{ error: $v.rejectCalls.$error }">
-          <span>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.LABEL') }}
-          </span>
-          <input
-            v-model.trim="rejectCalls"
-            type="text"
-            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.PLACEHOLDER')"
-            @blur="$v.rejectCalls.$touch"
-          />
-          <span v-if="$v.rejectCalls.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.ERROR') }}
-          </span>
-        </label>
-      </div>
-	  
-      <div class="w-1/4">
-        <label :class="{ error: $v.messageCallsWebhook.$error }">
-          <span>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.LABEL') }}
-          </span>
-          <input
-            v-model.trim="messageCallsWebhook"
-            type="text"
-            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.PLACEHOLDER')"
-            @blur="$v.messageCallsWebhook.$touch"
-          />
-          <span v-if="$v.messageCallsWebhook.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.ERROR') }}
-          </span>
-        </label>
-      </div>      
-            
       <div class="w-3/4 pb-4 config-helptext">
         <label
           :class="'switch-label ' + { error: $v.sendAgentName.$error }"
@@ -131,150 +97,6 @@
       </div>
 
       <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreBroadcastStatuses.$error }"
-        >
-          <woot-switch
-            v-model="ignoreBroadcastStatuses"
-            :value="ignoreBroadcastStatuses"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_BROADCAST_STATUSES.LABEL') }}
-          <span v-if="$v.ignoreBroadcastStatuses.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_BROADCAST_STATUSES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreBroadcastMessages.$error }"
-        >
-          <woot-switch
-            v-model="ignoreBroadcastMessages"
-            :value="ignoreBroadcastMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_BROADCAST_MESSAGES.LABEL') }}
-          <span v-if="$v.ignoreBroadcastMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_BROADCAST_MESSAGES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreOwnMessages.$error }"
-        >
-          <woot-switch
-            v-model="ignoreOwnMessages"
-            :value="ignoreOwnMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_OWN_MESSAGES.LABEL') }}
-          <span v-if="$v.ignoreOwnMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_OWN_MESSAGES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.ignoreYourselfMessages.$error }"
-        >
-          <woot-switch
-            v-model="ignoreYourselfMessages"
-            :value="ignoreYourselfMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_YOURSELF_MESSAGES.LABEL') }}
-          <span v-if="$v.ignoreYourselfMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_YOURSELF_MESSAGES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.sendConnectionStatus.$error }"
-        >
-          <woot-switch
-            v-model="sendConnectionStatus"
-            :value="sendConnectionStatus"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_CONNECTION_STATUS.LABEL') }}
-          <span v-if="$v.sendConnectionStatus.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_CONNECTION_STATUS.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.notifyFailedMessages.$error }"
-        >
-          <woot-switch
-            v-model="notifyFailedMessages"
-            :value="notifyFailedMessages"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.NOTIFY_FAILED_MESSAGES.LABEL') }}
-          <span v-if="$v.notifyFailedMessages.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.NOTIFY_FAILED_MESSAGES.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.composingMessage.$error }"
-        >
-          <woot-switch
-            v-model="composingMessage"
-            :value="composingMessage"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.COMPOSING_MESSAGE.LABEL') }}
-          <span v-if="$v.composingMessage.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.COMPOSING_MESSAGE.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.sendReactionAsReply.$error }"
-        >
-          <woot-switch
-            v-model="sendReactionAsReply"
-            :value="sendReactionAsReply"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_REACTION_AS_REPLY.LABEL') }}
-          <span v-if="$v.sendReactionAsReply.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_REACTION_AS_REPLY.ERROR') }}
-          </span>
-        </label>
-      </div>
-
-      <div class="w-3/4 pb-4 config-helptext">
-        <label
-          :class="'switch-label ' + { error: $v.sendProfilePicture.$error }"
-        >
-          <woot-switch
-            v-model="sendProfilePicture"
-            :value="sendProfilePicture"
-            class="switch"
-          />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_PROFILE_PICTURE.LABEL') }}
-          <span v-if="$v.sendProfilePicture.$error" class="message">
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_PROFILE_PICTURE.ERROR') }}
-          </span>
-        </label>
-      </div>
-      
-      <div class="w-3/4 pb-4 config-helptext">
         <img v-if="qrcode" :src="qrcode" />
         <div v-if="notice">{{ notice }}</div>
       </div>
@@ -326,21 +148,10 @@ export default {
       ignoreHistoryMessages: true,
       webhookSendNewMessages: true,
       sendAgentName: true,
-      ignoreBroadcastStatuses: true,
-      ignoreBroadcastMessages: true,
-      ignoreOwnMessages: true,
-      ignoreYourselfMessages: true,
-      sendConnectionStatus: true,
-      notifyFailedMessages: true,
-      composingMessage: true,
-      sendReactionAsReply: true,
-      sendProfilePicture: true,      
       connect: false,
       disconect: false,
       qrcode: '',
       notice: '',
-      rejectCalls: '',
-      messageCallsWebhook: '',
     };
   },
   computed: {
@@ -354,15 +165,6 @@ export default {
     webhookSendNewMessages: { required },
     sendAgentName: { required },
     url: { required },
-    ignoreBroadcastStatuses: { required },
-    ignoreBroadcastMessages: { required },
-    ignoreOwnMessages: { required },
-    ignoreYourselfMessages: { required },
-    sendConnectionStatus: { required },
-    notifyFailedMessages: { required },
-    composingMessage: { required },
-    sendReactionAsReply: { required },
-    sendProfilePicture: { required },
   },
   watch: {
     inbox() {
@@ -375,39 +177,17 @@ export default {
   },
   methods: {
     setDefaults() {
-      this.apiKey = 
-        this.inbox.provider_config.api_key;
-      this.url = 
-        this.inbox.provider_config.url;
+      this.apiKey = this.inbox.provider_config.api_key;
+      this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages =
         this.inbox.provider_config.ignore_group_messages;
       this.ignoreHistoryMessages =
         this.inbox.provider_config.ignore_history_messages;
       this.webhookSendNewMessages =
         this.inbox.provider_config.webhook_send_new_messages;
-      this.sendAgentName = 
-        this.inbox.provider_config.send_agent_name;
-      this.ignoreBroadcastStatuses =
-      	this.inbox.provider_config.ignore_Broadcast_Statuses;
-      this.ignoreBroadcastMessages =
-      	this.inbox.provider_config.ignore_Broadcast_Messages;
-      this.ignoreOwnMessages =
-      	this.inbox.provider_config.ignore_Own_Messages;
-      this.ignoreYourselfMessages =
-      	this.inbox.provider_config.ignore_Yourself_Messages;
-      this.sendConnectionStatus =
-      	this.inbox.provider_config.send_Connection_Status;
-      this.notifyFailedMessages =
-      	this.inbox.provider_config.notify_Failed_Messages;
-      this.composingMessage =
-      	this.inbox.provider_config.composing_Message;
-      this.sendReactionAsReply =
-      	this.inbox.provider_config.send_Reaction_As_Reply;
-      this.sendProfilePicture =
-      	this.inbox.provider_config.send_Profile_Picture;      
+      this.sendAgentName = this.inbox.provider_config.send_agent_name;
       this.connect = false;
       this.disconect = false;
-      
     },
     listenerQrCode() {
       const url = `${this.inbox.provider_config.url}`
@@ -476,17 +256,6 @@ export default {
               ignore_group_messages: this.ignoreGroupMessages,
               send_agent_name: this.sendAgentName,
               webhook_send_new_messages: this.webhookSendNewMessages,
-              ignore_Broadcast_Statuses: this.ignoreBroadcastStatuses,
-              ignore_Broadcast_Messages: this.ignoreBroadcastMessages,
-              ignore_Own_Messages: this.ignoreOwnMessages,
-              ignore_Yourself_Messages: this.ignoreYourselfMessages,
-              send_Connection_Status: this.sendConnectionStatus,
-              notify_Failed_Messages: this.notifyFailedMessages,
-              composing_Message: this.composingMessage,
-              send_Reaction_As_Reply: this.sendReactionAsReply,
-              send_Profile_Picture: this.sendProfilePicture,
-              reject_Calls: this.rejectCalls,
-              message_Calls_Webhook: this.messageCallsWebhook,              
               url: this.url,
               connect: this.connect,
               disconect: this.disconect,
