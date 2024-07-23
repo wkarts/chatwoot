@@ -151,7 +151,7 @@ export default {
       inboxName: '',
       phoneNumber: '',
       apiKey: '',
-      url: 'https://cloud.hub.seudominio.com.br',
+      url: 'https://unoapi.cloud',
       ignoreGroupMessages: true,
       ignoreHistoryMessages: true,
       sendAgentName: true,
