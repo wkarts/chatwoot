@@ -22,19 +22,8 @@ class Whatsapp::UnoapiWebhookSetupService
 
   def connect(whatsapp_channel)
     phone_number = whatsapp_channel.provider_config['business_account_id']
-    Rails.logger.debug { "Connecting #{phone_number} from unoapi" }  
+    Rails.logger.debug { "Connecting #{phone_number} from unoapi" }
     body = {
-      ignoreBroadcastStatuses: whatsapp_channel.provider_config['ignore_Broadcast_Statuses'],
-      ignoreBroadcastMessages: whatsapp_channel.provider_config['ignore_Broadcast_Messages'],
-      ignoreOwnMessages: whatsapp_channel.provider_config['ignore_Own_Messages'],
-      ignoreYourselfMessages: whatsapp_channel.provider_config['ignore_Yourself_Messages'],
-      sendConnectionStatus: whatsapp_channel.provider_config['send_Connection_Status'],
-      notifyFailedMessages: whatsapp_channel.provider_config['notify_Failed_Messages'],
-      composingMessage: whatsapp_channel.provider_config['composing_Message'],
-      sendReactionAsReply: whatsapp_channel.provider_config['send_Reaction_As_Reply'],
-      sendProfilePicture: whatsapp_channel.provider_config['send_Profile_Picture'],      
-      rejectCalls: whatsapp_channel.provider_config['reject_Calls'],      
-      messageCallsWebhook: whatsapp_channel.provider_config['message_Calls_Webhook'],      
       webhooks: [
         sendNewMessages: whatsapp_channel.provider_config['webhook_send_new_messages'],
         id: 'default',
