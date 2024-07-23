@@ -60,7 +60,7 @@
         </span>
       </label>
     </div>
-    
+
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
       <label
         :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
