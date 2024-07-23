@@ -143,7 +143,7 @@ export default {
   data() {
     return {
       apiKey: '',
-      url: 'https://unoapi.cloud',
+      url: 'https://cloud.hub.seudominio.com.br',
       ignoreGroupMessages: true,
       ignoreHistoryMessages: true,
       webhookSendNewMessages: true,
