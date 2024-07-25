@@ -366,15 +366,18 @@ export default {
   },
   watch: {
     inbox() {
+      console.log("Inbox updated:", this.inbox);
       this.setDefaults();
     },
   },
   mounted() {
+    console.log("Component mounted");
     this.setDefaults();
     this.listenerQrCode();
   },
   methods: {
     setDefaults() {
+      console.log("Setting defaults");
       this.apiKey = this.inbox.provider_config.api_key;
       this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
@@ -394,15 +397,16 @@ export default {
       this.disconect = false;
     },
     listenerQrCode() {
+      console.log("Setting up WebSocket listener");
       const url = `${this.inbox.provider_config.url}`
         .replace('https', 'wss')
         .replace('http', 'ws');
       const socket = io(url, { path: '/ws' });
       socket.on('broadcast', data => {
+        console.log("Received broadcast data:", data);
         if (data.phone !== this.inbox.provider_config.phone_number_id) {
           this.notice = `Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id}`;
           this.qrcode = '';
-          // broadcast phone is other
           return;
         }
         if (data.type === 'status') {
@@ -413,24 +417,6 @@ export default {
           this.notice = '';
         }
       });
-      // const url = `${this.inbox.provider_config.url}/ws`;
-      // const cable = createConsumer(url);
-      // cable.subscriptions.create(
-      //   {
-      //     channel: 'broadcast',
-      //     phone_number: this.inbox.provider_config.phone_number_id,
-      //   },
-      //   {
-      //     broadcast: data => {
-      //       console.log('broadcast');
-      //       this.qrcode = data;
-      //     },
-      //     connected: () => {
-      //       console.log('connected');
-      //       this.qrcode = 'waiting for qrcode';
-      //     },
-      //   }
-      // );
     },
     generateToken() {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -449,6 +435,7 @@ export default {
     },
     async updateInbox() {
       try {
+        console.log("Updating inbox");
         const payload = {
           id: this.inbox.id,
           formData: false,
@@ -481,26 +468,10 @@ export default {
         await this.$store.dispatch('inboxes/updateInbox', payload);
         this.showAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
+        console.error("Error updating inbox:", error);
         this.showAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-.whatsapp-settings--content {
-  ::v-deep input {
-    margin-bottom: 0;
-  }
-}
-
-.switch {
-  flex: 0 0 auto;
-  margin-right: 10px;
-}
-
-.switch-label {
-  display: flex;
-  align-items: center;
-}
-</style>
