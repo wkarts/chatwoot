@@ -39,13 +39,29 @@
           </span>
           <input
             v-model.trim="rejectCalls"
-            :value.trim="rejectCalls"
             type="text"
             :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.PLACEHOLDER')"
             @blur="$v.rejectCalls.$touch"
           />
           <span v-if="$v.rejectCalls.$error" class="message">
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.ERROR') }}
+          </span>
+        </label>
+      </div>
+
+      <div class="w-1/4">
+        <label :class="{ error: $v.messageCallsWebhook.$error }">
+          <span>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.LABEL') }}
+          </span>
+          <input
+            v-model.trim="messageCallsWebhook"
+            type="text"
+            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.PLACEHOLDER')"
+            @blur="$v.messageCallsWebhook.$touch"
+          />
+          <span v-if="$v.messageCallsWebhook.$error" class="message">
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.ERROR') }}
           </span>
         </label>
       </div>      
@@ -346,7 +362,9 @@ export default {
     notifyFailedMessages: { required },
     composingMessage: { required },
     sendReactionAsReply: { required },
-    sendProfilePicture: { required },    
+    sendProfilePicture: { required },
+    rejectCalls: { required },
+    messageCallsWebhook: { required },
   },
   watch: {
     inbox() {
@@ -374,6 +392,8 @@ export default {
       this.composingMessage = this.inbox.provider_config.composing_Message;
       this.sendReactionAsReply = this.inbox.provider_config.send_Reaction_As_Reply;
       this.sendProfilePicture = this.inbox.provider_config.send_Profile_Picture;
+      this.rejectCalls = this.inbox.provider_config.reject_Calls;
+      this.messageCallsWebhook = this.inbox.provider_config.message_Calls_Webhook;
       this.connect = false;
       this.disconect = false;
     },
