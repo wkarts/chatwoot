@@ -32,6 +32,23 @@
         </label>
       </div>
 
+      <div class="w-1/4">
+        <label :class="{ error: $v.rejectCalls.$error }">
+          <span>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.LABEL') }}
+          </span>
+          <input
+            v-model.trim="rejectCalls"
+            type="text"
+            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.PLACEHOLDER')"
+            @blur="$v.rejectCalls.$touch"
+          />
+          <span v-if="$v.rejectCalls.$error" class="message">
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.ERROR') }}
+          </span>
+        </label>
+      </div>      
+      
       <div class="w-3/4 pb-4 config-helptext">
         <label
           :class="'switch-label ' + { error: $v.sendAgentName.$error }"
