@@ -338,7 +338,7 @@ function setup_chatwoot() {
   rvm install "ruby-3.2.2"
   rvm use 3.2.2 --default
 
-  git clone https://github.com/sendingtk/chatwoot.git
+  git clone https://github.com/wkarts/chatwoot.git
   cd chatwoot
   git checkout "$BRANCH"
   chmod -R 777 bin
@@ -415,7 +415,7 @@ function setup_ssl() {
     echo "debug: letsencrypt email: $le_email"
   fi
   curl https://ssl-config.mozilla.org/ffdhe4096.txt >> /etc/ssl/dhparam
-  wget https://raw.githubusercontent.com/sendingtk/chatwoot/master/deployment/nginx_chatwoot.conf
+  wget https://raw.githubusercontent.com/wkarts/chatwoot/master/deployment/nginx_chatwoot.conf
   cp nginx_chatwoot.conf /etc/nginx/sites-available/nginx_chatwoot.conf
   certbot certonly --non-interactive --agree-tos --nginx -m "$le_email" -d "$domain_name"
   sed -i "s/chatwoot.domain.com/$domain_name/g" /etc/nginx/sites-available/nginx_chatwoot.conf
@@ -930,7 +930,7 @@ function version() {
 function cwctl_upgrade_check() {
     echo "Checking for cwctl updates..."
 
-    local remote_version_url="https://raw.githubusercontent.com/sendingtk/chatwoot/master/VERSION_CWCTL"
+    local remote_version_url="https://raw.githubusercontent.com/wkarts/chatwoot/master/VERSION_CWCTL"
     local remote_version=$(curl -s "$remote_version_url")
 
     #Check if pip is not installed, and install it if not
@@ -970,7 +970,7 @@ function cwctl_upgrade_check() {
 #   None
 ##############################################################################
 function upgrade_cwctl() {
-    wget https://raw.githubusercontent.com/sendingtk/chatwoot/master/deployment/install.sh -O /usr/local/bin/cwctl > /dev/null 2>&1 && chmod +x /usr/local/bin/cwctl
+    wget https://raw.githubusercontent.com/wkarts/chatwoot/master/deployment/install.sh -O /usr/local/bin/cwctl > /dev/null 2>&1 && chmod +x /usr/local/bin/cwctl
 }
 
 ##############################################################################
