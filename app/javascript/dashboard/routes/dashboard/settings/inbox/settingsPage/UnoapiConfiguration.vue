@@ -1,7 +1,7 @@
 <template>
   <div class="my-2 mx-8 text-base">
     <form class="flex flex-col" @submit.prevent="updateInbox()">
-      <div class="w-1/4">
+      <div class="w-1/4" v-if="$v.url">
         <label :class="{ error: $v.url.$error }">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
           <input
@@ -15,7 +15,7 @@
         </label>
       </div>
 
-      <div class="w-1/4">
+      <div class="w-1/4" v-if="$v.apiKey">
         <label :class="{ error: $v.apiKey.$error }">
           <span>
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
@@ -301,13 +301,13 @@
     </form>
   </div>
 </template>
+
 <script type="module">
 import { io } from 'socket.io-client';
 import alertMixin from 'shared/mixins/alertMixin';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import { required } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
-// import { createConsumer } from '@rails/actioncable';
 
 export default {
   components: {},
