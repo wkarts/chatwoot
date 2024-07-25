@@ -39,6 +39,7 @@
           </span>
           <input
             v-model.trim="rejectCalls"
+            :value.trim="rejectCalls"
             type="text"
             :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.PLACEHOLDER')"
             @blur="$v.rejectCalls.$touch"
