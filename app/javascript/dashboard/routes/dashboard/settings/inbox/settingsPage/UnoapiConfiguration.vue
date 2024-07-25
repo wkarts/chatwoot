@@ -148,10 +148,21 @@ export default {
       ignoreHistoryMessages: true,
       webhookSendNewMessages: true,
       sendAgentName: true,
+      ignoreBroadcastStatuses: true,
+      ignoreBroadcastMessages: true,
+      ignoreOwnMessages: true,
+      ignoreYourselfMessages: true,
+      sendConnectionStatus: true,
+      notifyFailedMessages: true,
+      composingMessage: true,
+      sendReactionAsReply: true,
+      sendProfilePicture: true,       
       connect: false,
       disconect: false,
       qrcode: '',
       notice: '',
+      rejectCalls: '',
+      messageCallsWebhook: '',      
     };
   },
   computed: {
@@ -165,6 +176,15 @@ export default {
     webhookSendNewMessages: { required },
     sendAgentName: { required },
     url: { required },
+    ignoreBroadcastStatuses: { required },
+    ignoreBroadcastMessages: { required },
+    ignoreOwnMessages: { required },
+    ignoreYourselfMessages: { required },
+    sendConnectionStatus: { required },
+    notifyFailedMessages: { required },
+    composingMessage: { required },
+    sendReactionAsReply: { required },
+    sendProfilePicture: { required },    
   },
   watch: {
     inbox() {
@@ -177,15 +197,36 @@ export default {
   },
   methods: {
     setDefaults() {
-      this.apiKey = this.inbox.provider_config.api_key;
-      this.url = this.inbox.provider_config.url;
+      this.apiKey = 
+        this.inbox.provider_config.api_key;
+      this.url =
+        this.inbox.provider_config.url;
       this.ignoreGroupMessages =
         this.inbox.provider_config.ignore_group_messages;
       this.ignoreHistoryMessages =
         this.inbox.provider_config.ignore_history_messages;
       this.webhookSendNewMessages =
         this.inbox.provider_config.webhook_send_new_messages;
-      this.sendAgentName = this.inbox.provider_config.send_agent_name;
+      this.sendAgentName =
+        this.inbox.provider_config.send_agent_name;
+      this.ignoreBroadcastStatuses =
+      	this.inbox.provider_config.ignore_Broadcast_Statuses;
+      this.ignoreBroadcastMessages =
+      	this.inbox.provider_config.ignore_Broadcast_Messages;
+      this.ignoreOwnMessages =
+      	this.inbox.provider_config.ignore_Own_Messages;
+      this.ignoreYourselfMessages =
+      	this.inbox.provider_config.ignore_Yourself_Messages;
+      this.sendConnectionStatus =
+      	this.inbox.provider_config.send_Connection_Status;
+      this.notifyFailedMessages =
+      	this.inbox.provider_config.notify_Failed_Messages;
+      this.composingMessage =
+      	this.inbox.provider_config.composing_Message;
+      this.sendReactionAsReply =
+      	this.inbox.provider_config.send_Reaction_As_Reply;
+      this.sendProfilePicture =
+      	this.inbox.provider_config.send_Profile_Picture;
       this.connect = false;
       this.disconect = false;
     },
@@ -257,6 +298,18 @@ export default {
               send_agent_name: this.sendAgentName,
               webhook_send_new_messages: this.webhookSendNewMessages,
               url: this.url,
+              webhook_send_new_messages: this.webhookSendNewMessages,
+              ignore_Broadcast_Statuses: this.ignoreBroadcastStatuses,
+              ignore_Broadcast_Messages: this.ignoreBroadcastMessages,
+              ignore_Own_Messages: this.ignoreOwnMessages,
+              ignore_Yourself_Messages: this.ignoreYourselfMessages,
+              send_Connection_Status: this.sendConnectionStatus,
+              notify_Failed_Messages: this.notifyFailedMessages,
+              composing_Message: this.composingMessage,
+              send_Reaction_As_Reply: this.sendReactionAsReply,
+              send_Profile_Picture: this.sendProfilePicture,
+              reject_Calls: this.rejectCalls,
+              message_Calls_Webhook: this.messageCallsWebhook,              
               connect: this.connect,
               disconect: this.disconect,
             },
