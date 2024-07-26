@@ -3,18 +3,21 @@
     <form class="flex flex-col" @submit.prevent="updateInbox()">
       <div class="w-1/4">
         <label :class="{ error: $v.url.$error }">
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
+          <span>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
+          </span>
           <input
             v-model.trim="url"
             type="text"
-            placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
+            :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
+            @blur="$v.url.$touch"
           />
           <span v-if="$v.url.$error" class="message">
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.ERROR') }}
           </span>
         </label>
       </div>
-
+      
       <div class="w-1/4">
         <label :class="{ error: $v.apiKey.$error }">
           <span>
