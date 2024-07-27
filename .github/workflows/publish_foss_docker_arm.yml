@@ -9,8 +9,7 @@ name: Publish Chatwoot CE docker images for ARM64
 on:
   push:
     branches:
-      - develop
-      - master
+      - develop-campaign
     tags:
       - 'v*'
   workflow_dispatch:
@@ -19,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: wkarts/hub-arm
+      IMAGE_NAME: wkarts/hub-arm-campaign
       GIT_REF: ${{ github.head_ref || github.ref_name }}
 
     steps:
