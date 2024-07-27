@@ -1,27 +1,33 @@
-class CampaignMessageJob < ApplicationJob
-  queue_as :high
+class Whatsapp::OneoffUnoapiCampaignService
+  pattr_initialize [:campaign!]
 
-  # rubocop:disable Metrics/AbcSize
-  def perform(account_id, inbox_id, campaign_id, content, audience)
-    # rubocop:enable Metrics/AbcSize
-    phone_number = audience[:phone_number]
-    contact = Contact.find_by(phone_number: phone_number, account_id: account_id)
-    contact = Contact.create!(phone_number: phone_number, account_id: account_id) if contact.blank?
-    contact_inbox = ContactInboxBuilder.new(
-      contact: contact, inbox: Inbox.find(inbox_id), source_id: contact.phone_number.delete('+').to_s
-    ).perform
-    conversation = ConversationBuilder.new(params: {}, contact_inbox: contact_inbox).perform
-    audience[:first_name] = (audience[:name] || '').split[0]&.capitalize if audience[:name]
-    m = content
-    [:identifier, :first_name, :name, :due_at, :value, :scheduled_at].each do |f|
-      k = f.to_sym
-      m = m.gsub("##{f}", audience[k]) if audience[k]
+  def perform
+    raise "Invalid campaign #{campaign.id}" if inbox.inbox_type != 'Whatsapp' || channel.provider != 'unoapi' || !campaign.one_off?
+    raise 'Completed Campaign' if campaign.completed?
+
+    # marks campaign completed so that other jobs won't pick it up
+    campaign.completed!
+
+    process_audience(campaign.audience)
+  end
+
+  private
+
+  delegate :inbox, to: :campaign
+  delegate :channel, to: :inbox
+
+  def process_audience(audience)
+    Rails.logger.debug { "Process campaign #{campaign.id} and #{audience.length} audience record(s)" }
+    interval = 0.seconds
+    audience.each do |a|
+      interval += rand(1..10).seconds
+      CampaignMessageJob.set(wait_until: DateTime.current + interval.seconds).perform_later(
+        campaign.account_id,
+        campaign.inbox_id,
+        campaign.id,
+        campaign.message,
+        a.symbolize_keys
+      )
     end
-    conversation.messages.create!(
-      content: m, account_id: account_id,
-      content_type: :text, inbox_id: inbox_id,
-      message_type: :outgoing, status: :progress,
-      additional_attributes: { campaign_id: campaign_id }
-    )
   end
 end
