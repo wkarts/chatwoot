@@ -48,7 +48,7 @@ class Campaign < ApplicationRecord
   has_many :conversations, dependent: :nullify, autosave: true
 
   before_validation :ensure_correct_campaign_attributes
-  after_commit :set_display_id, unless: :display_id?
+  after_create_commit :load_attributes_created_by_db_triggers
 
   def trigger!
     return unless one_off?
@@ -64,11 +64,17 @@ class Campaign < ApplicationRecord
   def one_off_unoapi
     return unless inbox.channel_type == 'Channel::Whatsapp' && inbox&.channel&.provider == 'unoapi'
 
-    OneoffUnoapiCampaignJob.perfom_later(id)
+    Whatsapp::OneoffUnoapiCampaignService.new(campaign: self).perform
   end
 
-  def set_display_id
-    reload
+  def load_attributes_created_by_db_triggers
+    # Display id is set via a trigger in the database
+    # So we need to specifically fetch it after the record is created
+    # We can't use reload because it will clear the previous changes, which we need for the dispatcher
+    obj_from_db = self.class.find(id)
+    self[:display_id] = obj_from_db[:display_id]
+  rescue ActiveRecord::RecordNotFound
+    Rails.logger.error("Ignore raise ActiveRecord::RecordNotFound on load campaign id #{id}")
   end
 
   def validate_campaign_inbox
