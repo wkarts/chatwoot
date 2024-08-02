@@ -24,9 +24,17 @@ class Contacts::ContactableInboxesService
       website_contactable_inbox(inbox)
     when 'Channel::NotificaMe'
       notifica_me_contactable_inbox(inbox)
+    when 'Channel::Internal'
+      internal_contactable_inbox(inbox)      
     end
   end
 
+  def internal_contactable_inbox(inbox)
+    return unless @contact.email || User.joins(:account_users).where(email: @contact.email, account_users: { account_id: inbox.account_id }).exists?
+
+    { source_id: @contact.email, inbox: inbox }
+  end
+  
   def notifica_me_contactable_inbox(inbox)
     source_id = @contact.additional_attributes[inbox.channel.notifica_me_type] || @contact.phone_number
     return unless source_id

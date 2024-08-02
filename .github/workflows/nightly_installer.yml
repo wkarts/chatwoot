@@ -37,7 +37,7 @@ jobs:
         which yarn
     - name: get installer
       run: |
-        wget https://raw.githubusercontent.com/sendingtk/chatwoot/master/deployment/install.sh
+        wget https://raw.githubusercontent.com/wkarts/chatwoot/master/deployment/install.sh
         chmod +x install.sh
         #fix for postgtres not starting automatically in gh action env
         sed -i '/function configure_db() {/a sudo service postgresql start' install.sh

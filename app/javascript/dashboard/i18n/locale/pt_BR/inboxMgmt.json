@@ -6,7 +6,7 @@
     "CLICK_TO_RECONNECT": "Click here to reconnect.",
     "LIST": {
       "404": "Não há caixas de entrada anexadas a esta conta."
-    },
+    },f
     "CREATE_FLOW": [
       {
         "title": "Escolha o canal",
@@ -221,9 +221,9 @@
           "UNOAPI": "Unoapi"
         },
         "INBOX_NAME": {
-          "LABEL": "Inbox Name",
-          "PLACEHOLDER": "Please enter an inbox name",
-          "ERROR": "This field is required"
+          "LABEL": "Nome da Caixa de Entrada",
+          "PLACEHOLDER": "Por favor, digite um nome para caixa de entrada",
+          "ERROR": "Este campo é obrigatório"
         },
         "SEND_AGENT_NAME": {
           "LABEL": "Enviar nome do agent",
@@ -240,14 +240,79 @@
           "PLACEHOLDER": "Check to ignore history on connect.",
           "ERROR": "Check to webhook send new messages."
         },
+        "WEBWOOK_SEND_NEW_MESSAGES": {
+          "LABEL": "Enviar mensagens para o webhook",
+          "PLACEHOLDER": "Selecione para enviar mensagens para o webhook.",
+          "ERROR": "Selecione para enviar mensagens para o webhook."
+        },        
         "IGNORE_GROUPS": {
           "LABEL": "Ignorar mensagens de grupos",
           "PLACEHOLDER": "Selecione para ignorar mensagens de grupos.",
           "ERROR": "Selecione para ignorar mensagens de grupos."
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Generate API Key",
+          "ERROR": "Generate API Key"
+        },
+        "REJECT_CALLS": {
+          "LABEL": "Rejeitar chamada",
+          "PLACEHOLDER": "Rejeitar chamada.",
+          "ERROR": "Rejeitar chamada."
+        },
+        "MESSAGE_CALLS_WEBHOOK": {
+          "LABEL": "Mensagem ao rejeitar chamada",
+          "PLACEHOLDER": "Mensagem ao rejeitar chamada.",
+          "ERROR": "Mensagem ao rejeitar chamada."
+        },
+        "IGNORE_BROADCAST_STATUSES": {
+          "LABEL": "Ignorar transmissão de status",
+          "PLACEHOLDER": "Selecione para ignorar transmissão de status.",
+          "ERROR": "Selecione para ignorar transmissão de status."
+        },
+        "IGNORE_BROADCAST_MESSAGES": {
+          "LABEL": "Ignorar mensagens de transmissão",
+          "PLACEHOLDER": "Selecione para ignorar mensagens de transmissão.",
+          "ERROR": "Selecione para ignorar mensagens de transmissão."
+        },
+        "IGNORE_OWN_MESSAGES": {
+          "LABEL": "Ignorar próprias mensagens",
+          "PLACEHOLDER": "Selecione para ignorar próprias mensagens.",
+          "ERROR": "Selecione para ignorar próprias mensagens."
+        },
+        "IGNORE_YOURSELF_MESSAGES": {
+          "LABEL": "Ignorar suas mensagens",
+          "PLACEHOLDER": "Selecione para ignorar suas mensagens.",
+          "ERROR": "Selecione para ignorar suas mensagens."
+        },
+        "SEND_CONNECTION_STATUS": {
+          "LABEL": "Exibir status de conexão",
+          "PLACEHOLDER": "Selecione para exibir status de conexão.",
+          "ERROR": "Selecione para exibir status de conexão."
+        },
+        "NOTIFY_FAILED_MESSAGES": {
+          "LABEL": "Notificar mensagens com falha",
+          "PLACEHOLDER": "Selecione para notificar mensagens com falha.",
+          "ERROR": "Selecione para notificar mensagens com falha."
+        },
+        "COMPOSING_MESSAGE": {
+          "LABEL": "Compor mensagem",
+          "PLACEHOLDER": "Selecione para compor mensagem.",
+          "ERROR": "Selecione para compor mensagem."
+        },
+        "SEND_REACTION_AS_REPLY": {
+          "LABEL": "Mostrar reação como resposta",
+          "PLACEHOLDER": "Selecione para mostrar reação como resposta.",
+          "ERROR": "Selecione para mostrar reação como resposta."
+        },
+        "SEND_PROFILE_PICTURE": {
+          "LABEL": "Exibir foto de perfil",
+          "PLACEHOLDER": "Selecione para exibir foto de perfil.",
+          "ERROR": "Selecione para exibir foto de perfil."
+        },
         "URL": {
           "LABEL": "Unoapi URL",
-          "PLACEHOLDER": "Insira um URL Unoapi",
+          "PLACEHOLDER": "Insira a URL Unoapi",
           "ERROR": "Este campo é obrigatório"
         },
         "PHONE_NUMBER": {
@@ -328,6 +393,19 @@
           "ERROR_MESSAGE": "Não foi possível criar o canal do NotificaMe Hub"
         }
       },
+      "INTERNAL_CHANNEL": {
+        "TITLE": "Canal Interno",
+        "DESC": "Canal interno de conversa entre agentes.",
+        "CHANNEL_NAME": {
+          "LABEL": "Nome do Canal",
+          "PLACEHOLDER": "Por favor, insira um nome de canal",
+          "ERROR": "Este campo é obrigatório"
+        },
+        "SUBMIT_BUTTON": "Criar canal interno",
+        "API": {
+          "ERROR_MESSAGE": "Não foi possível salvar o canal interno"
+        }
+      },       
       "EMAIL_CHANNEL": {
         "TITLE": "Canal de e-mail",
         "DESC": "Integre sua caixa de email.",

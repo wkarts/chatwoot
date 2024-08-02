@@ -51,7 +51,7 @@
                   :readable-time="readableTime"
                   @error="onVideoLoadError"
                 />
-
+                
                 <audio v-else-if="attachment.file_type === 'audio'" controls>
                   <source :src="attachment.data_url" />
                 </audio>
@@ -111,6 +111,7 @@ export default {
     ImageBubble,
     VideoBubble,
     Thumbnail,
+    VideoBubble,
     UserMessage,
     FileBubble,
     MessageReplyButton,
