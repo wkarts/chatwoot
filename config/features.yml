@@ -44,6 +44,7 @@
   help_url: https://chwt.app/hc/canned
 - name: integrations
   enabled: true
+  help_url: https://chwt.app/hc/integrations
 - name: voice_recorder
   enabled: true
 - name: mobile_v2
@@ -80,6 +81,7 @@
 - name: sla
   enabled: true
   premium: true
+  help_url: https://chwt.app/hc/sla
 - name: help_center_embedding_search
   enabled: true
   premium: true
@@ -118,4 +120,6 @@
 - name: hide_delete_message_for_agent
   enabled: false
 - name: channel_internal
-  enabled: true 
+  enabled: true
+- name: captain_integration
+  enabled: true

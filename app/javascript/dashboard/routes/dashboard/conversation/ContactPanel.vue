@@ -133,7 +133,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import alertMixin from 'shared/mixins/alertMixin';
+import { useUISettings } from 'dashboard/composables/useUISettings';
 import AccordionItem from 'dashboard/components/Accordion/AccordionItem.vue';
 import ContactConversations from './ContactConversations.vue';
 import ConversationAction from './ConversationAction.vue';
@@ -143,7 +143,6 @@ import ContactInfo from './contact/ContactInfo.vue';
 import ConversationInfo from './ConversationInfo.vue';
 import CustomAttributes from './customAttributes/CustomAttributes.vue';
 import draggable from 'vuedraggable';
-import uiSettingsMixin from 'dashboard/mixins/uiSettings';
 import MacrosList from './Macros/List.vue';
 export default {
   components: {
@@ -157,7 +156,6 @@ export default {
     draggable,
     MacrosList,
   },
-  mixins: [alertMixin, uiSettingsMixin],
   props: {
     conversationId: {
       type: [Number, String],
@@ -172,12 +170,26 @@ export default {
       default: () => {},
     },
   },
+  setup() {
+    const {
+      updateUISettings,
+      isContactSidebarItemOpen,
+      conversationSidebarItemsOrder,
+      toggleSidebarUIState,
+    } = useUISettings();
+
+    return {
+      updateUISettings,
+      isContactSidebarItemOpen,
+      conversationSidebarItemsOrder,
+      toggleSidebarUIState,
+    };
+  },
   data() {
     return {
       dragEnabled: true,
       conversationSidebarItems: [],
       dragging: false,
-      loadingContactDetails: false,
     };
   },
   computed: {
@@ -231,11 +243,8 @@ export default {
       this.onToggle();
     },
     getContactDetails() {
-      if (this.contactId && !this.loadingContactDetails) {
-        this.loadingContactDetails = true;
-        this.$store.dispatch('contacts/show', { id: this.contactId }).then(() => {
-          this.loadingContactDetails = false;
-        });
+      if (this.contactId) {
+        this.$store.dispatch('contacts/show', { id: this.contactId });
       }
     },
     getAttributesByModel() {
