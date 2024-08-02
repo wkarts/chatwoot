@@ -1,5 +1,4 @@
 <template> 
-  
   <div class="wizard-body small-9 columns">
     <page-header
       :header-title="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.TITLE')"
@@ -28,7 +27,7 @@
    <div class="w-full">
     <woot-submit-button
       :loading="uiFlags.isCreating"
-      :button-text="$t('NBOX_MGMT.ADD.INTERNAL_CHANNEL.SUBMIT_BUTTON')"
+      :button-text="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.SUBMIT_BUTTON')"
     />        
    </div>
     
