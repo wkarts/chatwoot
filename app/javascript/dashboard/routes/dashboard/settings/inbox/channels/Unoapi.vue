@@ -1,37 +1,37 @@
 <template>
   <form class="mx-0 flex flex-wrap" @submit.prevent="createChannel()">
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
-      <label :class="{ error: v$.inboxName.$error }">
+      <label :class="{ error: $v.inboxName.$error }">
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.INBOX_NAME.LABEL') }}
         <input
           v-model.trim="inboxName"
           type="text"
           :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.INBOX_NAME.PLACEHOLDER')"
-          @blur="v$.inboxName.$touch"
+          @blur="$v.inboxName.$touch"
         />
-        <span v-if="v$.inboxName.$error" class="message">
+        <span v-if="$v.inboxName.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.INBOX_NAME.ERROR') }}
         </span>
       </label>
     </div>
 
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
-      <label :class="{ error: v$.phoneNumber.$error }">
+      <label :class="{ error: $v.phoneNumber.$error }">
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.PHONE_NUMBER.LABEL') }}
         <input
           v-model.trim="phoneNumber"
           type="text"
           :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.PHONE_NUMBER.PLACEHOLDER')"
-          @blur="v$.phoneNumber.$touch"
+          @blur="$v.phoneNumber.$touch"
         />
-        <span v-if="v$.phoneNumber.$error" class="message">
+        <span v-if="$v.phoneNumber.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.PHONE_NUMBER.ERROR') }}
         </span>
       </label>
     </div>
 
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
-      <label :class="{ error: v$.apiKey.$error }">
+      <label :class="{ error: $v.apiKey.$error }">
         <span>
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.LABEL') }}
         </span>
@@ -39,24 +39,23 @@
           v-model.trim="apiKey"
           type="text"
           :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.PLACEHOLDER')"
-          @blur="v$.apiKey.$touch"
+          @blur="$v.apiKey.$touch"
         />
-        <span v-if="v$.apiKey.$error" class="message">
+        <span v-if="$v.apiKey.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.API_KEY.ERROR') }}
         </span>
       </label>
     </div>
 
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
-      <label :class="{ error: v$.url.$error }">
+      <label :class="{ error: $v.url.$error }">
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.LABEL') }}
         <input
           v-model.trim="url"
           type="text"
-          :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
-          @blur="v$.url.$touch"
+          placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.URL.PLACEHOLDER')"
         />
-        <span v-if="v$.url.$error" class="message">
+        <span v-if="$v.url.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.URL.ERROR') }}
         </span>
       </label>
@@ -64,7 +63,7 @@
 
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
       <label
-        :class="'switch-label ' + { error: $v.sendAgentName.$error }"
+        :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
       >
         <woot-switch
           v-model="sendAgentName"
@@ -72,7 +71,7 @@
           class="switch"
         />
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.LABEL') }}
-        <span v-if="v$.sendAgentName.$error" class="message">
+        <span v-if="$v.url.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.ERROR') }}
         </span>
       </label>
@@ -80,7 +79,7 @@
 
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
       <label
-        :class="'switch-label ' + { error: $v.ignoreGroupMessages.$error }"
+        :class="'switch-label ' + { error: $v.ignoreHistoryMessages.$error }"
       >
         <woot-switch
           v-model="ignoreGroupMessages"
@@ -88,7 +87,7 @@
           class="switch"
         />
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.LABEL') }}
-        <span v-if="v$.ignoreGroupMessages.$error" class="message">
+        <span v-if="$v.ignoreGroupMessages.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_GROUPS.ERROR') }}
         </span>
       </label>
@@ -104,12 +103,12 @@
           class="switch"
         />
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.LABEL') }}
-        <span v-if="v$.ignoreHistoryMessages.$error" class="message">
+        <span v-if="$v.ignoreHistoryMessages.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.IGNORE_HISTORY.ERROR') }}
         </span>
       </label>
     </div>
-
+    
     <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%] config-helptext">
       <label :class="{ error: $v.webhookSendNewMessages.$error }" style="display: flex; align-items: center;">
         <woot-switch
@@ -118,7 +117,7 @@
           style="flex: 0 0 auto; margin-right: 10px;"
         />
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.LABEL') }}
-        <span v-if="v$.webhookSendNewMessages.$error" class="message">
+        <span v-if="$v.webhookSendNewMessages.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBWOOK_SEND_NEW_MESSAGES.ERROR') }}
         </span>
       </label>
@@ -140,16 +139,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { useVuelidate } from '@vuelidate/core';
-import { useAlert } from 'dashboard/composables';
-import { required } from '@vuelidate/validators';
+import alertMixin from 'shared/mixins/alertMixin';
+import { required } from 'vuelidate/lib/validators';
 import router from '../../../../index';
 import { isPhoneE164OrEmpty } from 'shared/helpers/Validators';
 
 export default {
-  setup() {
-    return { v$: useVuelidate() };
-  },
+  mixins: [alertMixin],
   data() {
     return {
       inboxName: '',
@@ -192,8 +188,8 @@ export default {
       }
     },
     async createChannel() {
-      this.v$.$touch();
-      if (this.v$.$invalid) {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
         return;
       }
 
@@ -229,7 +225,7 @@ export default {
           },
         });
       } catch (error) {
-        useAlert(
+        this.showAlert(
           this.$t('INBOX_MGMT.ADD.WHATSAPP.API.ERROR_MESSAGE') +
             '\n detail:' +
             error
