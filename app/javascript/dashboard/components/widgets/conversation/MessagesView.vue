@@ -412,7 +412,7 @@ export default {
           const HIGHLIGHT_TIMER = 2000;
           setTimeout(() => {
             messageElement.classList.remove('has-bg');
-          }, HIGHLIGHT_TIMER);          
+          }, HIGHLIGHT_TIMER);
         } else {
           this.scrollToBottom();
         }
