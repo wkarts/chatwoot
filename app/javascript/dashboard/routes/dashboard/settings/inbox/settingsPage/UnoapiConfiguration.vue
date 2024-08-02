@@ -306,19 +306,15 @@
 </template>
 <script type="module">
 import { io } from 'socket.io-client';
-import { useVuelidate } from '@vuelidate/core';
-import { useAlert } from 'dashboard/composables';
+import alertMixin from 'shared/mixins/alertMixin';
 import inboxMixin from 'shared/mixins/inboxMixin';
-import { required } from '@vuelidate/validators';
+import { required } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
 // import { createConsumer } from '@rails/actioncable';
 
 export default {
-  setup() {
-    return { v$: useVuelidate() };
-  },
   components: {},
-  mixins: [inboxMixin],
+  mixins: [inboxMixin, alertMixin],
   props: {
     inbox: {
       type: Object,
@@ -384,48 +380,46 @@ export default {
   },
   methods: {
     setDefaults() {
-      if (this.inbox && this.inbox.provider_config) {
-        this.apiKey = this.inbox.provider_config.api_key || 'any';
-        this.url = this.inbox.provider_config.url || 'https://cloud.hub.seudominio.com.br';
-        this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages || true;
-        this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages || true;
-        this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages || true;
-        this.sendAgentName = this.inbox.provider_config.send_agent_name || true;
-        this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_Broadcast_Statuses || true;
-        this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_Broadcast_Messages || true;
-        this.ignoreOwnMessages = this.inbox.provider_config.ignore_Own_Messages || false;
-        this.ignoreYourselfMessages = this.inbox.provider_config.ignore_Yourself_Messages || false;
-        this.sendConnectionStatus = this.inbox.provider_config.send_Connection_Status || true;
-        this.notifyFailedMessages = this.inbox.provider_config.notify_Failed_Messages || true;
-        this.composingMessage = this.inbox.provider_config.composing_Message || true;
-        this.sendReactionAsReply = this.inbox.provider_config.send_Reaction_As_Reply || true;
-        this.sendProfilePicture = this.inbox.provider_config.send_Profile_Picture || true;
-        this.rejectCalls = this.inbox.provider_config.reject_Calls || '';
-        this.messageCallsWebhook = this.inbox.provider_config.message_Calls_Webhook || '';
-        this.connect = false;
-        this.disconect = false;
-      }
+      this.apiKey = this.inbox.provider_config.api_key;
+      this.url = this.inbox.provider_config.url;
+      this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
+      this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages;
+      this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages;
+      this.sendAgentName = this.inbox.provider_config.send_agent_name;
+      this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_Broadcast_Statuses;
+      this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_Broadcast_Messages;
+      this.ignoreOwnMessages = this.inbox.provider_config.ignore_Own_Messages;
+      this.ignoreYourselfMessages = this.inbox.provider_config.ignore_Yourself_Messages;
+      this.sendConnectionStatus = this.inbox.provider_config.send_Connection_Status;
+      this.notifyFailedMessages = this.inbox.provider_config.notify_Failed_Messages;
+      this.composingMessage = this.inbox.provider_config.composing_Message;
+      this.sendReactionAsReply = this.inbox.provider_config.send_Reaction_As_Reply;
+      this.sendProfilePicture = this.inbox.provider_config.send_Profile_Picture;
+      this.rejectCalls = this.inbox.provider_config.reject_Calls;
+      this.messageCallsWebhook = this.inbox.provider_config.message_Calls_Webhook;
+      this.connect = false;
+      this.disconect = false;
     },
     listenerQrCode() {
-      if (this.inbox && this.inbox.provider_config && this.inbox.provider_config.url) {
-        const url = `${this.inbox.provider_config.url}`
-          .replace('https', 'wss')
-          .replace('http', 'ws');
-        const socket = io(url, { path: '/ws' });
-        socket.on('broadcast', data => {
-          if (data.phone !== this.inbox.provider_config.phone_number_id) {
-            this.notice = `Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id}`;
-            this.qrcode = '';
-            return;
-          }
-          if (data.type === 'status') {
-            this.notice = data.content;
-            this.qrcode = '';
-          } else if (data.type === 'qrcode') {
-            this.qrcode = data.content;
-            this.notice = '';
-          }
-        });
+      const url = `${this.inbox.provider_config.url}`
+        .replace('https', 'wss')
+        .replace('http', 'ws');
+      const socket = io(url, { path: '/ws' });
+      socket.on('broadcast', data => {
+        if (data.phone !== this.inbox.provider_config.phone_number_id) {
+          this.notice = `Received qrcode from ${data.phone} but the current number in chatwoot is ${this.inbox.provider_config.phone_number_id}`;
+          this.qrcode = '';
+          // broadcast phone is other
+          return;
+        }
+        if (data.type === 'status') {
+          this.notice = data.content;
+          this.qrcode = '';
+        } else if (data.type === 'qrcode') {
+          this.qrcode = data.content;
+          this.notice = '';
+        }
+      });
       // const url = `${this.inbox.provider_config.url}/ws`;
       // const cable = createConsumer(url);
       // cable.subscriptions.create(
@@ -492,9 +486,9 @@ export default {
           },
         };
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
+        this.showAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
+        this.showAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
