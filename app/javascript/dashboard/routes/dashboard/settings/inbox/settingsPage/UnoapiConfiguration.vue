@@ -45,7 +45,7 @@
           />
           {{
             $t(
-              'INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.LABEL'
+              'INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.SERVICE'
             )
           }}
         </label>
