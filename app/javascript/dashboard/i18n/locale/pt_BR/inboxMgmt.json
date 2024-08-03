@@ -256,14 +256,15 @@
           "ERROR": "Generate API Key"
         },
         "REJECT_CALLS": {
-          "LABEL": "Rejeitar chamada",
-          "PLACEHOLDER": "Rejeitar chamada.",
-          "ERROR": "Rejeitar chamada."
+          "SERVICE": "Rejeitar chamadas",
+          "LABEL": "Mensagem para o Contato ao Rejeitar chamadas",          
+          "PLACEHOLDER": "Mensagem ao Rejeitar chamada, Enviada ao Contato.",
+          "ERROR": "Este campo é obrigatório para Rejeitar chamadas."
         },
         "MESSAGE_CALLS_WEBHOOK": {
-          "LABEL": "Mensagem ao rejeitar chamada",
-          "PLACEHOLDER": "Mensagem ao rejeitar chamada.",
-          "ERROR": "Mensagem ao rejeitar chamada."
+          "LABEL": "Mensagem de Retorno ao rejeitar chamadas",
+          "PLACEHOLDER": "Mensagem ao rejeitar chamada, Enviada a Conta Whatsapp(Inbox). Retorno",
+          "ERROR": "Este campo é obrigatório para rejeitar chamada."
         },
         "IGNORE_BROADCAST_STATUSES": {
           "LABEL": "Ignorar transmissão de status",
