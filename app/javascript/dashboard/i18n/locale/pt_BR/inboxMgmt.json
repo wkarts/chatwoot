@@ -399,11 +399,12 @@
         "CHANNEL_NAME": {
           "LABEL": "Nome do Canal",
           "PLACEHOLDER": "Por favor, insira um nome de canal",
-          "ERROR": "Este campo é obrigatório"
+          "ERROR": "Este campo é obrigatório."
         },
         "SUBMIT_BUTTON": "Criar canal interno",
         "API": {
-          "ERROR_MESSAGE": "Não foi possível salvar o canal interno"
+          "ERROR_MESSAGE": "Não foi possível salvar o canal interno.",
+          "SUCCESS_MESSAGE": "Canal interno criado com sucesso."
         }
       },       
       "EMAIL_CHANNEL": {
