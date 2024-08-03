@@ -394,11 +394,12 @@
         "CHANNEL_NAME": {
           "LABEL": "Channel Name",
           "PLACEHOLDER": "Please enter a channel name",
-          "ERROR": "This field is required"
+          "ERROR": "This field is required."
         },
         "SUBMIT_BUTTON": "Create Internal Channel",
         "API": {
-          "ERROR_MESSAGE": "We were not able to save the internal channel"
+          "ERROR_MESSAGE": "We were not able to save the internal channel.",
+          "SUCCESS_MESSAGE": "Internal channel created successfully."
         }
       },      
       "EMAIL_CHANNEL": {
