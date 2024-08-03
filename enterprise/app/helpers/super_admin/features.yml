@@ -73,8 +73,8 @@ microsoft:
   icon: 'icon-microsoft'
   config_key: 'microsoft'
 unoapi:
-  name: 'UNOAPI'
-  description: 'Configuration for setting up UNOAPI'
+  name: '🅷🆄🅱 API'
+  description: 'Configuration for setting up 🅷🆄🅱 API'
   enabled: true
-  icon: 'icon-chat-smile-3-line'
+  icon: 'icon-whatsapp-line'
   config_key: 'unoapi'
