@@ -34,8 +34,24 @@
           </span>
         </label>
       </div>
-
-      <div class="w-1/4">
+      
+      <div class="max-w-[65%] w-full messagingServiceHelptext">
+        <label for="useRejectCalls">
+          <input
+            id="useRejectCalls"
+            v-model="useRejectCalls"
+            type="checkbox"
+            class="checkbox"
+          />
+          {{
+            $t(
+              'INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.LABEL'
+            )
+          }}
+        </label>
+      </div>
+      
+      <div v-if="useRejectCalls" class="w-1/4">
         <label :class="{ error: v$.rejectCalls.$error }">
           <span>
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.REJECT_CALLS.LABEL') }}
@@ -52,7 +68,7 @@
         </label>
       </div>
 
-      <div class="w-1/4">
+      <div v-if="useRejectCalls" class="w-1/4">
         <label :class="{ error: v$.messageCallsWebhook.$error }">
           <span>
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.MESSAGE_CALLS_WEBHOOK.LABEL') }}
@@ -316,7 +332,8 @@ export default {
       notifyFailedMessages: true,
       composingMessage: true,
       sendReactionAsReply: true,
-      sendProfilePicture: true,       
+      sendProfilePicture: true,
+      useRejectCalls: false,
       connect: false,
       disconect: false,
       qrcode: '',
@@ -324,6 +341,17 @@ export default {
       rejectCalls: '',
       messageCallsWebhook: '',      
     };
+  },
+  watch: {
+    useRejectCalls(newValue) {
+      if (!newValue) {
+        this.rejectCalls = '';
+        this.messageCallsWebhook = '';
+      }
+    },
+    inbox() {
+      this.setDefaults();
+    },
   },
   computed: {
     ...mapGetters({ uiFlags: 'inboxes/getUIFlags' }),
@@ -345,13 +373,9 @@ export default {
     composingMessage: { required },
     sendReactionAsReply: { required },
     sendProfilePicture: { required },
+    useRejectCalls: { required },
     rejectCalls: { required },
     messageCallsWebhook: { required },
-  },
-  watch: {
-    inbox() {
-      this.setDefaults();
-    },
   },
   mounted() {
     this.setDefaults();
@@ -365,17 +389,18 @@ export default {
       this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages;
       this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages;
       this.sendAgentName = this.inbox.provider_config.send_agent_name;
-      this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_Broadcast_Statuses;
-      this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_Broadcast_Messages;
-      this.ignoreOwnMessages = this.inbox.provider_config.ignore_Own_Messages;
-      this.ignoreYourselfMessages = this.inbox.provider_config.ignore_Yourself_Messages;
-      this.sendConnectionStatus = this.inbox.provider_config.send_Connection_Status;
-      this.notifyFailedMessages = this.inbox.provider_config.notify_Failed_Messages;
-      this.composingMessage = this.inbox.provider_config.composing_Message;
-      this.sendReactionAsReply = this.inbox.provider_config.send_Reaction_As_Reply;
-      this.sendProfilePicture = this.inbox.provider_config.send_Profile_Picture;
-      this.rejectCalls = this.inbox.provider_config.reject_Calls;
-      this.messageCallsWebhook = this.inbox.provider_config.message_Calls_Webhook;
+      this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_broadcast_statuses;
+      this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_broadcast_messages;
+      this.ignoreOwnMessages = this.inbox.provider_config.ignore_own_messages;
+      this.ignoreYourselfMessages = this.inbox.provider_config.ignore_yourself_messages;
+      this.sendConnectionStatus = this.inbox.provider_config.send_connection_status;
+      this.notifyFailedMessages = this.inbox.provider_config.notify_failed_messages;
+      this.composingMessage = this.inbox.provider_config.composing_message;
+      this.sendReactionAsReply = this.inbox.provider_config.send_reaction_as_reply;
+      this.sendProfilePicture = this.inbox.provider_config.send_profile_picture;
+      this.useRejectCalls = this.inbox.provider_config.use_reject_calls;
+      this.rejectCalls = this.inbox.provider_config.reject_calls;
+      this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
       this.disconect = false;
     },
@@ -447,17 +472,18 @@ export default {
               send_agent_name: this.sendAgentName,
               webhook_send_new_messages: this.webhookSendNewMessages,
               url: this.url,
-              ignore_Broadcast_Statuses: this.ignoreBroadcastStatuses,
-              ignore_Broadcast_Messages: this.ignoreBroadcastMessages,
-              ignore_Own_Messages: this.ignoreOwnMessages,
-              ignore_Yourself_Messages: this.ignoreYourselfMessages,
-              send_Connection_Status: this.sendConnectionStatus,
-              notify_Failed_Messages: this.notifyFailedMessages,
-              composing_Message: this.composingMessage,
-              send_Reaction_As_Reply: this.sendReactionAsReply,
-              send_Profile_Picture: this.sendProfilePicture,
-              reject_Calls: this.rejectCalls,
-              message_Calls_Webhook: this.messageCallsWebhook,              
+              ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
+              ignore_broadcast_messages: this.ignoreBroadcastMessages,
+              ignore_own_messages: this.ignoreOwnMessages,
+              ignore_yourself_messages: this.ignoreYourselfMessages,
+              send_connection_status: this.sendConnectionStatus,
+              notify_failed_messages: this.notifyFailedMessages,
+              composing_message: this.composingMessage,
+              send_reaction_as_reply: this.sendReactionAsReply,
+              send_profile_picture: this.sendProfilePicture,
+              use_reject_calls: this.useRejectCalls,
+              reject_calls: this.rejectCalls,
+              message_calls_webhook: this.messageCallsWebhook,              
               connect: this.connect,
               disconect: this.disconect,
             },
@@ -477,6 +503,10 @@ export default {
 .whatsapp-settings--content {
   ::v-deep input {
     margin-bottom: 0;
+  }
+
+  .checkbox {
+    margin: 0px 4px;
   }
 }
 
