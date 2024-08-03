@@ -137,7 +137,7 @@
 - name: UNOAPI_AUTH_TOKEN
   value:
   display_title: '🅷🆄🅱 API Auth Token'
-  description: 'The Auth Token for 🅷🆄🅱 API. Find more details on how to configure UNOAPI here: https://github.com/wkarts/unoapi-cloud/tree/main'
+  description: 'The Auth Token for 🅷🆄🅱 API. Find more details on how to configure 🅷🆄🅱 API here: https://github.com/wkarts/unoapi-cloud/tree/main'
 # End of UNOAPI Channel Config
 
 # ------- Chatwoot Internal Config for Cloud ----#
