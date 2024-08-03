@@ -136,8 +136,8 @@
 # MARK: UNOAPI Channel Config
 - name: UNOAPI_AUTH_TOKEN
   value:
-  display_title: 'UNO API Auth Token'
-  description: 'The Auth Token for UNO API. Find more details on how to configure UNOAPI here: https://github.com/clairton/unoapi-cloud/tree/main'
+  display_title: '🅷🆄🅱 API Auth Token'
+  description: 'The Auth Token for 🅷🆄🅱 API. Find more details on how to configure UNOAPI here: https://github.com/wkarts/unoapi-cloud/tree/main'
 # End of UNOAPI Channel Config
 
 # ------- Chatwoot Internal Config for Cloud ----#
@@ -231,6 +231,7 @@
   value:
   description: 'Customize conversation, put your valid css'
 ## ------ End of Configs custom ------ ##
+
 ## ----- Captain Configs ----- ##
 - name: CAPTAIN_API_URL
   value: 
