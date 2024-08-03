@@ -251,14 +251,15 @@
           "ERROR": "Generate API Key"
         },
         "REJECT_CALLS": {
-          "LABEL": "Reject call",
-          "PLACEHOLDER": "Reject call.",
-          "ERROR": "Reject call."
+          "SERVICE": "Reject Calls",
+          "LABEL": "Message to Contact when Rejecting Calls",
+          "PLACEHOLDER": "Message when Rejecting Call, Sent to Contact.",
+          "ERROR": "This field is required to Reject Calls."
         },
         "MESSAGE_CALLS_WEBHOOK": {
-          "LABEL": "Message on reject call",
-          "PLACEHOLDER": "Message on reject call.",
-          "ERROR": "Message on reject call."
+          "LABEL": "Return Message when Rejecting Calls",
+          "PLACEHOLDER": "Message when Rejecting Call, Sent to Whatsapp Account (Inbox). Return",
+          "ERROR": "This field is required to Reject Call."
         },
         "IGNORE_BROADCAST_STATUSES": {
           "LABEL": "Ignore broadcast statuses",
