@@ -4,7 +4,7 @@
       :header-title="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.TITLE')"
       :header-content="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.DESC')"
     />
-    <form class="flex flex-col" @submit.prevent="createChannel()">
+    <form class="mx-0 flex flex-wrap" @submit.prevent="createChannel()">
       <div class="w-1/4">
         <label :class="{ error: v$.channelName.$error }">
           {{ $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.LABEL') }}
