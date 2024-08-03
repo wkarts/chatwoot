@@ -1,11 +1,11 @@
 <template>
-  <div class="my-2 mx-8 text-base">
+  <div class="border border-slate-25 dark:border-slate-800/60 bg-white dark:bg-slate-900 h-full p-6 w-full max-w-full md:w-3/4 md:max-w-[75%] flex-shrink-0 flex-grow-0">
     <page-header
       :header-title="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.TITLE')"
       :header-content="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.DESC')"
     />
-    <form class="mx-0 flex flex-wrap" @submit.prevent="createChannel()">
-      <div class="w-1/4">
+    <form class="flex flex-col" @submit.prevent="createChannel()">
+      <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
         <label :class="{ error: v$.channelName.$error }">
           {{ $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.LABEL') }}
           <input
@@ -19,8 +19,8 @@
           </span>
         </label>
       </div>
-
-      <div class="my-4 w-auto">
+      
+      <div class="w-full" style="margin-top: 20px;">
         <woot-submit-button
           :loading="uiFlags.isCreating"
           :button-text="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.SUBMIT_BUTTON')"
@@ -43,9 +43,7 @@ export default {
     PageHeader,
   },
   setup() {
-    const v$ = useVuelidate();
-    const { showAlert } = useAlert();
-    return { v$, showAlert };
+    return { v$: useVuelidate() };
   },
   data() {
     return {
@@ -80,9 +78,9 @@ export default {
             inbox_id: internalChannel.id,
           },
         });
-        this.showAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.SUCCESS_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        this.showAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.ERROR_MESSAGE') + '\n detail:' + error);
+        useAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.ERROR_MESSAGE') + '\n detail:' + error);
       }
     },
   },
