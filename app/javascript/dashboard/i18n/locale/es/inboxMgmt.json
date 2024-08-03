@@ -252,14 +252,15 @@
           "ERROR": "Generate API Key"
         },
         "REJECT_CALLS": {
-          "LABEL": "Rechazar llamada",
-          "PLACEHOLDER": "Rechazar llamada.",
-          "ERROR": "Rechazar llamada."
+          "SERVICE": "Rechazar llamadas",
+          "LABEL": "Mensaje para el Contacto al Rechazar llamadas",
+          "PLACEHOLDER": "Mensaje al Rechazar llamada, Enviado al Contacto.",
+          "ERROR": "Este campo es obligatorio para Rechazar llamadas."
         },
         "MESSAGE_CALLS_WEBHOOK": {
-          "LABEL": "Mensaje al rechazar llamada",
-          "PLACEHOLDER": "Mensaje al rechazar llamada.",
-          "ERROR": "Mensaje al rechazar llamada."
+          "LABEL": "Mensaje de Retorno al rechazar llamadas",
+          "PLACEHOLDER": "Mensaje al rechazar llamada, Enviado a la Cuenta de Whatsapp (Bandeja de entrada). Retorno",
+          "ERROR": "Este campo es obligatorio para rechazar llamada."
         },
         "IGNORE_BROADCAST_STATUSES": {
           "LABEL": "Ignorar estados de transmisión",
