@@ -519,4 +519,18 @@ export default {
   display: flex;
   align-items: center;
 }
+
+.flex-shrink div .messagingServiceHelptext{
+ width:343px;
+ max-width:343px;
+ margin-bottom:8px;
+}
+
+.flex-shrink div .w-1\/4{
+ min-width:700px;
+}
+
+.flex-shrink div .config-helptext{
+ width:700px;
+}   
 </style>
