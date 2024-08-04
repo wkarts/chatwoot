@@ -40,6 +40,22 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
 
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: yarn_cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Cache Bundler dependencies
+        uses: actions/cache@v3
+        with:
+          path: /bundle_cache
+          key: ${{ runner.os }}-bundler-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bundler-
+
       - name: Set up Docker tags
         id: docker_tag
         run: |
