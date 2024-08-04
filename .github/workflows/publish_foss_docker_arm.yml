@@ -19,7 +19,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Make custom changes
@@ -34,8 +34,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
-        with:
-          install: true
 
   build:
     runs-on: ubuntu-latest
@@ -43,12 +41,10 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub-arm
       GIT_REF: ${{ github.head_ref || github.ref_name }}
-      AWS_REGION: us-east-1
-      AWS_BUCKET: my-docker-cache-bucket  # Substitua pelo nome do seu bucket S3
     timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Docker tags
@@ -65,13 +61,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
       - name: Build and push arm64 image
         uses: docker/build-push-action@v6.5.0
         with:
@@ -82,19 +71,4 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
-          cache-from: type=s3,region=${{ env.AWS_REGION }},bucket=${{ env.AWS_BUCKET }}
-          cache-to: type=s3,region=${{ env.AWS_REGION }},bucket=${{ env.AWS_BUCKET }},mode=max
-
-  verify-build:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Verify ARM64 build
-        run: |
-          docker run --rm ${{ env.IMAGE_NAME }}:${{ env.GIT_REF }} echo "Build successful"
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            docker run --rm ${{ env.IMAGE_NAME }}:latest echo "Build successful"
-            docker run --rm ${{ env.IMAGE_NAME }}:${{ github.ref_name }} echo "Build successful"
+        timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
