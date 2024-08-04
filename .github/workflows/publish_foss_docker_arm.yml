@@ -34,6 +34,8 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
+        with:
+          install: true
 
   build:
     runs-on: ubuntu-latest
@@ -41,6 +43,8 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub-arm
       GIT_REF: ${{ github.head_ref || github.ref_name }}
+      AWS_REGION: us-east-1
+      AWS_BUCKET: my-docker-cache-bucket  # Substitua pelo nome do seu bucket S3
     timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
 
     steps:
@@ -61,6 +65,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Build and push arm64 image
         uses: docker/build-push-action@v6.5.0
         with:
@@ -68,12 +79,11 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/arm64
           push: true
-          load: true
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
-          cache-from: type=inline
-          cache-to: type=inline
+          cache-from: type=s3,region=${{ env.AWS_REGION }},bucket=${{ env.AWS_BUCKET }}
+          cache-to: type=s3,region=${{ env.AWS_REGION }},bucket=${{ env.AWS_BUCKET }},mode=max
 
   verify-build:
     needs: build
