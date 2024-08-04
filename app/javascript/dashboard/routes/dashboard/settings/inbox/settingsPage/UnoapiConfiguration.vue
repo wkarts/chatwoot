@@ -553,5 +553,11 @@ export default {
 
 .flex-shrink .config-helptext div{
  margin-top:10px;
-} 
+}
+
+.flex-shrink div img{
+ transform:translatex(407px) translatey(-347px);
+ width:300px;
+ height:300px;
+}
 </style>
