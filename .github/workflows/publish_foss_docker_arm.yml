@@ -16,21 +16,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: wkarts/hub-arm
-      GIT_REF: ${{ github.head_ref || github.ref_name }}
-    timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Make custom changes
-        run: |
-          sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
-          sed -i 's/"short_name": "Teste"/"short_name": "🅷🆄🅱"/g' public/manifest.json
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.2.0
@@ -39,6 +30,18 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    env:
+      IMAGE_NAME: wkarts/hub-arm
+      GIT_REF: ${{ github.head_ref || github.ref_name }}
+    timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Cache Yarn dependencies
         uses: actions/cache@v3
@@ -81,3 +84,14 @@ jobs:
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
         timeout-minutes: 360  # Configurar um timeout mais longo para evitar paradas inesperadas
+
+  post-build:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Verify ARM64 build
+        run: |
+          docker run --rm ${{ env.IMAGE_NAME }}:${{ env.GIT_REF }} echo "Build successful"
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            docker run --rm ${{ env.IMAGE_NAME }}:latest echo "Build successful"
+            docker run --rm ${{ env.IMAGE_NAME }}:${{ github.ref_name }} echo "Build successful"
