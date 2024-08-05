@@ -58,7 +58,10 @@ jobs:
       - name: Download and cache all Yarn packages
         run: |
           mkdir -p ~/.cache/yarn
-          grep -o 'https://[^ ]*' yarn.lock | xargs -n 1 curl -L -o ~/.cache/yarn/$(basename {})
+          grep -o 'https://[^ ]*' yarn.lock | while read -r url; do
+            filename=$(basename "$url")
+            curl -L "$url" -o ~/.cache/yarn/"$filename"
+          done
 
       - name: Configure Yarn to use cached packages
         run: |
