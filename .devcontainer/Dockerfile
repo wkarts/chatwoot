@@ -4,19 +4,23 @@ FROM ghcr.io/chatwoot/chatwoot_codespace:latest
 
 # Do the set up required for chatwoot app
 WORKDIR /workspace
-COPY . /workspace
 
 # Configurar cache do Yarn
 RUN yarn config set cache-folder /yarn_cache
 
-# Copiar o cache do Yarn se disponível
+# Copiar arquivos de cache do Yarn se disponíveis
 COPY yarn_cache /yarn_cache
 
-# Instalar dependências do Yarn com aumento de tentativas
-RUN yarn install --network-timeout 600000 --retry 5
+# Copiar arquivos de dependências e instalar
+COPY package.json yarn.lock ./
+RUN yarn install --network-timeout 600000
 
 # Configurar cache do Bundler
 ENV BUNDLE_PATH /bundle_cache
 
-# Instalar dependências do Bundler
+# Copiar arquivos de dependências Ruby e instalar
+COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install
+
+# Copiar restante do código
+COPY . .
