@@ -55,10 +55,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Download Yarn packages
+      - name: Download and cache all Yarn packages
         run: |
           mkdir -p ~/.cache/yarn
-          cat yarn.lock | grep 'resolved ' | awk '{print $2}' | xargs -n 1 curl -L -o ~/.cache/yarn/$(basename {})
+          grep -o 'https://[^ ]*' yarn.lock | xargs -n 1 curl -L -o ~/.cache/yarn/$(basename {})
 
       - name: Configure Yarn to use cached packages
         run: |
