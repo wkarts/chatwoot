@@ -12,8 +12,8 @@ RUN yarn config set cache-folder /yarn_cache
 # Copiar o cache do Yarn se disponível
 COPY yarn_cache /yarn_cache
 
-# Instalar dependências do Yarn
-RUN yarn install --network-concurrency 1
+# Instalar dependências do Yarn com aumento de tentativas
+RUN yarn install --network-timeout 600000 --retry 5
 
 # Configurar cache do Bundler
 ENV BUNDLE_PATH /bundle_cache
