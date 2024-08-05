@@ -55,26 +55,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Create list of all Yarn package URLs
+        run: |
+          grep -o 'https://[^ ]*' yarn.lock > yarn-urls.txt
+
       - name: Download and cache all Yarn packages
         run: |
           mkdir -p ~/.cache/yarn
-          grep -o 'https://[^ ]*' yarn.lock | while read -r url; do
+          while IFS= read -r url; do
             filename=$(basename "$url")
             if [ ! -f ~/.cache/yarn/"$filename" ]; then
               curl -L "$url" -o ~/.cache/yarn/"$filename"
             fi
-          done
+          done < yarn-urls.txt
 
       - name: Verify all packages are cached
         run: |
           missing=0
-          for url in $(grep -o 'https://[^ ]*' yarn.lock); do
+          while IFS= read -r url; do
             filename=$(basename "$url")
             if [ ! -f ~/.cache/yarn/"$filename" ]; then
               echo "Missing package: $filename"
               missing=1
             fi
-          done
+          done < yarn-urls.txt
           if [ $missing -eq 1 ]; then
             exit 1
           fi
