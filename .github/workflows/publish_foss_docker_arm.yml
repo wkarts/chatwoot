@@ -58,17 +58,34 @@ jobs:
       - name: Download and cache all Yarn packages
         run: |
           mkdir -p ~/.cache/yarn
-          for url in $(grep -o 'https://[^ ]*' yarn.lock); do
+          grep -o 'https://[^ ]*' yarn.lock | while read -r url; do
             filename=$(basename "$url")
             if [ ! -f ~/.cache/yarn/"$filename" ]; then
               curl -L "$url" -o ~/.cache/yarn/"$filename"
             fi
           done
 
+      - name: Verify all packages are cached
+        run: |
+          missing=0
+          for url in $(grep -o 'https://[^ ]*' yarn.lock); do
+            filename=$(basename "$url")
+            if [ ! -f ~/.cache/yarn/"$filename" ]; then
+              echo "Missing package: $filename"
+              missing=1
+            fi
+          done
+          if [ $missing -eq 1 ]; then
+            exit 1
+          fi
+
       - name: Configure Yarn to use cached packages
         run: |
           yarn config set yarn-offline-mirror ~/.cache/yarn
           yarn config set yarn-offline-mirror-pruning true
+
+      - name: Install dependencies in offline mode
+        run: |
           yarn install --offline --pure-lockfile
 
       - name: Save Yarn cache
