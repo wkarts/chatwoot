@@ -1,3 +1,9 @@
+# #
+# # This action will publish Chatwoot CE docker image.
+# # This is set to run against merges to develop, master
+# # and when tags are created.
+# #
+
 name: Publish Chatwoot CE docker images for ARM64
 
 on:
@@ -51,8 +57,14 @@ jobs:
 
       - name: Download Yarn packages
         run: |
-          yarn config set registry https://registry.yarnpkg.com
-          yarn install --pure-lockfile
+          mkdir -p ~/.cache/yarn
+          cat yarn.lock | grep 'resolved ' | awk '{print $2}' | xargs -n 1 curl -L -o ~/.cache/yarn/$(basename {})
+
+      - name: Configure Yarn to use cached packages
+        run: |
+          yarn config set yarn-offline-mirror ~/.cache/yarn
+          yarn config set yarn-offline-mirror-pruning true
+          yarn install --offline --pure-lockfile
 
       - name: Save Yarn cache
         if: steps.yarn-cache.outputs.cache-hit != 'true'
