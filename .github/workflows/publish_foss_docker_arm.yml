@@ -90,7 +90,7 @@ jobs:
 
       - name: Install dependencies in offline mode
         run: |
-          yarn install --offline --pure-lockfile
+          yarn install --offline --pure-lockfile || yarn install --pure-lockfile || yarn install --offline --pure-lockfile
 
       - name: Save Yarn cache
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -133,3 +133,4 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
+
