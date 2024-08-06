@@ -10,17 +10,17 @@
 - name: channel_twitter
   enabled: true
 - name: ip_lookup
-  enabled: false
+  enabled: true
 - name: disable_branding
   enabled: false
   premium: true
 - name: email_continuity_on_api_channel
-  enabled: false
+  enabled: true
 - name: help_center
   enabled: true
   help_url: https://chwt.app/hc/help-center
 - name: agent_bots
-  enabled: false
+  enabled: true
   help_url: https://chwt.app/hc/agent-bots
 - name: macros
   enabled: true
@@ -48,7 +48,7 @@
 - name: voice_recorder
   enabled: true
 - name: mobile_v2
-  enabled: false
+  enabled: true
 - name: channel_website
   enabled: true
 - name: campaigns
@@ -62,33 +62,31 @@
 - name: auto_resolve_conversations
   enabled: true
 - name: custom_reply_email
-  enabled: false
+  enabled: true
 - name: custom_reply_domain
-  enabled: false
+  enabled: true
 - name: audit_logs
-  enabled: false
+  enabled: true
   premium: true
 - name: response_bot
   enabled: false
   premium: true
 - name: message_reply_to
-  enabled: false
+  enabled: true
   help_url: https://chwt.app/hc/reply-to
 - name: insert_article_in_reply
-  enabled: false
+  enabled: true
 - name: inbox_view
-  enabled: false
+  enabled: true
 - name: sla
-  enabled: false
+  enabled: true
   premium: true
   help_url: https://chwt.app/hc/sla
 - name: help_center_embedding_search
-  enabled: false
+  enabled: true
   premium: true
 - name: linear_integration
-  enabled: false
-- name: captain_integration
-  enabled: false
+  enabled: true
 - name: hide_all_chats_for_agent
   enabled: false
 - name: hide_contacts_for_agent
@@ -99,8 +97,8 @@
   enabled: true
 - name: read_message
   enabled: true
-#- name: disable_whatsapp_messaging_window
-#  enabled: false
+- name: disable_whatsapp_messaging_window
+  enabled: true
 - name: agent_conversation_viewed
   enabled: true
 - name: hide_unassigned_for_agent
@@ -110,12 +108,18 @@
 # - name: channel_notifica_me
 #   enabled: false
 - name: channel_sms
-  enabled: false
+  enabled: true
 - name: channel_whatsapp
   enabled: true
 - name: channel_telegram
-  enabled: false
+  enabled: true
 - name: channel_line
-  enabled: false
+  enabled: true
 - name: channel_api
+  enabled: true
+- name: hide_delete_message_for_agent
+  enabled: false
+- name: channel_internal
+  enabled: true
+- name: captain_integration
   enabled: true

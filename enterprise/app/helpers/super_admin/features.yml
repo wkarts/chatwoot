@@ -74,13 +74,13 @@ microsoft:
   config_key: 'microsoft'
 captain:
   name: 'Captain'
-  description: 'Configuration for setting up Microsoft Email'
+  description: 'Configuration for setting up Captain'
   enabled: true
   icon: 'captain-outline'
   config_key: 'captain'
 unoapi:
-  name: 'UNOAPI'
-  description: 'Configuration for setting up UNOAPI'
+  name: '🅷🆄🅱 API'
+  description: 'Configuration for setting up 🅷🆄🅱 API'
   enabled: true
-  icon: 'icon-chat-smile-3-line'
+  icon: 'icon-whatsapp-line'
   config_key: 'unoapi'
