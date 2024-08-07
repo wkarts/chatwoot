@@ -21,6 +21,7 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub-arm
       GIT_REF: ${{ github.head_ref || github.ref_name }}
+    timeout-minutes: 360
 
     steps:
       - name: Checkout
@@ -35,6 +36,9 @@ jobs:
         uses: docker/setup-qemu-action@v3.2.0
         with:
           platforms: 'arm64'
+        env:
+          QEMU_CPU: 'max'  # Adicione esta linha para otimizar a CPU usada pelo QEMU
+          QEMU_THREADS: 4   # Adicione esta linha para definir o número de threads, ajuste conforme necessário
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
@@ -52,6 +56,27 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/yarn
+          key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-cache-
+
+      - name: Download dependencies
+        run: |
+          mkdir -p ~/.cache/yarn/offline-mirror
+          grep -o 'https://[^ ]*.tgz' yarn.lock | while read url; do wget -P ~/.cache/yarn/offline-mirror $url; done
+
+      - name: Configure Yarn to use cached packages
+        run: |
+          yarn config set yarn-offline-mirror ~/.cache/yarn/offline-mirror
+          yarn config set yarn-offline-mirror-pruning true
+
+      - name: Install dependencies with Yarn
+        run: yarn install --offline --pure-lockfile
 
       - name: Build and push arm64 image
         uses: docker/build-push-action@v6.5.0
