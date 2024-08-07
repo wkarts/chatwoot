@@ -6,7 +6,7 @@ FROM ghcr.io/chatwoot/chatwoot_codespace:latest
 WORKDIR /workspace
 COPY . /workspace
 
-RUN yarn config set network-timeout 300000
+RUN yarn config set network-timeout 9999999999
 RUN apk add g++ make py3-pip
 RUN yarn global add node-gyp
 
