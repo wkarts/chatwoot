@@ -40,17 +40,17 @@ jobs:
           QEMU_CPU: 'max'
           QEMU_THREADS: 4
 
-      - name: Set Timezone to UTC
+      - name: Set Timezone to UTC America/Bahia
         run: |
-          sudo timedatectl set-timezone UTC
+          sudo timedatectl set-timezone America/Bahia
 
       - name: Sync System Time
         run: |
           sudo apt-get update
-          sudo apt-get install -y ntp
-          sudo service ntp stop
-          sudo ntpdate time.nist.gov
-          sudo service ntp start
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ntp
+          sudo systemctl stop ntp
+          sudo ntpd -gq
+          sudo systemctl start ntp
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
@@ -105,3 +105,4 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
+
