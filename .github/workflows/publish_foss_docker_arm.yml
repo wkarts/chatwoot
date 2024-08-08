@@ -106,3 +106,4 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
+
