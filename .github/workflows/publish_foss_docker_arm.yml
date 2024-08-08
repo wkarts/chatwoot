@@ -82,19 +82,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Download dependencies
+      - name: Configure Yarn
         run: |
-          mkdir -p ~/.cache/yarn/offline-mirror
-          grep -o 'https://[^ ]*.tgz' yarn.lock | while read url; do wget -P ~/.cache/yarn/offline-mirror $url; done
-
-      - name: Configure Yarn to use cached packages
-        run: |
-          yarn config set yarn-offline-mirror ~/.cache/yarn/offline-mirror
-          yarn config set yarn-offline-mirror-pruning true
+          yarn config set network-timeout 10800000
 
       - name: Install dependencies with Yarn
         run: |
-          yarn install --offline --pure-lockfile || yarn install --pure-lockfile
+          yarn install --pure-lockfile
 
       - name: Build and push arm64 image
         uses: docker/build-push-action@v6.5.0
@@ -106,4 +100,3 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
-
