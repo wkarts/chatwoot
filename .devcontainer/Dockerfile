@@ -6,10 +6,7 @@ FROM ghcr.io/chatwoot/chatwoot_codespace:latest
 WORKDIR /workspace
 COPY . /workspace
 
-# Set Yarn network timeout to 3 hours
-RUN yarn config set network-timeout 10800000
-
-# Retry logic for Yarn install with 5 retries
-RUN for i in {1..5}; do yarn install && break || sleep 10; done
-
-RUN gem install bundler && bundle install
+# Configurações de retry para yarn install
+RUN yarn config set network-timeout 300000 && \
+    for i in 1 2 3; do yarn install && break || sleep 10; done && \
+    gem install bundler && bundle install
