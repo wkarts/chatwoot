@@ -19,6 +19,7 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub
       GIT_REF: ${{ github.head_ref || github.ref_name }}
+      YARN_NETWORK_TIMEOUT: 10800000  # Set the timeout to 3 hours
 
     steps:
       - name: Checkout
