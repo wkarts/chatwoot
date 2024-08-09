@@ -57,8 +57,8 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/amd64
           push: true
-          build-args:  # Pass the environment variable to Docker build
-            YARN_NETWORK_TIMEOUT: ${{ env.YARN_NETWORK_TIMEOUT }}
+          build-args: |
+            YARN_NETWORK_TIMEOUT=${{ env.YARN_NETWORK_TIMEOUT }}
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
