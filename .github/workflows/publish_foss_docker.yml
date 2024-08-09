@@ -9,7 +9,6 @@ on:
     branches:
       - develop
       - master
-      - team
     tags:
       - 'v*'
   workflow_dispatch:
