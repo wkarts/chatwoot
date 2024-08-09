@@ -560,4 +560,9 @@ export default {
  width:300px;
  height:300px;
 }
+
+.flex-shrink div .message{
+ margin-top:-20px;
+ font-size:11px;
+}  
 </style>
