@@ -19,7 +19,6 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub
       GIT_REF: ${{ github.head_ref || github.ref_name }}
-      YARN_NETWORK_TIMEOUT: 10800000  # Set the timeout to 3 hours
 
     steps:
       - name: Checkout
@@ -57,8 +56,6 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/amd64
           push: true
-          build-args: |
-            YARN_NETWORK_TIMEOUT=${{ env.YARN_NETWORK_TIMEOUT }}
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
