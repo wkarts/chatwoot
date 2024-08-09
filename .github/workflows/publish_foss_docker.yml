@@ -1,8 +1,6 @@
-# #
-# # This action will publish Chatwoot CE docker image.
-# # This is set to run against merges to develop, master
-# # and when tags are created.
-# #
+# This action will publish Chatwoot CE docker image.
+# This is set to run against merges to develop, master
+# and when tags are created.
 
 name: Publish Chatwoot CE docker images for AMD64
 
@@ -22,7 +20,8 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub
       GIT_REF: ${{ github.head_ref || github.ref_name }}
-      
+      YARN_NETWORK_TIMEOUT: 10800000  # Set the timeout to 3 hours
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,7 +47,6 @@ jobs:
 
       - name: Login to DockerHub
         uses: docker/login-action@v3.3.0
-
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -60,7 +58,8 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/amd64
           push: true
+          build-args:  # Pass the environment variable to Docker build
+            YARN_NETWORK_TIMEOUT: ${{ env.YARN_NETWORK_TIMEOUT }}
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
-
