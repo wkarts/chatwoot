@@ -53,14 +53,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push arm64 image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6.5.0
         with:
           context: .
           file: docker/Dockerfile
           platforms: linux/arm64
           push: true
-          build-args:  # Pass the environment variable to Docker build
-            YARN_NETWORK_TIMEOUT: ${{ env.YARN_NETWORK_TIMEOUT }}
+          build-args: |
+            YARN_NETWORK_TIMEOUT=${{ env.YARN_NETWORK_TIMEOUT }}
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
