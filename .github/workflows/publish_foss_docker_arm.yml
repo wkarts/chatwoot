@@ -24,6 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'  # Instala a versão correta do Node.js
+
       - name: Configure Yarn cache
         run: |
           yarn config set cache-folder $(pwd)/.yarn-cache
