@@ -36,12 +36,6 @@ jobs:
         run: |
           tar -czf yarn-cache.tar.gz .yarn-cache
 
-      - name: Save Yarn cache to GitHub Actions Cache
-        uses: actions/cache@v3
-        with:
-          path: .yarn-cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-
       - name: Make custom changes
         run: |
           sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
@@ -68,9 +62,6 @@ jobs:
           file: docker/Dockerfile
           platforms: linux/arm64
           push: true
-          build-args:
-            YARN_CACHE: .yarn-cache
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
-
