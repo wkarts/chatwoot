@@ -27,15 +27,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'  # Instala a versão correta do Node.js
+          node-version: '20.x'  # Certifique-se de instalar a versão correta do Node.js
 
-      - name: Configure Yarn cache
+      - name: Install dependencies with Yarn
         run: |
           yarn config set cache-folder $(pwd)/.yarn-cache
-
-      - name: Install dependencies and cache
-        run: |
-          yarn install --modules-folder $(pwd)/.yarn-cache --silent
+          yarn install --modules-folder $(pwd)/.yarn-cache --silent --ignore-engines --ignore-scripts
 
       - name: Compress Yarn cache
         run: |
