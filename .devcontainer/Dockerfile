@@ -15,7 +15,7 @@ COPY yarn-cache.tar.gz /workspace/
 
 # Extrai o cache e configura o Yarn para usar esse cache
 RUN tar -xzf yarn-cache.tar.gz -C /workspace/ && \
-    yarn install --offline --modules-folder /workspace/.yarn-cache
+    yarn install --offline --modules-folder /workspace/.yarn-cache --ignore-engines --ignore-scripts
 
 # Executa as outras instalações necessárias
 RUN gem install bundler && bundle install
