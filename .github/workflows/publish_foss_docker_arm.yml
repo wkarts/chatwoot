@@ -27,29 +27,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'  # Certifique-se de instalar a versão correta do Node.js
+          node-version: '20.x'
 
       - name: Install dependencies with Yarn
         run: |
           yarn config set cache-folder $(pwd)/.yarn-cache
           yarn install --modules-folder $(pwd)/.yarn-cache --silent --ignore-engines --ignore-scripts
 
-      - name: Compress Yarn cache
+      - name: Set up Docker tags
+        id: docker_tag
         run: |
-          tar -czf yarn-cache.tar.gz .yarn-cache
-
-      - name: Make custom changes
-        run: |
-          sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
-          sed -i 's/"short_name": "Teste"/"short_name": "🅷🆄🅱"/g' public/manifest.json
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3.2.0
-        with:
-          platforms: 'arm64'
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.6.1
+          echo "TAGS=${IMAGE_NAME}:${GIT_REF}" >> $GITHUB_ENV
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "LATEST_TAG=${IMAGE_NAME}:latest" >> $GITHUB_ENV
+          fi
 
       - name: Login to DockerHub
         uses: docker/login-action@v3.3.0
