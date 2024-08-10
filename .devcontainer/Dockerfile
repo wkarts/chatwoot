@@ -5,6 +5,10 @@ FROM ghcr.io/chatwoot/chatwoot_codespace:latest
 # Define o diretório de trabalho
 WORKDIR /workspace
 
+# Instala a versão correta do Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
 # Copia o código da aplicação e o cache do Yarn
 COPY . /workspace
 COPY yarn-cache.tar.gz /workspace/
