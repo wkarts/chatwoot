@@ -26,6 +26,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: /workspace/.yarn-cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Make custom changes
         run: |
           sed -i 's/"name": "Teste"/"name": "🅷🆄🅱"/g' public/manifest.json
