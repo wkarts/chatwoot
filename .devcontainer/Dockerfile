@@ -1,15 +1,8 @@
-# Use a imagem codespace personalizada como base
-FROM ghcr.io/wkarts/chatwoot/custom-codespace:latest
+# The below image is created out of the Dockerfile.base
+# It has the dependencies already installed so that codespace will boot up fast
+FROM ghcr.io/wkarts/hub_codespace:latest
 
-# Defina o diretório de trabalho
+# Do the set up required for chatwoot app
 WORKDIR /workspace
-
-# Copie o código da aplicação para o diretório de trabalho
 COPY . /workspace
-
-# Instale as dependências da aplicação
-RUN yarn install --silent --modules-folder /workspace/.yarn-cache && \
-    gem install bundler && bundle install
-
-# Comando de entrada padrão (ajuste conforme necessário)
-CMD ["bin/rails", "server", "-b", "0.0.0.0"]
+RUN yarn && gem install bundler && bundle install
