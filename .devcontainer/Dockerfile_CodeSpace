@@ -1,8 +1,9 @@
-# Baseie a imagem na imagem codespace oficial
+# Dockerfile_CodeSpace
+# Use a imagem base oficial do Chatwoot Codespace
 FROM ghcr.io/chatwoot/chatwoot_codespace:latest
 
-# Adicione qualquer customização específica
-# Por exemplo, instalar pacotes adicionais, configurar o ambiente, etc.
+# Adicione customizações específicas, se necessário
+# Exemplo: Instalar pacotes adicionais, configurar ambiente, etc.
 
 # Defina o diretório de trabalho
 WORKDIR /workspace
