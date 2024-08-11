@@ -6,7 +6,7 @@ on:
       - main
       - develop
     paths:
-      - "Dockerfile"
+      - "Dockerfile_CodeSpace"
       - ".github/workflows/build_and_push_codespace.yml"
   workflow_dispatch:
 
@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v6.5.0
         with:
           context: .
-          file: Dockerfile
+          file: Dockerfile_CodeSpace
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
