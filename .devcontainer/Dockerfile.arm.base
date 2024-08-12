@@ -62,10 +62,10 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | s
 WORKDIR /workspace
 COPY package.json yarn.lock ./
 
+# Configuração do Yarn
 RUN yarn config set network-concurrency 1 \
   && yarn config set network-timeout 600000 \
-  && yarn install --silent --network-concurrency 1 || \
-     (echo "Yarn install failed, retrying..." && sleep 5 && yarn install --silent --network-concurrency 1)
+  && for i in $(seq 1 5); do yarn install && break || (echo "Yarn install failed, retrying in 5 seconds..." && sleep 5); done
 
 # Instalação do Bundler e das dependências Ruby
 COPY Gemfile Gemfile.lock ./
