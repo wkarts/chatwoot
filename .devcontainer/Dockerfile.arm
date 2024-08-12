@@ -9,9 +9,10 @@ WORKDIR /workspace
 # Copie os arquivos de configuração do yarn
 COPY package.json yarn.lock ./
 
-# Instale as dependências usando cache
-RUN yarn config set cache-folder /workspace/.yarn-cache && \
-    yarn install --silent
+# Configuração do Yarn
+RUN yarn config set network-concurrency 1 \
+  && yarn config set network-timeout 600000 \
+  && for i in $(seq 1 5); do yarn install && break || (echo "Yarn install failed, retrying in 5 seconds..." && sleep 5); done
 
 # Copie o restante da aplicação
 COPY . /workspace
