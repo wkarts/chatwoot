@@ -21,7 +21,7 @@ services:
   app:
     build:
       context: ..
-      dockerfile: .devcontainer/Dockerfile
+      dockerfile: .devcontainer/Dockerfile.arm
       args:
         VARIANT: "ubuntu-22.04"
         NODE_VERSION: "20.9.0"
