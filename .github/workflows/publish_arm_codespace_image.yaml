@@ -1,4 +1,4 @@
-name: Publish Codespace Base Image
+name: Publish Codespace Base ARM Image
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.PERSONAL_TOKEN }}
 
-    - name: Build the Codespace Base Image
+    - name: Build the Codespace Base ARM Image 
       run: |
         docker-compose -f .devcontainer/docker-arm-compose.yml build base
         docker tag base:latest ghcr.io/wkarts/hub_arm_codespace:latest
