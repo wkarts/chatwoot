@@ -418,10 +418,12 @@ export default {
         }
         if (data.type === 'status') {
           this.notice = data.content;
-          this.qrcode = '';
+          if (!this.qrcode) {
+            this.qrcode = '';
+          }
         } else if (data.type === 'qrcode') {
           this.qrcode = data.content;
-          this.notice = '';
+          this.notice = `QRCode generated for ${data.phone}`;
         }
       });
       // const url = `${this.inbox.provider_config.url}/ws`;
