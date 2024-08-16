@@ -335,7 +335,7 @@ export default {
       sendProfilePicture: true,
       useRejectCalls: false,
       connect: false,
-      disconect: false,
+      disconnect: false,
       qrcode: '',
       notice: '',
       rejectCalls: '',
@@ -402,7 +402,7 @@ export default {
       this.rejectCalls = this.inbox.provider_config.reject_calls;
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
-      this.disconect = false;
+      this.disconnect = false;
     },
     listenerQrCode() {
       const url = `${this.inbox.provider_config.url}`
@@ -418,12 +418,10 @@ export default {
         }
         if (data.type === 'status') {
           this.notice = data.content;
-          if (!this.qrcode) {
-            this.qrcode = '';
-          }
+          this.qrcode = '';
         } else if (data.type === 'qrcode') {
           this.qrcode = data.content;
-          this.notice = `QRCode generated for ${data.phone}`;
+          this.notice = '';
         }
       });
       // const url = `${this.inbox.provider_config.url}/ws`;
@@ -487,7 +485,7 @@ export default {
               reject_calls: this.rejectCalls,
               message_calls_webhook: this.messageCallsWebhook,              
               connect: this.connect,
-              disconect: this.disconect,
+              disconnect: this.disconnect,
             },
           },
         };
