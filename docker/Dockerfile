@@ -49,12 +49,12 @@ else bundle install -j $(nproc) -r 3; \
   fi
 
 # Configura o cache do Yarn
-RUN yarn config set cache-folder /yarn-cache
+# RUN yarn config set cache-folder /yarn-cache
 
 # Copia os arquivos de dependências
 COPY package.json yarn.lock ./
 
-# Instala as dependências com Yarn usando o cache
+# Instala as dependências com Yarn, ajustando o timeout para evitar SOCKETTIMEOUT
 RUN yarn install --network-concurrency 1 --network-timeout 600000
 
 COPY . /app
@@ -115,7 +115,9 @@ RUN if [ "$RAILS_ENV" != "production" ]; then \
 # Copia as dependências e a aplicação da fase de pré-build
 COPY --from=pre-builder /gems/ /gems/
 COPY --from=pre-builder /app /app
-COPY --from=pre-builder /yarn-cache /yarn-cache
+
+# Transfere o cache do Yarn
+#COPY --from=pre-builder /yarn-cache /yarn-cache
 
 # Copy .git_sha file from pre-builder stage
 COPY --from=pre-builder /app/.git_sha /app/.git_sha
