@@ -69,3 +69,5 @@ jobs:
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max            
