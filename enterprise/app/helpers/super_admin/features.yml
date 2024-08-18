@@ -72,3 +72,15 @@ microsoft:
   enabled: true
   icon: 'icon-microsoft'
   config_key: 'microsoft'
+captain:
+  name: 'Captain'
+  description: 'Configuration for setting up Captain'
+  enabled: true
+  icon: 'captain-outline'
+  config_key: 'captain'
+unoapi:
+  name: '🅷🆄🅱 API'
+  description: 'Configuration for setting up 🅷🆄🅱 API'
+  enabled: true
+  icon: 'icon-whatsapp-line'
+  config_key: 'unoapi'

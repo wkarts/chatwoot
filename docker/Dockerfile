@@ -1,5 +1,5 @@
 # pre-build stage
-FROM ruby:3.2.2-alpine3.18 AS pre-builder
+FROM ruby:3.3.3-alpine3.19 AS pre-builder
 
 # ARG default to production settings
 # For development docker-compose file overrides ARGS
@@ -25,7 +25,7 @@ RUN apk update && apk add --no-cache \
   tzdata \
   postgresql-dev \
   postgresql-client \
-  nodejs-current \
+  nodejs=20.15.1-r0 \
   yarn \
   git \
   && mkdir -p /var/app \
@@ -48,8 +48,14 @@ bundle config set without 'development test'; bundle install -j $(nproc) -r 3; \
 else bundle install -j $(nproc) -r 3; \
   fi
 
+# Configura o cache do Yarn
+# RUN yarn config set cache-folder /yarn-cache
+
+# Copia os arquivos de dependências
 COPY package.json yarn.lock ./
-RUN yarn install
+
+# Instala as dependências com Yarn, ajustando o timeout para evitar SOCKETTIMEOUT
+RUN yarn install --network-concurrency 1 --network-timeout 600000
 
 COPY . /app
 
@@ -67,14 +73,13 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
 RUN git rev-parse HEAD > /app/.git_sha
 
 # Remove unnecessary files
-RUN rm -rf /gems/ruby/3.2.0/cache/*.gem \
-  && find /gems/ruby/3.2.0/gems/ \( -name "*.c" -o -name "*.o" \) -delete \
+RUN rm -rf /gems/ruby/3.3.0/cache/*.gem \
+  && find /gems/ruby/3.3.0/gems/ \( -name "*.c" -o -name "*.o" \) -delete \
   && rm -rf .git \
   && rm .gitignore
 
 # final build stage
-FROM ruby:3.2.2-alpine3.18
-
+FROM ruby:3.3.3-alpine3.19
 
 ARG BUNDLE_WITHOUT="development:test"
 ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
@@ -107,8 +112,12 @@ RUN if [ "$RAILS_ENV" != "production" ]; then \
   apk add --no-cache nodejs-current yarn; \
   fi
 
+# Copia as dependências e a aplicação da fase de pré-build
 COPY --from=pre-builder /gems/ /gems/
 COPY --from=pre-builder /app /app
+
+# Transfere o cache do Yarn
+#COPY --from=pre-builder /yarn-cache /yarn-cache
 
 # Copy .git_sha file from pre-builder stage
 COPY --from=pre-builder /app/.git_sha /app/.git_sha

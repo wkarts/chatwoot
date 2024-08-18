@@ -27,6 +27,7 @@ FactoryBot.define do
       after(:build) do |conversation|
         conversation.assignee ||= create(:user, account: conversation.account, role: :agent)
       end
-    end    
+    end
+
   end
 end

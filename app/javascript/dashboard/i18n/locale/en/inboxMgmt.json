@@ -239,7 +239,7 @@
           "LABEL": "Webhook send new messages",
           "PLACEHOLDER": "Check to ignore history on connect.",
           "ERROR": "Check to webhook send new messages."
-        },        
+        },
         "IGNORE_GROUPS": {
           "LABEL": "Ignore groups messages",
           "PLACEHOLDER": "Check to ignore groups messages.",
@@ -251,14 +251,15 @@
           "ERROR": "Generate API Key"
         },
         "REJECT_CALLS": {
-          "LABEL": "Reject call",
-          "PLACEHOLDER": "Reject call.",
-          "ERROR": "Reject call."
+          "SERVICE": "Reject Calls",
+          "LABEL": "Message to Contact when Rejecting Calls",
+          "PLACEHOLDER": "Message when Rejecting Call, Sent to Contact.",
+          "ERROR": "This field is required to Reject Calls."
         },
         "MESSAGE_CALLS_WEBHOOK": {
-          "LABEL": "Message on reject call",
-          "PLACEHOLDER": "Message on reject call.",
-          "ERROR": "Message on reject call."
+          "LABEL": "Return Message when Rejecting Calls",
+          "PLACEHOLDER": "Message when Rejecting Call, Sent to Whatsapp Account (Inbox). Return",
+          "ERROR": "This field is required to Reject Call."
         },
         "IGNORE_BROADCAST_STATUSES": {
           "LABEL": "Ignore broadcast statuses",
@@ -394,11 +395,12 @@
         "CHANNEL_NAME": {
           "LABEL": "Channel Name",
           "PLACEHOLDER": "Please enter a channel name",
-          "ERROR": "This field is required"
+          "ERROR": "This field is required."
         },
         "SUBMIT_BUTTON": "Create Internal Channel",
         "API": {
-          "ERROR_MESSAGE": "We were not able to save the internal channel"
+          "ERROR_MESSAGE": "We were not able to save the internal channel.",
+          "SUCCESS_MESSAGE": "Internal channel created successfully."
         }
       },      
       "EMAIL_CHANNEL": {
@@ -503,6 +505,7 @@
     },
     "DETAILS": {
       "LOADING_FB": "Authenticating you with Facebook...",
+      "ERROR_FB_LOADING": "Error loading Facebook SDK. Please disable any ad-blockers and try again from a different browser.",
       "ERROR_FB_AUTH": "Something went wrong, Please refresh page...",
       "ERROR_FB_UNAUTHORIZED": "You're not authorized to perform this action. ",
       "ERROR_FB_UNAUTHORIZED_HELP": "Please ensure you have access to the Facebook page with full control. You can read more about Facebook roles <a href=\" https://www.facebook.com/help/187316341316631\">here</a>.",

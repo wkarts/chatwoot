@@ -1,48 +1,50 @@
 <template>
-  <div class="wizard-body small-9 columns">
+  <div class="border border-slate-25 dark:border-slate-800/60 bg-white dark:bg-slate-900 h-full p-6 w-full max-w-full md:w-3/4 md:max-w-[75%] flex-shrink-0 flex-grow-0">
     <page-header
       :header-title="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.TITLE')"
       :header-content="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.DESC')"
     />
-    <form class="row" @submit.prevent="createChannel()">
-      <div class="medium-8 columns">
-        <label :class="{ error: $v.channelName.$error }">
+    <form class="flex flex-col" @submit.prevent="createChannel()">
+      <div class="w-[65%] flex-shrink-0 flex-grow-0 max-w-[65%]">
+        <label :class="{ error: v$.channelName.$error }">
           {{ $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.LABEL') }}
           <input
             v-model.trim="channelName"
             type="text"
-            :placeholder="
-              $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.PLACEHOLDER')
-            "
-            @blur="$v.channelName.$touch"
+            :placeholder="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.PLACEHOLDER')"
+            @blur="v$.channelName.$touch"
           />
-          <span v-if="$v.channelName.$error" class="message">{{
-            $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.ERROR')
-          }}</span>
+          <span v-if="v$.channelName.$error" class="message">
+            {{ $t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.CHANNEL_NAME.ERROR') }}
+          </span>
         </label>
       </div>
-
-      <div class="medium-12 columns">
+      
+      <div class="w-full" style="margin-top: 20px;">
         <woot-submit-button
           :loading="uiFlags.isCreating"
           :button-text="$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.SUBMIT_BUTTON')"
         />
-</div>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import alertMixin from 'shared/mixins/alertMixin';
-import { required } from 'vuelidate/lib/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { useAlert } from 'dashboard/composables';
+import { required } from '@vuelidate/validators';
 import router from '../../../../index';
 import PageHeader from '../../SettingsSubPageHeader';
+
 export default {
   components: {
     PageHeader,
   },
-  mixins: [alertMixin],
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
       channelName: '',
@@ -58,8 +60,8 @@ export default {
   },
   methods: {
     async createChannel() {
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      this.v$.$touch();
+      if (this.v$.$invalid) {
         return;
       }
       try {
@@ -76,10 +78,22 @@ export default {
             inbox_id: internalChannel.id,
           },
         });
+        useAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        this.showAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.ERROR_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.ADD.INTERNAL_CHANNEL.API.ERROR_MESSAGE') + '\n detail:' + error);
       }
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.switch {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+.switch-label {
+  display: flex;
+  align-items: center;
+}
+</style>

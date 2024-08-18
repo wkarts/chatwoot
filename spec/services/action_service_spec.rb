@@ -71,7 +71,7 @@ describe ActionService do
           action_service.assign_team([team.id])
         end.to change { conversation.reload.team }.from(original_team)
       end
-      
+
       it 'does not assign the team if the team is part of the account' do
         original_team = conversation.team
         invalid_team_id = 999_999_999

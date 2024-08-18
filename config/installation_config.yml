@@ -133,6 +133,13 @@
   locked: false
 # End of Microsoft Email Channel Config
 
+# MARK: UNOAPI Channel Config
+- name: UNOAPI_AUTH_TOKEN
+  value:
+  display_title: '🅷🆄🅱 API Auth Token'
+  description: 'The Auth Token for 🅷🆄🅱 API. Find more details on how to configure 🅷🆄🅱 API here: https://github.com/wkarts/unoapi-cloud/tree/main'
+# End of UNOAPI Channel Config
+
 # ------- Chatwoot Internal Config for Cloud ----#
 - name: CHATWOOT_INBOX_TOKEN
   value:
@@ -224,3 +231,14 @@
   value:
   description: 'Customize conversation, put your valid css'
 ## ------ End of Configs custom ------ ##
+
+## ----- Captain Configs ----- ##
+- name: CAPTAIN_API_URL
+  value: 
+  display_title: 'Captain API URL'
+  description: 'The API URL for Captain'
+- name: CAPTAIN_APP_URL
+  value: 
+  display_title: 'Captain App URL'
+  description: 'The App URL for Captain'
+## ----- End of Captain Configs ----- ##
