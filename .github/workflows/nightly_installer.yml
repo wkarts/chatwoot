@@ -30,7 +30,7 @@ jobs:
         curl -sSL https://rvm.io/mpapis.asc | gpg --import -
         curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
         curl -sSL https://get.rvm.io | bash -s stable
-        source /etc/profile.d/rvm.sh
+        source $HOME/.rvm/scripts/rvm
         rvm install 3.3.3
         rvm use 3.3.3 --default
 
@@ -59,10 +59,13 @@ jobs:
         echo "no" > input
         echo "yes" >> input
 
+    - name: Create chatwoot user
+      run: |
+        sudo useradd -m chatwoot
+
     - name: Run the installer
       run: |
         sudo ./install.sh --install < input
-
         #  disabling http verify for now as http
         #  access to port 3000 fails in gh action env
         #    - name: Verify
