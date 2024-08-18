@@ -18,23 +18,32 @@ jobs:
   nightly:
     runs-on: ubuntu-20.04
     steps:
-    # - name: Setup tmate session
-    #   uses: mxschmitt/action-tmate@v3
-    #   if: always()
-    # ## temporary fix for gh actions since node 20 installed via script is not taking effect till 30june2024
-    # ## https://github.blog/changelog/2024-05-17-updated-dates-for-actions-runner-using-node20-instead-of-node16-by-default
-    # - name: Setup Node.js
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: '20'
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install RVM and Ruby 3.3.3
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl gpg
+        curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+        curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+        curl -sSL https://get.rvm.io | bash -s stable
+        source /etc/profile.d/rvm.sh
+        rvm install 3.3.3
+        rvm use 3.3.3 --default
+
     - name: check node version
       run: |
         node --version
         which node
+
     - name: check yarn version
       run: |
         yarn --version
         which yarn
+
     - name: get installer
       run: |
         wget https://raw.githubusercontent.com/wkarts/chatwoot/master/deployment/install.sh
@@ -73,9 +82,11 @@ jobs:
          yarn
          EOF
       if: always()
+
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
       if: always()
+
     - name: Upload chatwoot setup log file as an artifact
       uses: actions/upload-artifact@v4
       if: always()
