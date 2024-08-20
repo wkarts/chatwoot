@@ -48,8 +48,14 @@ bundle config set without 'development test'; bundle install -j $(nproc) -r 3; \
 else bundle install -j $(nproc) -r 3; \
   fi
 
+# Configura o cache do Yarn
+# RUN yarn config set cache-folder /yarn-cache
+
+# Copia os arquivos de dependências
 COPY package.json yarn.lock ./
-RUN yarn install
+
+# Instala as dependências com Yarn, ajustando o timeout para evitar SOCKETTIMEOUT
+RUN yarn install --network-concurrency 1 --network-timeout 600000
 
 COPY . /app
 
@@ -74,7 +80,6 @@ RUN rm -rf /gems/ruby/3.3.0/cache/*.gem \
 
 # final build stage
 FROM ruby:3.3.3-alpine3.19
-
 
 ARG BUNDLE_WITHOUT="development:test"
 ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
@@ -107,8 +112,12 @@ RUN if [ "$RAILS_ENV" != "production" ]; then \
   apk add --no-cache nodejs-current yarn; \
   fi
 
+# Copia as dependências e a aplicação da fase de pré-build
 COPY --from=pre-builder /gems/ /gems/
 COPY --from=pre-builder /app /app
+
+# Transfere o cache do Yarn
+#COPY --from=pre-builder /yarn-cache /yarn-cache
 
 # Copy .git_sha file from pre-builder stage
 COPY --from=pre-builder /app/.git_sha /app/.git_sha

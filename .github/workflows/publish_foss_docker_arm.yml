@@ -21,11 +21,18 @@ jobs:
     env:
       IMAGE_NAME: wkarts/hub-arm
       GIT_REF: ${{ github.head_ref || github.ref_name }}
-    timeout-minutes: 360
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+#      - name: Cache Yarn
+#        uses: actions/cache@v3
+#        with:
+#          path: /yarn-cache
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-yarn-
 
       - name: Make custom changes
         run: |
@@ -36,22 +43,7 @@ jobs:
         uses: docker/setup-qemu-action@v3.2.0
         with:
           platforms: 'arm64'
-        env:
-          QEMU_CPU: 'max'
-          QEMU_THREADS: 4
-
-      - name: Set Timezone to UTC America/Bahia
-        run: |
-          sudo timedatectl set-timezone America/Bahia
-
-      - name: Sync System Time
-        run: |
-          sudo apt-get update
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ntp
-          sudo systemctl stop ntp
-          sudo ntpd -gq
-          sudo systemctl start ntp
-
+          
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.6.1
 
@@ -69,34 +61,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Cache Yarn dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/yarn
-          key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            yarn-cache-
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Configure Yarn
-        run: |
-          yarn config set network-timeout 10800000
-
-      - name: Install dependencies with Yarn
-        run: |
-          yarn install --pure-lockfile
-
       - name: Build and push arm64 image
         uses: docker/build-push-action@v6.5.0
         with:
           context: .
           file: docker/Dockerfile
-          platforms: linux/arm64
+          platforms: linux/arm64          
           push: true
           tags: |
             ${{ env.TAGS }}
             ${{ env.LATEST_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max            

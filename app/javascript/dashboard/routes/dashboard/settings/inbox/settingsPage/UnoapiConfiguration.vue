@@ -335,7 +335,7 @@ export default {
       sendProfilePicture: true,
       useRejectCalls: false,
       connect: false,
-      disconect: false,
+      disconnect: false,
       qrcode: '',
       notice: '',
       rejectCalls: '',
@@ -402,7 +402,7 @@ export default {
       this.rejectCalls = this.inbox.provider_config.reject_calls;
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
-      this.disconect = false;
+      this.disconnect = false;
     },
     listenerQrCode() {
       const url = `${this.inbox.provider_config.url}`
@@ -485,7 +485,7 @@ export default {
               reject_calls: this.rejectCalls,
               message_calls_webhook: this.messageCallsWebhook,              
               connect: this.connect,
-              disconect: this.disconect,
+              disconnect: this.disconnect,
             },
           },
         };
@@ -560,4 +560,9 @@ export default {
  width:300px;
  height:300px;
 }
+
+.flex-shrink div .message{
+ margin-top:-20px;
+ font-size:11px;
+}  
 </style>
