@@ -321,12 +321,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_20_191716) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "channel_internal", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "channel_sms", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "phone_number", null: false

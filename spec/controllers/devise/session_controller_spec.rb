@@ -52,6 +52,7 @@ RSpec.describe 'Session', type: :request do
         expect(response).to have_http_status(:success)
         expect(response.parsed_body['data']['accounts'].first['permissions']).to eq(['agent'])
       end
+
     end
 
     context 'when it is invalid sso auth token' do

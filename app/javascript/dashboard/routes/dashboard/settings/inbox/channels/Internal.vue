@@ -37,6 +37,7 @@ import { useAlert } from 'dashboard/composables';
 import { required } from '@vuelidate/validators';
 import router from '../../../../index';
 import PageHeader from '../../SettingsSubPageHeader';
+
 export default {
   components: {
     PageHeader,

@@ -97,7 +97,7 @@ class Whatsapp::IncomingMessageBaseService
     contact_params = @processed_params[:contacts]&.first
     return if contact_params.blank?
 
-    waid = processed_waid(contact_params[:wa_id])
+    waid = processed_waid(contact_params[:wa_id]).delete('+').to_s
 
     contact_inbox = ::ContactInboxWithContactBuilder.new(
       source_id: waid,
