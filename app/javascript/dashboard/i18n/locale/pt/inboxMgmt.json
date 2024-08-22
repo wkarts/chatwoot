@@ -226,24 +226,85 @@
           "ERROR": "This field is required"
         },
         "SEND_AGENT_NAME": {
-          "LABEL": "Send agent name",
-          "PLACEHOLDER": "Check to send agent name.",
-          "ERROR": "Check to send agent name."
+          "LABEL": "Enviar nome do agente",
+          "PLACEHOLDER": "Marque para enviar o nome do agente.",
+          "ERROR": "Marque para enviar o nome do agente."
         },
         "IGNORE_HISTORY": {
-          "LABEL": "Ignore history on connect",
-          "PLACEHOLDER": "Check to ignore history on connect.",
-          "ERROR": "Check to ignore history on connect."
+          "LABEL": "Ignorar histórico ao conectar",
+          "PLACEHOLDER": "Marque para ignorar o histórico ao conectar.",
+          "ERROR": "Marque para ignorar o histórico ao conectar."
         },
-        "WEBWOOK_SEND_NEW_MESSAGES": {
-          "LABEL": "Webhook send new messages",
-          "PLACEHOLDER": "Check to ignore history on connect.",
-          "ERROR": "Check to webhook send new messages."
+        "WEBHOOK_SEND_NEW_MESSAGES": {
+          "LABEL": "Webhook enviar novas mensagens",
+          "PLACEHOLDER": "Marque para ignorar o histórico ao conectar.",
+          "ERROR": "Marque para webhook enviar novas mensagens."
         },
         "IGNORE_GROUPS": {
-          "LABEL": "Ignore groups messages",
-          "PLACEHOLDER": "Check to ignore groups messages.",
-          "ERROR": "Check to ignore groups messages."
+          "LABEL": "Ignorar mensagens de grupos",
+          "PLACEHOLDER": "Marque para ignorar mensagens de grupos.",
+          "ERROR": "Marque para ignorar mensagens de grupos."
+        },
+        "GENERATE_API_KEY": {
+          "LABEL": "Gerar Chave API",
+          "PLACEHOLDER": "Gerar Chave API",
+          "ERROR": "Gerar Chave API"
+        },
+        "REJECT_CALLS": {
+          "SERVICE": "Rejeitar chamadas",
+          "LABEL": "Mensagem para o Contato ao Rejeitar chamadas",
+          "PLACEHOLDER": "Mensagem ao Rejeitar chamada, Enviada ao Contato.",
+          "ERROR": "Este campo é obrigatório para Rejeitar chamadas."
+        },
+        "MESSAGE_CALLS_WEBHOOK": {
+          "LABEL": "Mensagem de Retorno ao rejeitar chamadas",
+          "PLACEHOLDER": "Mensagem ao rejeitar chamada, Enviada à Conta Whatsapp (Caixa de entrada). Retorno",
+          "ERROR": "Este campo é obrigatório para rejeitar chamada."
+        },
+        "IGNORE_BROADCAST_STATUSES": {
+          "LABEL": "Ignorar estados de difusão",
+          "PLACEHOLDER": "Selecione para ignorar estados de difusão.",
+          "ERROR": "Selecione para ignorar estados de difusão."
+        },
+        "IGNORE_BROADCAST_MESSAGES": {
+          "LABEL": "Ignorar mensagens de difusão",
+          "PLACEHOLDER": "Selecione para ignorar mensagens de difusão.",
+          "ERROR": "Selecione para ignorar mensagens de difusão."
+        },
+        "IGNORE_OWN_MESSAGES": {
+          "LABEL": "Ignorar mensagens próprias",
+          "PLACEHOLDER": "Selecione para ignorar mensagens próprias.",
+          "ERROR": "Selecione para ignorar mensagens próprias."
+        },
+        "IGNORE_YOURSELF_MESSAGES": {
+          "LABEL": "Ignorar suas mensagens",
+          "PLACEHOLDER": "Selecione para ignorar suas mensagens.",
+          "ERROR": "Selecione para ignorar suas mensagens."
+        },
+        "SEND_CONNECTION_STATUS": {
+          "LABEL": "Mostrar estado da conexão",
+          "PLACEHOLDER": "Selecione para mostrar estado da conexão.",
+          "ERROR": "Selecione para mostrar estado da conexão."
+        },
+        "NOTIFY_FAILED_MESSAGES": {
+          "LABEL": "Notificar mensagens falhadas",
+          "PLACEHOLDER": "Selecione para notificar mensagens falhadas.",
+          "ERROR": "Selecione para notificar mensagens falhadas."
+        },
+        "COMPOSING_MESSAGE": {
+          "LABEL": "Compor mensagem",
+          "PLACEHOLDER": "Selecione para compor mensagem.",
+          "ERROR": "Selecione para compor mensagem."
+        },
+        "SEND_REACTION_AS_REPLY": {
+          "LABEL": "Mostrar reação como resposta",
+          "PLACEHOLDER": "Selecione para mostrar reação como resposta.",
+          "ERROR": "Selecione para mostrar reação como resposta."
+        },
+        "SEND_PROFILE_PICTURE": {
+          "LABEL": "Mostrar foto de perfil",
+          "PLACEHOLDER": "Selecione para mostrar foto de perfil.",
+          "ERROR": "Selecione para mostrar foto de perfil."
         },
         "URL": {
           "LABEL": "Unoapi URL",
@@ -326,6 +387,20 @@
         "SUBMIT_BUTTON": "Criar canal API",
         "API": {
           "ERROR_MESSAGE": "Não foi possível guardar o canal API"
+        }
+      },
+      "INTERNAL_CHANNEL": {
+        "TITLE": "Canal Interno",
+        "DESC": "Canal interno e iniciar conversa entre agentes.",
+        "CHANNEL_NAME": {
+          "LABEL": "Nome do Canal",
+          "PLACEHOLDER": "Por favor insira um nome de canal",
+          "ERROR": "Este campo é obrigatório."
+        },
+        "SUBMIT_BUTTON": "Criar Canal Interno",
+        "API": {
+          "ERROR_MESSAGE": "Não conseguimos guardar o canal interno.",
+          "SUCCESS_MESSAGE": "Canal interno criado com sucesso."
         }
       },
       "EMAIL_CHANNEL": {
