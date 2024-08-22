@@ -7,7 +7,7 @@ import Sms from './channels/Sms.vue';
 import Whatsapp from './channels/Whatsapp.vue';
 import Line from './channels/Line.vue';
 import Telegram from './channels/Telegram.vue';
-import Internal from './channels/Internal';
+import Internal from './channels/Internal.vue';
 
 const channelViewList = {
   facebook: Facebook,
