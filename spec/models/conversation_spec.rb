@@ -916,5 +916,5 @@ RSpec.describe Conversation do
         expect(conversation.last_activity_at).to be_within(1.second).of(latest_message.created_at)
       end
     end
-  end  
+  end
 end
