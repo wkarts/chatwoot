@@ -33,7 +33,6 @@ export default {
         { key: 'whatsapp', name: 'WhatsApp' },
         { key: 'sms', name: 'SMS' },
         { key: 'email', name: 'Email' },
-        { key: 'internal', name: 'Internal' },
         {
           key: 'api',
           name: apiChannelName || 'API',
@@ -41,6 +40,7 @@ export default {
         },
         { key: 'telegram', name: 'Telegram' },
         { key: 'line', name: 'Line' },
+        { key: 'internal', name: 'Internal' },
       ];
     },
     ...mapGetters({
