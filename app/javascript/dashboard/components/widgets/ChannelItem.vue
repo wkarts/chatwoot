@@ -45,7 +45,10 @@ export default {
       if (key === 'api') {
         return this.enabledFeatures.channel_api;
       }
-
+      if (key === 'internal') {
+        return this.enabledFeatures.channel_internal;
+      }
+      
       return [
         'website',
         'twilio',
@@ -54,6 +57,7 @@ export default {
         'sms',
         'telegram',
         'line',
+        'internal',
       ].includes(key);
     },
   },
