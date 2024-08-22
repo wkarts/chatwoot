@@ -48,7 +48,7 @@ export default {
       if (key === 'internal') {
         return this.enabledFeatures.channel_internal;
       }
-      
+
       return [
         'website',
         'twilio',
