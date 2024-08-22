@@ -1,3 +1,4 @@
+
 class Whatsapp::UnoapiWebhookSetupService
   def perform(whatsapp_channel)
     return disconnect(whatsapp_channel) if whatsapp_channel.provider_config['disconnect']

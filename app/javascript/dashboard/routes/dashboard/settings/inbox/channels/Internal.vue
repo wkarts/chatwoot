@@ -19,7 +19,7 @@
           </span>
         </label>
       </div>
-      
+
       <div class="w-full" style="margin-top: 20px;">
         <woot-submit-button
           :loading="uiFlags.isCreating"

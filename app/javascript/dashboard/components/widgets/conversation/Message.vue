@@ -308,6 +308,7 @@ export default {
         'is-pending': this.isPending,
         'is-failed': this.isFailed,
         'is-email': this.isEmailContentType,
+        'is-deleted': this.isMessageDeleted,
       };
     },
     bubbleClass() {
@@ -321,6 +322,7 @@ export default {
         'is-from-bot': this.isSentByBot,
         'is-failed': this.isFailed,
         'is-email': this.isEmailContentType,
+        'is-deleted': this.isMessageDeleted,
       };
     },
     isUnsupported() {
@@ -463,7 +465,7 @@ export default {
   >
     <div :class="wrapClass">
       <div
-        v-if="isFailed && !hasOneDayPassed && !isAnEmailInbox"
+        v-if="isFailed && !data.source_id && !hasOneDayPassed && !isAnEmailInbox"
         class="message-failed--alert"
       >
         <woot-button
@@ -678,6 +680,14 @@ export default {
 
     &.is-failed {
       @apply bg-red-200 dark:bg-red-200;
+
+      .message-text--metadata .time {
+        @apply text-red-50 dark:text-red-50;
+      }
+    }
+
+    &.is-deleted {
+      @apply bg-slate-700 dark:bg-slate-700;
 
       .message-text--metadata .time {
         @apply text-red-50 dark:text-red-50;

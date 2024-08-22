@@ -1,4 +1,9 @@
 <script>
+import { ref } from 'vue';
+// composable
+import { useConfig } from 'dashboard/composables/useConfig';
+import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
+
 // components
 import ReplyBox from './ReplyBox.vue';
 import Message from './Message.vue';
@@ -9,18 +14,19 @@ import Banner from 'dashboard/components/ui/Banner.vue';
 import { mapGetters } from 'vuex';
 
 // mixins
-import conversationMixin, {
-  filterDuplicateSourceMessages,
-} from '../../../mixins/conversations';
 import inboxMixin, { INBOX_FEATURES } from 'shared/mixins/inboxMixin';
-import configMixin from 'shared/mixins/configMixin';
-import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
 import aiMixin from 'dashboard/mixins/aiMixin';
+import globalConfigMixin from 'shared/mixins/globalConfigMixin';
 
 // utils
 import { getTypingUsersText } from '../../../helper/commons';
 import { calculateScrollTop } from './helpers/scrollTopCalculationHelper';
 import { LocalStorage } from 'shared/helpers/localStorage';
+import {
+  filterDuplicateSourceMessages,
+  getReadMessages,
+  getUnreadMessages,
+} from 'dashboard/helper/conversationHelper';
 
 // constants
 import { BUS_EVENTS } from 'shared/constants/busEvents';
@@ -35,13 +41,7 @@ export default {
     Banner,
     ConversationLabelSuggestion,
   },
-  mixins: [
-    conversationMixin,
-    inboxMixin,
-    keyboardEventListenerMixins,
-    configMixin,
-    aiMixin,
-  ],
+  mixins: [inboxMixin, aiMixin, globalConfigMixin],
   props: {
     isContactPanelOpen: {
       type: Boolean,
@@ -52,7 +52,35 @@ export default {
       default: false,
     },
   },
+  setup() {
+    const conversationFooterRef = ref(null);
+    const isPopOutReplyBox = ref(false);
+    const { isEnterprise } = useConfig();
 
+    const closePopOutReplyBox = () => {
+      isPopOutReplyBox.value = false;
+    };
+
+    const showPopOutReplyBox = () => {
+      isPopOutReplyBox.value = !isPopOutReplyBox.value;
+    };
+
+    const keyboardEvents = {
+      Escape: {
+        action: closePopOutReplyBox,
+      },
+    };
+
+    useKeyboardEvents(keyboardEvents, conversationFooterRef);
+
+    return {
+      isEnterprise,
+      conversationFooterRef,
+      isPopOutReplyBox,
+      closePopOutReplyBox,
+      showPopOutReplyBox,
+    };
+  },
   data() {
     return {
       isLoadingPrevious: true,
@@ -60,7 +88,6 @@ export default {
       conversationPanel: null,
       hasUserScrolled: false,
       isProgrammaticScroll: false,
-      isPopoutReplyBox: false,
       messageSentSinceOpened: false,
       labelSuggestions: [],
     };
@@ -71,6 +98,7 @@ export default {
       currentChat: 'getSelectedChat',
       listLoadingStatus: 'getAllMessagesLoaded',
       currentAccountId: 'getCurrentAccountId',
+      globalConfig: 'globalConfig/get',
     }),
     isOpen() {
       return this.currentChat?.status === wootConstants.STATUS_TYPE.OPEN;
@@ -116,14 +144,14 @@ export default {
       }
       return messages;
     },
-    getReadMessages() {
-      return this.readMessages(
+    readMessages() {
+      return getReadMessages(
         this.getMessages,
         this.currentChat.agent_last_seen_at
       );
     },
-    getUnReadMessages() {
-      return this.unReadMessages(
+    unReadMessages() {
+      return getUnreadMessages(
         this.getMessages,
         this.currentChat.agent_last_seen_at
       );
@@ -308,19 +336,6 @@ export default {
       });
       this.makeMessagesRead();
     },
-    showPopoutReplyBox() {
-      this.isPopoutReplyBox = !this.isPopoutReplyBox;
-    },
-    closePopoutReplyBox() {
-      this.isPopoutReplyBox = false;
-    },
-    getKeyboardEvents() {
-      return {
-        Escape: {
-          action: () => this.closePopoutReplyBox(),
-        },
-      };
-    },
     addScrollListener() {
       this.conversationPanel = this.$el.querySelector('.conversation-panel');
       this.setScrollParams();
@@ -457,14 +472,14 @@ export default {
         @click="onToggleContactPanel"
       />
     </div>
-    <ul class="conversation-panel">
+    <ul class="conversation-panel" :style="globalConfig.conversationStyleCss">
       <transition name="slide-up">
         <li class="min-h-[4rem]">
           <span v-if="shouldShowSpinner" class="spinner message" />
         </li>
       </transition>
       <Message
-        v-for="message in getReadMessages"
+        v-for="message in readMessages"
         :key="message.id"
         class="message--read ph-no-capture"
         data-clarity-mask="True"
@@ -489,7 +504,7 @@ export default {
         </span>
       </li>
       <Message
-        v-for="message in getUnReadMessages"
+        v-for="message in unReadMessages"
         :key="message.id"
         class="message--unread ph-no-capture"
         data-clarity-mask="True"
@@ -510,8 +525,9 @@ export default {
       />
     </ul>
     <div
+      ref="conversationFooterRef"
       class="conversation-footer"
-      :class="{ 'modal-mask': isPopoutReplyBox }"
+      :class="{ 'modal-mask': isPopOutReplyBox }"
     >
       <div
         v-if="isAnyoneTyping"
@@ -530,8 +546,8 @@ export default {
       </div>
       <ReplyBox
         :conversation-id="currentChat.id"
-        :popout-reply-box.sync="isPopoutReplyBox"
-        @click="showPopoutReplyBox"
+        :popout-reply-box.sync="isPopOutReplyBox"
+        @click="showPopOutReplyBox"
       />
     </div>
   </div>
