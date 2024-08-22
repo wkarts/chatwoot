@@ -1,3 +1,4 @@
+
 {
   "INBOX_MGMT": {
     "HEADER": "Entradas",
@@ -245,6 +246,67 @@
           "PLACEHOLDER": "Check to ignore groups messages.",
           "ERROR": "Check to ignore groups messages."
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Generate API Key",
+          "ERROR": "Generate API Key"
+        },
+        "REJECT_CALLS": {
+          "SERVICE": "Rechazar llamadas",
+          "LABEL": "Mensaje para el Contacto al Rechazar llamadas",
+          "PLACEHOLDER": "Mensaje al Rechazar llamada, Enviado al Contacto.",
+          "ERROR": "Este campo es obligatorio para Rechazar llamadas."
+        },
+        "MESSAGE_CALLS_WEBHOOK": {
+          "LABEL": "Mensaje de Retorno al rechazar llamadas",
+          "PLACEHOLDER": "Mensaje al rechazar llamada, Enviado a la Cuenta de Whatsapp (Bandeja de entrada). Retorno",
+          "ERROR": "Este campo es obligatorio para rechazar llamada."
+        },
+        "IGNORE_BROADCAST_STATUSES": {
+          "LABEL": "Ignorar estados de transmisión",
+          "PLACEHOLDER": "Seleccionar para ignorar estados de transmisión.",
+          "ERROR": "Seleccionar para ignorar estados de transmisión."
+        },
+        "IGNORE_BROADCAST_MESSAGES": {
+          "LABEL": "Ignorar mensajes de transmisión",
+          "PLACEHOLDER": "Seleccionar para ignorar mensajes de transmisión.",
+          "ERROR": "Seleccionar para ignorar mensajes de transmisión."
+        },
+        "IGNORE_OWN_MESSAGES": {
+          "LABEL": "Ignorar propios mensajes",
+          "PLACEHOLDER": "Seleccionar para ignorar propios mensajes.",
+          "ERROR": "Seleccionar para ignorar propios mensajes."
+        },
+        "IGNORE_YOURSELF_MESSAGES": {
+          "LABEL": "Ignorar tus mensajes",
+          "PLACEHOLDER": "Seleccionar para ignorar tus mensajes.",
+          "ERROR": "Seleccionar para ignorar tus mensajes."
+        },
+        "SEND_CONNECTION_STATUS": {
+          "LABEL": "Mostrar estado de conexión",
+          "PLACEHOLDER": "Seleccionar para mostrar estado de conexión.",
+          "ERROR": "Seleccionar para mostrar estado de conexión."
+        },
+        "NOTIFY_FAILED_MESSAGES": {
+          "LABEL": "Notificar mensajes fallidos",
+          "PLACEHOLDER": "Seleccionar para notificar mensajes fallidos.",
+          "ERROR": "Seleccionar para notificar mensajes fallidos."
+        },
+        "COMPOSING_MESSAGE": {
+          "LABEL": "Componer mensaje",
+          "PLACEHOLDER": "Seleccionar para componer mensaje.",
+          "ERROR": "Seleccionar para componer mensaje."
+        },
+        "SEND_REACTION_AS_REPLY": {
+          "LABEL": "Mostrar reacción como respuesta",
+          "PLACEHOLDER": "Seleccionar para mostrar reacción como respuesta.",
+          "ERROR": "Seleccionar para mostrar reacción como respuesta."
+        },
+        "SEND_PROFILE_PICTURE": {
+          "LABEL": "Mostrar foto de perfil",
+          "PLACEHOLDER": "Seleccionar para mostrar foto de perfil.",
+          "ERROR": "Seleccionar para mostrar foto de perfil."
+        },        
         "URL": {
           "LABEL": "Unoapi URL",
           "PLACEHOLDER": "Por favor ingrese una URL de Unoapi",
@@ -326,6 +388,20 @@
         "SUBMIT_BUTTON": "Create NotificaMe Channel",
         "API": {
           "ERROR_MESSAGE": "We were not able to save the NotificaMe channel"
+        }
+      },
+      "INTERNAL_CHANNEL": {
+        "TITLE": "Canal Interno",
+        "DESC": "Canal interno y empieza una conversación entre agentes.",
+        "CHANNEL_NAME": {
+          "LABEL": "Nombre del Canal",
+          "PLACEHOLDER": "Por favor ingrese un nombre de canal",
+          "ERROR": "Este campo es obligatorio."
+        },
+        "SUBMIT_BUTTON": "Crear Canal Interno",
+        "API": {
+          "ERROR_MESSAGE": "No pudimos guardar el canal interno.",
+          "SUCCESS_MESSAGE": "Canal interno creado con éxito."
         }
       },
       "EMAIL_CHANNEL": {
