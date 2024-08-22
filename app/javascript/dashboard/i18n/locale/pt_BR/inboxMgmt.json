@@ -221,33 +221,94 @@
           "UNOAPI": "Unoapi"
         },
         "INBOX_NAME": {
-          "LABEL": "Inbox Name",
-          "PLACEHOLDER": "Please enter an inbox name",
-          "ERROR": "This field is required"
+          "LABEL": "Nome da Caixa de Entrada",
+          "PLACEHOLDER": "Por favor, digite um nome para caixa de entrada",
+          "ERROR": "Este campo é obrigatório"
         },
         "SEND_AGENT_NAME": {
           "LABEL": "Enviar nome do agent",
           "PLACEHOLDER": "Selecione para enviar o nome do agent.",
-          "ERROR": "Selecione para enviar o nome do agent."
+          "ERROR": "Erro ao selecionar para enviar o nome do agent."
         },
         "IGNORE_HISTORY": {
-          "LABEL": "Ignore history on connect",
-          "PLACEHOLDER": "Check to ignore history on connect.",
-          "ERROR": "Check to ignore history on connect."
+          "LABEL": "Ignorar histórico de conversas (Sincronização Lenta)",
+          "PLACEHOLDER": "Selecione para ignorar histórico de conversas.",
+          "ERROR": "Erro ao selecionar para ignorar histórico de conversas."
         },
         "WEBWOOK_SEND_NEW_MESSAGES": {
-          "LABEL": "Webhook send new messages",
-          "PLACEHOLDER": "Check to ignore history on connect.",
-          "ERROR": "Check to webhook send new messages."
-        },
+          "LABEL": "Enviar novas mensagens ao Webhook",
+          "PLACEHOLDER": "Selecione para webhook enviar novas mensagens.",
+          "ERROR": "Erro ao selecionar para webhook enviar novas mensagens."
+        },        
         "IGNORE_GROUPS": {
           "LABEL": "Ignorar mensagens de grupos",
           "PLACEHOLDER": "Selecione para ignorar mensagens de grupos.",
           "ERROR": "Selecione para ignorar mensagens de grupos."
         },
+        "GENERATE_API_KEY": {
+          "LABEL": "Generate API Key",
+          "PLACEHOLDER": "Gerar nova API Key",
+          "ERROR": "Erro ao Gerar nova API Key"
+        },
+        "REJECT_CALLS": {
+          "SERVICE": "Rejeitar chamadas",
+          "LABEL": "Mensagem para o Contato ao Rejeitar chamadas",          
+          "PLACEHOLDER": "Mensagem ao Rejeitar chamada, Enviada ao Contato.",
+          "ERROR": "Este campo é obrigatório para Rejeitar chamadas."
+        },
+        "MESSAGE_CALLS_WEBHOOK": {
+          "LABEL": "Mensagem de Retorno ao rejeitar chamadas",
+          "PLACEHOLDER": "Mensagem ao rejeitar chamada, Enviada a Conta Whatsapp(Inbox). Retorno",
+          "ERROR": "Este campo é obrigatório para rejeitar chamada."
+        },
+        "IGNORE_BROADCAST_STATUSES": {
+          "LABEL": "Ignorar transmissão de status",
+          "PLACEHOLDER": "Selecione para ignorar transmissão de status.",
+          "ERROR": "Erro ao selecionar para ignorar transmissão de status."
+        },
+        "IGNORE_BROADCAST_MESSAGES": {
+          "LABEL": "Ignorar mensagens de transmissão",
+          "PLACEHOLDER": "Selecione para ignorar mensagens de transmissão.",
+          "ERROR": "Erro ao selecionar para ignorar mensagens de transmissão."
+        },
+        "IGNORE_OWN_MESSAGES": {
+          "LABEL": "Ignorar próprias mensagens",
+          "PLACEHOLDER": "Selecione para ignorar as próprias mensagens.",
+          "ERROR": "Erro ao selecionar para ignorar próprias mensagens."
+        },
+        "IGNORE_YOURSELF_MESSAGES": {
+          "LABEL": "Ignorar suas mensagens",
+          "PLACEHOLDER": "Selecione para ignorar suas mensagens.",
+          "ERROR": "Erro ao selecionar para ignorar suas mensagens."
+        },
+        "SEND_CONNECTION_STATUS": {
+          "LABEL": "Exibir status de conexão",
+          "PLACEHOLDER": "Selecione para exibir status de conexão.",
+          "ERROR": "Erro ao selecionar para exibir status de conexão."
+        },
+        "NOTIFY_FAILED_MESSAGES": {
+          "LABEL": "Notificar mensagens com falha",
+          "PLACEHOLDER": "Selecione para notificar mensagens com falha.",
+          "ERROR": "Erro ao selecionar para notificar mensagens com falha."
+        },
+        "COMPOSING_MESSAGE": {
+          "LABEL": "Enviar Digitando ao compor mensagem",
+          "PLACEHOLDER": "Selecione para enviar Digitando ao compor mensagem.",
+          "ERROR": "Erro ao selecionar para enviar Digitando ao compor mensagem."
+        },
+        "SEND_REACTION_AS_REPLY": {
+          "LABEL": "Mostrar reação como uma resposta",
+          "PLACEHOLDER": "Selecione para mostrar reação como uma resposta.",
+          "ERROR": "Erro ao selecionar para mostrar reação como uma resposta."
+        },
+        "SEND_PROFILE_PICTURE": {
+          "LABEL": "Exibir foto de perfil",
+          "PLACEHOLDER": "Selecione para exibir foto de perfil.",
+          "ERROR": "Erro ao selecionar para exibir foto de perfil."
+        },
         "URL": {
           "LABEL": "Unoapi URL",
-          "PLACEHOLDER": "Insira um URL Unoapi",
+          "PLACEHOLDER": "Insira a URL Unoapi",
           "ERROR": "Este campo é obrigatório"
         },
         "PHONE_NUMBER": {
@@ -328,6 +389,20 @@
           "ERROR_MESSAGE": "Não foi possível criar o canal do NotificaMe Hub"
         }
       },
+      "INTERNAL_CHANNEL": {
+        "TITLE": "Canal Interno",
+        "DESC": "Canal interno de conversa entre agentes.",
+        "CHANNEL_NAME": {
+          "LABEL": "Nome do Canal",
+          "PLACEHOLDER": "Por favor, insira um nome de canal",
+          "ERROR": "Este campo é obrigatório."
+        },
+        "SUBMIT_BUTTON": "Criar canal interno",
+        "API": {
+          "ERROR_MESSAGE": "Não foi possível salvar o canal interno.",
+          "SUCCESS_MESSAGE": "Canal interno criado com sucesso."
+        }
+      },       
       "EMAIL_CHANNEL": {
         "TITLE": "Canal de e-mail",
         "DESC": "Integre sua caixa de email.",
