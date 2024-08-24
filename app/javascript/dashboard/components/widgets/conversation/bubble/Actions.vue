@@ -127,8 +127,7 @@ export default {
         this.isATwilioChannel ||
         this.isAFacebookInbox ||
         this.isASmsInbox ||
-        this.isATelegramChannel ||
-        this.isANotificaMeChannel
+        this.isATelegramChannel
       ) {
         return this.sourceId && this.isSent;
       }
@@ -147,8 +146,7 @@ export default {
         this.isAWhatsAppChannel ||
         this.isATwilioChannel ||
         this.isASmsInbox ||
-        this.isAFacebookInbox ||
-        this.isANotificaMeChannel
+        this.isAFacebookInbox
       ) {
         return this.sourceId && this.isDelivered;
       }
@@ -169,8 +167,7 @@ export default {
       if (
         this.isAWhatsAppChannel ||
         this.isATwilioChannel ||
-        this.isAFacebookInbox ||
-        this.isANotificaMeChannel
+        this.isAFacebookInbox
       ) {
         return this.sourceId && this.isRead;
       }
@@ -204,6 +201,13 @@ export default {
         size="14"
       />
     </span>
+    <span v-else-if="showProgressIndicator" class="read-indicator-wrap">
+      <fluent-icon 
+        icon="clock" 
+        class="action--icon read-tick" 
+        size="14" 
+      />
+    </span>
     <span v-if="showReadIndicator" class="read-indicator-wrap">
       <fluent-icon
         v-tooltip.top-start="$t('CHAT_LIST.MESSAGE_READ')"
@@ -227,9 +231,6 @@ export default {
         class="action--icon read-tick"
         size="14"
       />
-    </span>
-    <span v-else-if="showProgressIndicator" class="read-indicator-wrap">
-      <fluent-icon icon="clock" class="action--icon" size="14" />
     </span>
     <fluent-icon
       v-if="isEmail"
