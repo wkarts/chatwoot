@@ -6,9 +6,9 @@
     "SWITCH_VIEW_LAYOUT": "Alternar o layout",
     "DASHBOARD_APP_TAB_MESSAGES": "Mensagens",
     "UNVERIFIED_SESSION": "A identidade deste usuário não foi verificada",
-    "NO_MESSAGE_1": "Oh oh! Parece que não há mensagens de clientes na sua caixa de entrada.",
+    "NO_MESSAGE_1": "Ops! Parece que não há mensagens de clientes na sua caixa de entrada.",
     "NO_MESSAGE_2": " para enviar uma mensagem para sua página!",
-    "NO_INBOX_1": "Hola! Parece que você não adicionou nenhuma caixa de entrada ainda.",
+    "NO_INBOX_1": "Olá! Parece que você não adicionou nenhuma caixa de entrada ainda.",
     "NO_INBOX_2": " para começar",
     "NO_INBOX_AGENT": "Uh Oh! Parece que você não faz parte de nenhuma caixa de entrada. Por favor, contate seu administrador",
     "SEARCH_MESSAGES": "Procurar por mensagens nas conversas",
@@ -142,7 +142,8 @@
       "MSG_INPUT": "Shift + enter para nova linha. Digite '/' para atalhos.",
       "PRIVATE_MSG_INPUT": "A mensagem será visível apenas para agentes",
       "MESSAGE_SIGNATURE_NOT_CONFIGURED": "A assinatura da mensagem não está configurada. Por favor, configure-a nas configurações do perfil.",
-      "CLICK_HERE": "Clique aqui para atualizar"
+      "CLICK_HERE": "Clique aqui para atualizar",
+      "WHATSAPP_TEMPLATES": "Whatsapp Templates"
     },
     "REPLYBOX": {
       "REPLY": "Responder",
@@ -259,7 +260,12 @@
       "TITLE": "Organizar conversas com marcadores",
       "DESCRIPTION": "Etiquetas fornecem uma forma mais fácil de organizar a sua conversa. Criar algumas estiquetas como #solicitação-suporte, #fatura-assunto etc., assim você poderá futuramente utiliza-las em uma conversa posteriormente.",
       "NEW_LINK": "Clique aqui para criar marcadores"
-    }
+    },
+    "CANNED_RESPONSES": {
+      "TITLE": "Criar respostas prontas",
+      "DESCRIPTION": "Modelos de resposta rápida pré-escritos ajudam você a responder rapidamente a uma conversa. Os agentes podem digitar o caractere '/' seguido do código curto para inserir uma resposta.",
+      "NEW_LINK": "Clique aqui para criar uma resposta pronta"
+    }    
   },
   "CONVERSATION_SIDEBAR": {
     "ASSIGNEE_LABEL": "Agente atribuído",
