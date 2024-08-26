@@ -247,8 +247,8 @@
     "READ_LATEST_UPDATES": "Leia as últimas atualizações",
     "ALL_CONVERSATION": {
       "TITLE": "Todas as suas conversas em um só lugar",
-      "DESCRIPTION": "Veja todas as conversas dos seus clientes em um único painel. Você pode filtrar as conversas pelo canal de entrada, rótulo e status."
-	  "NEW_LINK": "Clique aqui para criar uma caixa de entrada"
+      "DESCRIPTION": "Veja todas as conversas dos seus clientes em um único painel. Você pode filtrar as conversas pelo canal de entrada, rótulo e status.",
+	    "NEW_LINK": "Clique aqui para criar uma caixa de entrada"
     },
     "TEAM_MEMBERS": {
       "TITLE": "Convidar membros da sua equipe",
