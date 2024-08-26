@@ -17,7 +17,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       IMAGE_NAME: wkarts/hub
       GIT_REF: ${{ github.head_ref || github.ref_name }}
