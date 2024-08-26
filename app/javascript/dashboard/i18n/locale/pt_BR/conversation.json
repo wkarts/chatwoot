@@ -63,7 +63,7 @@
       "DETAILS": "detalhes",
       "SNOOZED_UNTIL": "Suspender até",
       "SNOOZED_UNTIL_TOMORROW": "Adiado até amanhã",
-      "SNOOZED_UNTIL_NEXT_WEEK": "Adiada até a próxima semana",
+      "SNOOZED_UNTIL_NEXT_WEEK": "Adiado até a próxima semana",
       "SNOOZED_UNTIL_NEXT_REPLY": "Adiado até a próxima resposta",
       "SLA_STATUS": {
         "FRT": "FRT {status}",
@@ -241,10 +241,14 @@
   "ONBOARDING": {
     "TITLE": "Olá, 👋. Bem-vindo ao %{installationName}!",
     "DESCRIPTION": "Obrigado por se inscrever. Queremos que você aproveite o máximo de %{installationName}. Aqui estão algumas coisas que você consegue fazer no(a) %{installationName} para que tenha uma experiência agradável.",
+    "GREETING_MORNING": "👋 Bom dia, %{name}. Bem-vindo ao %{installationName}.",
+    "GREETING_AFTERNOON": "👋 Boa tarde, %{name}. Bem-vindo ao %{installationName}.",
+    "GREETING_EVENING": "👋 Boa noite, %{name}. Bem-vindo ao %{installationName}.",
     "READ_LATEST_UPDATES": "Leia as últimas atualizações",
     "ALL_CONVERSATION": {
       "TITLE": "Todas as suas conversas em um só lugar",
       "DESCRIPTION": "Veja todas as conversas dos seus clientes em um único painel. Você pode filtrar as conversas pelo canal de entrada, rótulo e status."
+	  "NEW_LINK": "Clique aqui para criar uma caixa de entrada"
     },
     "TEAM_MEMBERS": {
       "TITLE": "Convidar membros da sua equipe",
