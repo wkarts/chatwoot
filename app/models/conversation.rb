@@ -127,7 +127,7 @@ class Conversation < ApplicationRecord
   def last_activity_at
     self[:last_activity_at] || created_at
   end
-  
+
   def last_incoming_message
     messages&.incoming&.last
   end

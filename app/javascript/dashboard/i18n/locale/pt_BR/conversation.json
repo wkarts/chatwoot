@@ -6,9 +6,9 @@
     "SWITCH_VIEW_LAYOUT": "Alternar o layout",
     "DASHBOARD_APP_TAB_MESSAGES": "Mensagens",
     "UNVERIFIED_SESSION": "A identidade deste usuário não foi verificada",
-    "NO_MESSAGE_1": "Oh oh! Parece que não há mensagens de clientes na sua caixa de entrada.",
+    "NO_MESSAGE_1": "Ops! Parece que não há mensagens de clientes na sua caixa de entrada.",
     "NO_MESSAGE_2": " para enviar uma mensagem para sua página!",
-    "NO_INBOX_1": "Hola! Parece que você não adicionou nenhuma caixa de entrada ainda.",
+    "NO_INBOX_1": "Olá! Parece que você não adicionou nenhuma caixa de entrada ainda.",
     "NO_INBOX_2": " para começar",
     "NO_INBOX_AGENT": "Uh Oh! Parece que você não faz parte de nenhuma caixa de entrada. Por favor, contate seu administrador",
     "SEARCH_MESSAGES": "Procurar por mensagens nas conversas",
@@ -63,7 +63,7 @@
       "DETAILS": "detalhes",
       "SNOOZED_UNTIL": "Suspender até",
       "SNOOZED_UNTIL_TOMORROW": "Adiado até amanhã",
-      "SNOOZED_UNTIL_NEXT_WEEK": "Adiada até a próxima semana",
+      "SNOOZED_UNTIL_NEXT_WEEK": "Adiado até a próxima semana",
       "SNOOZED_UNTIL_NEXT_REPLY": "Adiado até a próxima resposta",
       "SLA_STATUS": {
         "FRT": "FRT {status}",
@@ -142,7 +142,8 @@
       "MSG_INPUT": "Shift + enter para nova linha. Digite '/' para atalhos.",
       "PRIVATE_MSG_INPUT": "A mensagem será visível apenas para agentes",
       "MESSAGE_SIGNATURE_NOT_CONFIGURED": "A assinatura da mensagem não está configurada. Por favor, configure-a nas configurações do perfil.",
-      "CLICK_HERE": "Clique aqui para atualizar"
+      "CLICK_HERE": "Clique aqui para atualizar",
+      "WHATSAPP_TEMPLATES": "Whatsapp Templates"
     },
     "REPLYBOX": {
       "REPLY": "Responder",
@@ -240,10 +241,14 @@
   "ONBOARDING": {
     "TITLE": "Olá, 👋. Bem-vindo ao %{installationName}!",
     "DESCRIPTION": "Obrigado por se inscrever. Queremos que você aproveite o máximo de %{installationName}. Aqui estão algumas coisas que você consegue fazer no(a) %{installationName} para que tenha uma experiência agradável.",
+    "GREETING_MORNING": "👋 Bom dia, %{name}. Bem-vindo ao %{installationName}.",
+    "GREETING_AFTERNOON": "👋 Boa tarde, %{name}. Bem-vindo ao %{installationName}.",
+    "GREETING_EVENING": "👋 Boa noite, %{name}. Bem-vindo ao %{installationName}.",
     "READ_LATEST_UPDATES": "Leia as últimas atualizações",
     "ALL_CONVERSATION": {
       "TITLE": "Todas as suas conversas em um só lugar",
-      "DESCRIPTION": "Veja todas as conversas dos seus clientes em um único painel. Você pode filtrar as conversas pelo canal de entrada, rótulo e status."
+      "DESCRIPTION": "Veja todas as conversas dos seus clientes em um único painel. Você pode filtrar as conversas pelo canal de entrada, rótulo e status.",
+	    "NEW_LINK": "Clique aqui para criar uma caixa de entrada"
     },
     "TEAM_MEMBERS": {
       "TITLE": "Convidar membros da sua equipe",
@@ -259,7 +264,12 @@
       "TITLE": "Organizar conversas com marcadores",
       "DESCRIPTION": "Etiquetas fornecem uma forma mais fácil de organizar a sua conversa. Criar algumas estiquetas como #solicitação-suporte, #fatura-assunto etc., assim você poderá futuramente utiliza-las em uma conversa posteriormente.",
       "NEW_LINK": "Clique aqui para criar marcadores"
-    }
+    },
+    "CANNED_RESPONSES": {
+      "TITLE": "Criar respostas prontas",
+      "DESCRIPTION": "Modelos de resposta rápida pré-escritos ajudam você a responder rapidamente a uma conversa. Os agentes podem digitar o caractere '/' seguido do código curto para inserir uma resposta.",
+      "NEW_LINK": "Clique aqui para criar uma resposta pronta"
+    }    
   },
   "CONVERSATION_SIDEBAR": {
     "ASSIGNEE_LABEL": "Agente atribuído",

@@ -335,8 +335,8 @@ function setup_chatwoot() {
   sudo -i -u chatwoot << EOF
   rvm --version
   rvm autolibs disable
-  rvm install "ruby-3.2.2"
-  rvm use 3.2.2 --default
+  rvm install "ruby-3.3.3"
+  rvm use 3.3.3 --default
 
   git clone https://github.com/wkarts/chatwoot.git
   cd chatwoot
@@ -446,7 +446,7 @@ function ssl_success_message() {
     cat << EOF
 
 ***************************************************************************
-Woot! Woot!! Chatwoot server installation is complete.
+Woot! Woot!! 🅷🆄🅱 server installation is complete.
 The server will be accessible at https://$domain_name
 
 Join the community at https://chatwoot.com/community?utm_source=cwctl
@@ -489,7 +489,7 @@ function install() {
   cat << EOF
 
 ***************************************************************************
-              Chatwoot Installation (v$CW_VERSION)
+              🅷🆄🅱 Installation (v$CW_VERSION)
 ***************************************************************************
 
 For more verbose logs, open up a second terminal and follow along using,
@@ -534,7 +534,7 @@ EOF
     echo "➥ 5/9 Skipping database setup."
   fi
 
-  echo "➥ 6/9 Installing Chatwoot. This takes a long while."
+  echo "➥ 6/9 Installing 🅷🆄🅱. This takes a long while."
   setup_chatwoot &>> "${LOG_FILE}"
 
   if [ "$install_pg_redis" != "no" ]; then
@@ -555,7 +555,7 @@ EOF
 ➥ 9/9 Skipping SSL/TLS setup.
 
 ***************************************************************************
-Woot! Woot!! Chatwoot server installation is complete.
+Woot! Woot!! 🅷🆄🅱 server installation is complete.
 The server will be accessible at http://$public_ip:3000
 
 To configure a domain and SSL certificate, follow the guide at
@@ -619,7 +619,7 @@ function help() {
 
   cat <<EOF
 Usage: cwctl [OPTION]...
-Install and manage your Chatwoot installation.
+Install and manage your 🅷🆄🅱 installation.
 
 Example: cwctl -i master
 Example: cwctl -l web

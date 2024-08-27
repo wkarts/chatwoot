@@ -4,7 +4,7 @@ import { useAlert } from 'dashboard/composables';
 import { useUISettings } from 'dashboard/composables/useUISettings';
 import { clearCookiesOnLogout } from 'dashboard/store/utils/api.js';
 import { copyTextToClipboard } from 'shared/helpers/clipboard';
-import globalConfigMixin from 'shared/mixins/globalConfigMixin';
+import { useGlobalConfig } from 'shared/composables/useGlobalConfig';
 import UserProfilePicture from './UserProfilePicture.vue';
 import UserBasicDetails from './UserBasicDetails.vue';
 import MessageSignature from './MessageSignature.vue';
@@ -27,8 +27,8 @@ export default {
     AudioNotifications,
     AccessToken,
   },
-  mixins: [globalConfigMixin],
   setup() {
+    const { useInstallationName } = useGlobalConfig();
     const { uiSettings, updateUISettings, isEditorHotKeyEnabled } =
       useUISettings();
 
@@ -36,6 +36,7 @@ export default {
       uiSettings,
       updateUISettings,
       isEditorHotKeyEnabled,
+      useInstallationName,
     };
   },
   data() {
@@ -229,8 +230,11 @@ export default {
         </button>
       </div>
     </FormSection>
-    <FormSection :title="$t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.TITLE')">
-      <ChangePassword v-if="!globalConfig.disableUserProfileUpdate" />
+    <FormSection
+      v-if="!globalConfig.disableUserProfileUpdate"
+      :title="$t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.TITLE')"
+    >
+      <ChangePassword />
     </FormSection>
     <FormSection
       :title="$t('PROFILE_SETTINGS.FORM.AUDIO_NOTIFICATIONS_SECTION.TITLE')"

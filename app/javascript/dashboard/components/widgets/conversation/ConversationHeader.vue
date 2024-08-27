@@ -1,8 +1,7 @@
 <script>
 import { mapGetters } from 'vuex';
-import agentMixin from '../../../mixins/agentMixin.js';
+import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import BackButton from '../BackButton.vue';
-import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import InboxName from '../InboxName.vue';
 import MoreActions from './MoreActions.vue';
@@ -23,7 +22,7 @@ export default {
     SLACardLabel,
     Linear,
   },
-  mixins: [inboxMixin, agentMixin, keyboardEventListenerMixins],
+  mixins: [inboxMixin],
   props: {
     chat: {
       type: Object,
@@ -41,6 +40,14 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  setup(props, { emit }) {
+    const keyboardEvents = {
+      'Alt+KeyO': {
+        action: () => emit('contactPanelToggle'),
+      },
+    };
+    useKeyboardEvents(keyboardEvents);
   },
   computed: {
     ...mapGetters({
@@ -115,16 +122,6 @@ export default {
         this.accountId,
         FEATURE_FLAGS.LINEAR
       );
-    },
-  },
-
-  methods: {
-    getKeyboardEvents() {
-      return {
-        'Alt+KeyO': {
-          action: () => this.$emit('contactPanelToggle'),
-        },
-      };
     },
   },
 };

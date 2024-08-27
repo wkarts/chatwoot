@@ -1,26 +1,26 @@
 {
   "INTEGRATION_SETTINGS": {
-    "HEADER": "Integrations",
-    "DESCRIPTION": "Chatwoot integrates with multiple tools and services to improve your team's efficiency. Explore the list below to configure your favorite apps.",
-    "LEARN_MORE": "Learn more about integrations",
-    "LOADING": "Fetching integrations",
+    "HEADER": "Integrações",
+    "DESCRIPTION": "🅷🆄🅱 integra-se com várias ferramentas e serviços para melhorar a eficiência da sua equipe. Explore a lista abaixo para configurar seus aplicativos favoritos.",
+    "LEARN_MORE": "Saiba mais sobre integrações",
+    "LOADING": "Buscando integrações",
     "WEBHOOK": {
       "SUBSCRIBED_EVENTS": "Eventos Inscritos",
       "FORM": {
         "CANCEL": "Cancelar",
-        "DESC": "Webhook Os eventos fornecem informações em tempo real sobre o que está acontecendo na sua conta do Chatwoot. Digite um URL válido para configurar um retorno de chamada.",
+        "DESC": "Webhook Os eventos fornecem informações em tempo real sobre o que está acontecendo na sua conta do 🅷🆄🅱. Digite um URL válido para configurar um retorno de chamada.",
         "SUBSCRIPTIONS": {
           "LABEL": "Eventos",
           "EVENTS": {
-            "CONVERSATION_CREATED": "Conversation Created",
-            "CONVERSATION_STATUS_CHANGED": "Conversation Status Changed",
-            "CONVERSATION_UPDATED": "Conversation Updated",
-            "CONVERSATION_RESOLVED": "Conversation Resolved",
-            "MESSAGE_CREATED": "Message created",
-            "MESSAGE_UPDATED": "Message updated",
-            "WEBWIDGET_TRIGGERED": "Live chat widget opened by the user",
-            "CONTACT_CREATED": "Contact created",
-            "CONTACT_UPDATED": "Contact updated"
+            "CONVERSATION_CREATED": "Conversa Criada",
+            "CONVERSATION_STATUS_CHANGED": "Status da Conversa Alterado",
+            "CONVERSATION_UPDATED": "Conversa Atualizada",
+            "CONVERSATION_RESOLVED": "Conversa Resolvida",
+            "MESSAGE_CREATED": "Mensagem Criada",
+            "MESSAGE_UPDATED": "Mensagem Atualizada",
+            "WEBWIDGET_TRIGGERED": "Widget de chat ao vivo aberto pelo usuário",
+            "CONTACT_CREATED": "Contato Criado",
+            "CONTACT_UPDATED": "Contato Atualizado"
           }
         },
         "END_POINT": {
@@ -37,7 +37,7 @@
       "HEADER_BTN_TXT": "Adicionar novo Webhook",
       "LOADING": "Buscando Webhooks anexados",
       "SEARCH_404": "Não existem itens correspondentes a esta consulta",
-      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks são retornos de chamada HTTP que podem ser definidos para todas as contas. Eles são acionados por eventos como a criação de mensagens no Chatwoot. Você pode criar mais de um webhook para esta conta. <br /> <br /> Para criar um <b> webhook </b>, clique no botão <b> Adicionar novo webhook </b>. Você também pode remover qualquer webhook existente clicando no botão Excluir.</p>",
+      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks são retornos de chamada HTTP que podem ser definidos para todas as contas. Eles são acionados por eventos como a criação de mensagens no 🅷🆄🅱. Você pode criar mais de um webhook para esta conta. <br /> <br /> Para criar um <b> webhook </b>, clique no botão <b> Adicionar novo webhook </b>. Você também pode remover qualquer webhook existente clicando no botão Excluir.</p>",
       "LIST": {
         "404": "Não há webhooks configurados para esta conta.",
         "TITLE": "Gerenciar webhooks",
@@ -84,14 +84,14 @@
       },
       "HELP_TEXT": {
         "TITLE": "Usando a integração com Slack",
-        "BODY": "<br/><p>Chatwoot irá agora sincronizar todas as conversas recebidas no canal de <b><i>conversas com clientes</i></b> dentro de seu local de trabalho de slack.</p><p>A resposta para uma conversa em <b><i>conversas ao cliente</i></b> canal de slack irá criar uma resposta para o cliente através do chatwoot.</p><p>Inicie as respostas com <b><i>nota:</i></b> para criar notas privadas em vez de respostas.</p><p>Se o remetente do slack tiver um perfil de agente no chatwoot sob o mesmo e-mail, as respostas serão associadas de acordo.</p><p>Quando o respondente não tiver um perfil de agente associado, as respostas serão dadas a partir do perfil do bot.</p>",
+        "BODY": "<br/><p>🅷🆄🅱 irá agora sincronizar todas as conversas recebidas no canal de <b><i>conversas com clientes</i></b> dentro de seu local de trabalho de slack.</p><p>A resposta para uma conversa em <b><i>conversas ao cliente</i></b> canal de slack irá criar uma resposta para o cliente através do 🅷🆄🅱.</p><p>Inicie as respostas com <b><i>nota:</i></b> para criar notas privadas em vez de respostas.</p><p>Se o remetente do slack tiver um perfil de agente no 🅷🆄🅱 sob o mesmo e-mail, as respostas serão associadas de acordo.</p><p>Quando o respondente não tiver um perfil de agente associado, as respostas serão dadas a partir do perfil do bot.</p>",
         "SELECTED": "selecionar"
       },
       "SELECT_CHANNEL": {
         "OPTION_LABEL": "Selecione um canal",
         "UPDATE": "Atualizar",
         "BUTTON_TEXT": "Conectar canal",
-        "DESCRIPTION": "Seu espaço de trabalho Slack agora está ligado com o Chatwoot. No entanto, a integração está inativa no momento. Para ativar a integração e conectar um canal ao Chatwoot, por favor, clique no botão abaixo.\n\n**Nota:** Se você está tentando conectar-se a um canal privado, adicione o aplicativo Chatwoot no canal do Slack antes de prosseguir com esta etapa.",
+        "DESCRIPTION": "Seu espaço de trabalho Slack agora está ligado com o 🅷🆄🅱. No entanto, a integração está inativa no momento. Para ativar a integração e conectar um canal ao 🅷🆄🅱, por favor, clique no botão abaixo.\n\n**Nota:** Se você está tentando conectar-se a um canal privado, adicione o aplicativo 🅷🆄🅱 no canal do Slack antes de prosseguir com esta etapa.",
         "ATTENTION_REQUIRED": "Atenção necessária",
         "EXPIRED": "Sua integração com o Slack expirou. Para continuar recebendo mensagens no Slack, exclua a integração e conecte seu espaço de trabalho novamente."
       },
@@ -171,9 +171,9 @@
     "DASHBOARD_APPS": {
       "TITLE": "Apps da Dashboard",
       "HEADER_BTN_TXT": "Adicionar um novo app da dashboard",
-      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps permite que as organizações incorporem um aplicativo dentro da dashboard do Chatwoot para fornecer o contexto para agentes de suporte ao cliente. Este recurso permite-lhe criar uma aplicação independente e incorporá-la dentro da dashboard para fornecer informações do usuário, seus pedidos ou seu histórico de pagamentos anteriores.</p><p>Quando você incorpora seu aplicativo usando a dashboard do Chatwoot, sua aplicação irá obter o contexto da conversa e entrar em contato como um evento de janela. Implementar um ouvinte para o evento de mensagem em sua página receber o contexto.</p><p>Para adicionar um novo aplicativo da dashboard, clique no botão 'Adicionar um novo aplicativo da dashboard'.</p>",
+      "SIDEBAR_TXT": "<p><b>Dashboard Apps</b></p><p>Dashboard Apps permite que as organizações incorporem um aplicativo dentro da dashboard do 🅷🆄🅱 para fornecer o contexto para agentes de suporte ao cliente. Este recurso permite-lhe criar uma aplicação independente e incorporá-la dentro da dashboard para fornecer informações do usuário, seus pedidos ou seu histórico de pagamentos anteriores.</p><p>Quando você incorpora seu aplicativo usando a dashboard do 🅷🆄🅱, sua aplicação irá obter o contexto da conversa e entrar em contato como um evento de janela. Implementar um ouvinte para o evento de mensagem em sua página receber o contexto.</p><p>Para adicionar um novo aplicativo da dashboard, clique no botão 'Adicionar um novo aplicativo da dashboard'.</p>",
       "DESCRIPTION": "Aplicativos da dashboard permitem que organizações incorporem um aplicativo dentro do painel para fornecer o contexto para agentes de suporte ao cliente. Este recurso permite que você crie uma aplicação independente e incorpore para fornecer informações de usuário, seus pedidos ou seu histórico de pagamentos anteriores.",
-      "LEARN_MORE": "Learn more about Dashboard Apps",
+      "LEARN_MORE": "Saiba mais sobre aplicativos da Dashboard",
       "LIST": {
         "404": "Ainda não há aplicativos da dashboard nesta conta",
         "LOADING": "Buscando aplicativos da dashboard...",
@@ -216,84 +216,84 @@
       }
     },
     "LINEAR": {
-      "ADD_OR_LINK_BUTTON": "Create/Link Linear Issue",
-      "LOADING": "Fetching linear issues...",
-      "LOADING_ERROR": "There was an error fetching the linear issues, please try again",
+      "ADD_OR_LINK_BUTTON": "Criar/Vincular Issue no Linear",
+      "LOADING": "Buscando issues do Linear...",
+      "LOADING_ERROR": "Ocorreu um erro ao buscar as issues do Linear, por favor, tente novamente",
       "CREATE": "Create",
       "LINK": {
-        "SEARCH": "Search issues",
-        "SELECT": "Select issue",
-        "TITLE": "Link",
-        "EMPTY_LIST": "No linear issues found",
-        "LOADING": "Loading",
-        "ERROR": "There was an error fetching the linear issues, please try again",
-        "LINK_SUCCESS": "Issue linked successfully",
-        "LINK_ERROR": "There was an error linking the issue, please try again",
-        "LINK_TITLE": "Conversation (#%{conversationId}) with %{name}"
+      "SEARCH": "Buscar issues",
+      "SELECT": "Selecionar issue",
+      "TITLE": "Vincular",
+      "EMPTY_LIST": "Nenhuma issue do Linear encontrada",
+      "LOADING": "Carregando",
+      "ERROR": "Ocorreu um erro ao buscar as issues do Linear, por favor, tente novamente",
+      "LINK_SUCCESS": "Issue vinculada com sucesso",
+      "LINK_ERROR": "Ocorreu um erro ao vincular a issue, por favor, tente novamente",
+      "LINK_TITLE": "Conversa (#%{conversationId}) com %{name}"
       },
       "ADD_OR_LINK": {
-        "TITLE": "Create/link linear issue",
-        "DESCRIPTION": "Create Linear issues from conversations, or link existing ones for seamless tracking.",
+        "TITLE": "Criar/vincular issue no Linear",
+        "DESCRIPTION": "Crie issues no Linear a partir de conversas ou vincule issues existentes para rastreamento contínuo.",
         "FORM": {
           "TITLE": {
-            "LABEL": "Title",
-            "PLACEHOLDER": "Enter title",
-            "REQUIRED_ERROR": "Title is required"
+            "LABEL": "Título",
+            "PLACEHOLDER": "Digite o título",
+            "REQUIRED_ERROR": "Título é obrigatório"
           },
           "DESCRIPTION": {
-            "LABEL": "Description",
-            "PLACEHOLDER": "Enter description"
+            "LABEL": "Descrição",
+            "PLACEHOLDER": "Digite a descrição"
           },
           "TEAM": {
-            "LABEL": "Team",
-            "PLACEHOLDER": "Select team",
-            "SEARCH": "Search team",
-            "REQUIRED_ERROR": "Team is required"
+            "LABEL": "Equipe",
+            "PLACEHOLDER": "Selecione a equipe",
+            "SEARCH": "Buscar equipe",
+            "REQUIRED_ERROR": "Equipe é obrigatória"
           },
           "ASSIGNEE": {
-            "LABEL": "Assignee",
-            "PLACEHOLDER": "Select assignee",
-            "SEARCH": "Search assignee"
+            "LABEL": "Responsável",
+            "PLACEHOLDER": "Selecione o responsável",
+            "SEARCH": "Buscar responsável"
           },
           "PRIORITY": {
-            "LABEL": "Priority",
-            "PLACEHOLDER": "Select priority",
-            "SEARCH": "Search priority"
+            "LABEL": "Prioridade",
+            "PLACEHOLDER": "Selecione a prioridade",
+            "SEARCH": "Buscar prioridade"
           },
           "LABEL": {
-            "LABEL": "Label",
-            "PLACEHOLDER": "Select label",
-            "SEARCH": "Search label"
+            "LABEL": "Etiqueta",
+            "PLACEHOLDER": "Selecione a etiqueta",
+            "SEARCH": "Buscar etiqueta"
           },
           "STATUS": {
             "LABEL": "Status",
-            "PLACEHOLDER": "Select status",
-            "SEARCH": "Search status"
+            "PLACEHOLDER": "Selecione o status",
+            "SEARCH": "Buscar status"
           },
           "PROJECT": {
-            "LABEL": "Project",
-            "PLACEHOLDER": "Select project",
-            "SEARCH": "Search project"
+            "LABEL": "Projeto",
+            "PLACEHOLDER": "Selecione o projeto",
+            "SEARCH": "Buscar projeto"
           }
         },
-        "CREATE": "Create",
-        "CANCEL": "Cancel",
-        "CREATE_SUCCESS": "Issue created successfully",
-        "CREATE_ERROR": "There was an error creating the issue, please try again",
-        "LOADING_TEAM_ERROR": "There was an error fetching the teams, please try again",
-        "LOADING_TEAM_ENTITIES_ERROR": "There was an error fetching the team entities, please try again"
+        "CREATE": "Criar",
+        "CANCEL": "Cancelar",
+        "CREATE_SUCCESS": "Issue criada com sucesso",
+        "CREATE_ERROR": "Ocorreu um erro ao criar a issue, por favor, tente novamente",
+        "LOADING_TEAM_ERROR": "Ocorreu um erro ao buscar as equipes, por favor, tente novamente",
+        "LOADING_TEAM_ENTITIES_ERROR": "Ocorreu um erro ao buscar as entidades da equipe, por favor, tente novamente"
       },
       "ISSUE": {
         "STATUS": "Status",
-        "PRIORITY": "Priority",
-        "ASSIGNEE": "Assignee",
-        "LABELS": "Labels",
-        "CREATED_AT": "Created at %{createdAt}"
+        "PRIORITY": "Prioridade",
+        "ASSIGNEE": "Responsável",
+        "LABELS": "Etiquetas",
+        "CREATED_AT": "Criado em %{createdAt}"
       },
       "UNLINK": {
-        "TITLE": "Unlink",
-        "SUCCESS": "Issue unlinked successfully",
-        "ERROR": "There was an error unlinking the issue, please try again"
+        "TITLE": "Desvincular",
+        "SUCCESS": "Issue desvinculada com sucesso",
+        "ERROR": "Ocorreu um erro ao desvincular a issue, por favor, tente novamente"
       }
     }
   }

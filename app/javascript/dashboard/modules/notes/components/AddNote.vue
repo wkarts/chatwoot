@@ -1,39 +1,28 @@
-<script>
+<script setup>
+import { ref, computed } from 'vue';
+import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor.vue';
-import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
-export default {
-  components: {
-    WootMessageEditor,
-  },
-  mixins: [keyboardEventListenerMixins],
-  data() {
-    return {
-      noteContent: '',
-    };
-  },
 
-  computed: {
-    buttonDisabled() {
-      return this.noteContent === '';
-    },
-  },
-  methods: {
-    getKeyboardEvents() {
-      return {
-        '$mod+Enter': {
-          action: () => this.onAdd(),
-          allowOnFocusedInput: true,
-        },
-      };
-    },
-    onAdd() {
-      if (this.noteContent !== '') {
-        this.$emit('add', this.noteContent);
-      }
-      this.noteContent = '';
-    },
+const emit = defineEmits(['add']);
+
+const noteContent = ref('');
+
+const buttonDisabled = computed(() => noteContent.value === '');
+
+const onAdd = () => {
+  if (noteContent.value !== '') {
+    emit('add', noteContent.value);
+  }
+  noteContent.value = '';
+};
+
+const keyboardEvents = {
+  '$mod+Enter': {
+    action: () => onAdd(),
+    allowOnFocusedInput: true,
   },
 };
+useKeyboardEvents(keyboardEvents);
 </script>
 
 <template>

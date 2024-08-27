@@ -1,11 +1,12 @@
 <script>
+import { ref } from 'vue';
 import { mapGetters } from 'vuex';
 import { useAdmin } from 'dashboard/composables/useAdmin';
+import { useConversationLabels } from 'dashboard/composables/useConversationLabels';
+import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import Spinner from 'shared/components/Spinner.vue';
 import LabelDropdown from 'shared/components/ui/label/LabelDropdown.vue';
 import AddLabel from 'shared/components/ui/dropdown/AddLabel.vue';
-import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
-import conversationLabelMixin from 'dashboard/mixins/conversation/labelMixin';
 
 export default {
   components: {
@@ -13,27 +14,59 @@ export default {
     LabelDropdown,
     AddLabel,
   },
-
-  mixins: [conversationLabelMixin, keyboardEventListenerMixins],
-  props: {
-    // conversationId prop is used in /conversation/labelMixin,
-    // remove this props when refactoring to composable if not needed
-    // eslint-disable-next-line vue/no-unused-properties
-    conversationId: {
-      type: Number,
-      required: true,
-    },
-  },
   setup() {
     const { isAdmin } = useAdmin();
+
+    const {
+      savedLabels,
+      activeLabels,
+      accountLabels,
+      addLabelToConversation,
+      removeLabelFromConversation,
+    } = useConversationLabels();
+
+    const showSearchDropdownLabel = ref(false);
+
+    const toggleLabels = () => {
+      showSearchDropdownLabel.value = !showSearchDropdownLabel.value;
+    };
+
+    const closeDropdownLabel = () => {
+      showSearchDropdownLabel.value = false;
+    };
+
+    const keyboardEvents = {
+      KeyL: {
+        action: e => {
+          e.preventDefault();
+          toggleLabels();
+        },
+      },
+      Escape: {
+        action: () => {
+          if (showSearchDropdownLabel.value) {
+            toggleLabels();
+          }
+        },
+        allowOnFocusedInput: true,
+      },
+    };
+    useKeyboardEvents(keyboardEvents);
     return {
       isAdmin,
+      savedLabels,
+      activeLabels,
+      accountLabels,
+      addLabelToConversation,
+      removeLabelFromConversation,
+      showSearchDropdownLabel,
+      closeDropdownLabel,
+      toggleLabels,
     };
   },
   data() {
     return {
       selectedLabels: [],
-      showSearchDropdownLabel: false,
     };
   },
 
@@ -41,32 +74,6 @@ export default {
     ...mapGetters({
       conversationUiFlags: 'conversationLabels/getUIFlags',
     }),
-  },
-  methods: {
-    toggleLabels() {
-      this.showSearchDropdownLabel = !this.showSearchDropdownLabel;
-    },
-    closeDropdownLabel() {
-      this.showSearchDropdownLabel = false;
-    },
-    getKeyboardEvents() {
-      return {
-        KeyL: {
-          action: e => {
-            e.preventDefault();
-            this.toggleLabels();
-          },
-        },
-        Escape: {
-          action: () => {
-            if (this.showSearchDropdownLabel) {
-              this.toggleLabels();
-            }
-          },
-          allowOnFocusedInput: true,
-        },
-      };
-    },
   },
 };
 </script>

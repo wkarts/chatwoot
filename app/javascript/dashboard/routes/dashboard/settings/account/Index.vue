@@ -4,19 +4,18 @@ import { required, minValue, maxValue } from '@vuelidate/validators';
 import { mapGetters } from 'vuex';
 import { useAlert } from 'dashboard/composables';
 import { useUISettings } from 'dashboard/composables/useUISettings';
-import configMixin from 'shared/mixins/configMixin';
-import accountMixin from '../../../../mixins/account';
+import { useConfig } from 'dashboard/composables/useConfig';
 import { FEATURE_FLAGS } from '../../../../featureFlags';
 import semver from 'semver';
 import { getLanguageDirection } from 'dashboard/components/widgets/conversation/advancedFilterItems/languages';
 
 export default {
-  mixins: [accountMixin, configMixin],
   setup() {
     const { updateUISettings } = useUISettings();
+    const { enabledLanguages } = useConfig();
     const v$ = useVuelidate();
 
-    return { updateUISettings, v$ };
+    return { updateUISettings, v$, enabledLanguages };
   },
   data() {
     return {
@@ -27,6 +26,7 @@ export default {
       supportEmail: '',
       features: {},
       autoResolveDuration: null,
+      autoResolveUnit: 'hours', // Nueva propiedad para la unidad de tiempo
       latestChatwootVersion: null,
     };
   },
@@ -134,12 +134,16 @@ export default {
         return;
       }
       try {
+        let duration = this.autoResolveDuration;
+        if (this.autoResolveUnit === 'days') {
+          duration *= 24; // Convertir días a horas
+        }
         await this.$store.dispatch('accounts/update', {
           locale: this.locale,
           name: this.name,
           domain: this.domain,
           support_email: this.supportEmail,
-          auto_resolve_duration: this.autoResolveDuration,
+          auto_resolve_duration: duration,
         });
         this.$root.$i18n.locale = this.locale;
         this.getAccount(this.id).locale = this.locale;

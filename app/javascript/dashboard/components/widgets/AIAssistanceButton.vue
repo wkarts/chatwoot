@@ -1,12 +1,13 @@
 <script>
+import { ref } from 'vue';
 import { mapGetters } from 'vuex';
 import { useAdmin } from 'dashboard/composables/useAdmin';
 import { useUISettings } from 'dashboard/composables/useUISettings';
+import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
+import { useAI } from 'dashboard/composables/useAI';
 import AICTAModal from './AICTAModal.vue';
 import AIAssistanceModal from './AIAssistanceModal.vue';
-import aiMixin from 'dashboard/mixins/aiMixin';
 import { CMD_AI_ASSIST } from 'dashboard/routes/dashboard/commands/commandBarBusEvents';
-import keyboardEventListenerMixins from 'shared/mixins/keyboardEventListenerMixins';
 import AIAssistanceCTAButton from './AIAssistanceCTAButton.vue';
 
 export default {
@@ -15,22 +16,46 @@ export default {
     AICTAModal,
     AIAssistanceCTAButton,
   },
-  mixins: [aiMixin, keyboardEventListenerMixins],
-  setup() {
+  setup(props, { emit }) {
     const { uiSettings, updateUISettings } = useUISettings();
+
+    const { isAIIntegrationEnabled, draftMessage, recordAnalytics } = useAI();
+
     const { isAdmin } = useAdmin();
+
+    const initialMessage = ref('');
+
+    const initializeMessage = draftMsg => {
+      initialMessage.value = draftMsg;
+    };
+    const keyboardEvents = {
+      '$mod+KeyZ': {
+        action: () => {
+          if (initialMessage.value) {
+            emit('replaceText', initialMessage.value);
+            initialMessage.value = '';
+          }
+        },
+        allowOnFocusedInput: true,
+      },
+    };
+    useKeyboardEvents(keyboardEvents);
 
     return {
       uiSettings,
       updateUISettings,
       isAdmin,
+      initialMessage,
+      initializeMessage,
+      recordAnalytics,
+      isAIIntegrationEnabled,
+      draftMessage,
     };
   },
   data: () => ({
     showAIAssistanceModal: false,
     showAICtaModal: false,
     aiOption: '',
-    initialMessage: '',
   }),
   computed: {
     ...mapGetters({
@@ -56,22 +81,10 @@ export default {
 
   mounted() {
     this.$emitter.on(CMD_AI_ASSIST, this.onAIAssist);
-    this.initialMessage = this.draftMessage;
+    this.initializeMessage(this.draftMessage);
   },
 
   methods: {
-    getKeyboardEvents() {
-      return {
-        '$mod+KeyZ': {
-          action: () => {
-            if (this.initialMessage) {
-              this.$emit('replaceText', this.initialMessage);
-              this.initialMessage = '';
-            }
-          },
-        },
-      };
-    },
     hideAIAssistanceModal() {
       this.recordAnalytics('DISMISS_AI_SUGGESTION', {
         aiOption: this.aiOption,
@@ -85,7 +98,7 @@ export default {
           is_open_ai_cta_modal_dismissed: true,
         });
       }
-      this.initialMessage = this.draftMessage;
+      this.initializeMessage(this.draftMessage);
       const ninja = document.querySelector('ninja-keys');
       ninja.open({ parent: 'ai_assist' });
     },
@@ -107,7 +120,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="!isFetchingAppIntegrations">
+  <div>
     <div v-if="isAIIntegrationEnabled" class="relative">
       <AIAssistanceCTAButton
         v-if="shouldShowAIAssistCTAButton"
