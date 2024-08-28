@@ -498,7 +498,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .whatsapp-settings--content {
   ::v-deep input {
