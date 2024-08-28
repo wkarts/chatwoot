@@ -1,8 +1,8 @@
 {
-  "name": "Chatwoot",
-  "description": "Chatwoot is a customer support tool for instant messaging channels",
-  "website": "https://www.chatwoot.com/",
-  "repository": "https://github.com/chatwoot/chatwoot",
+  "name": "🅷🆄🅱",
+  "description": "🅷🆄🅱 is a customer support tool for instant messaging channels",
+  "website": "https://www.🅷🆄🅱.com/",
+  "repository": "https://github.com/wkarts/chatwoot",
   "logo": "https://app.chatwoot.com/brand-assets/logo_thumbnail.svg",
   "keywords": [
     "live chat",
@@ -26,11 +26,11 @@
       "value": "production"
     },
     "FRONTEND_URL": {
-      "description": "Public root URL of the Chatwoot installation. This will be used in the emails.",
+      "description": "Public root URL of the 🅷🆄🅱 installation. This will be used in the emails.",
       "value": "https://CHANGE.herokuapp.com"
     },
     "INSTALLATION_ENV": {
-      "description": "Installation method used for Chatwoot.",
+      "description": "Installation method used for 🅷🆄🅱.",
       "value": "heroku"
     },
     "REDIS_OPENSSL_VERIFY_MODE":{

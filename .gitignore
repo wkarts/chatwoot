@@ -76,3 +76,30 @@ yarn-debug.log*
 .yarn-integrity
 
 /storybook-static
+
+# Ignore deploy workflow files
+#.github/workflows/docker-image.yml
+#.github/workflows/nightly_installer.yml
+#.github/workflows/publish_foss_docker.yml
+#.github/workflows/publish_foss_docker_arm.yml
+#.github/workflows/size-limit.yml
+
+#Ignore Public
+#public/manifest.json
+#public/brand-assets/logo.svg
+#public/brand-assets/logo_dark.svg
+#public/brand-assets/logo_thumbnail.svg
+
+#Ignore app/views/..
+#app/views/installation/onboarding/index.html.erb
+#app/views/super_admin/application/_navigation.html.erb
+#app/views/super_admin/devise/sessions/new.html.erb
+#app/views/super_admin/settings/show.html.erb
+
+#Ignore Config/..
+#config/installation_config.yml
+#config/features.yml
+
+#Ignore Emails...
+#app/views/mailers/*
+#app/views/devise/*

@@ -23,6 +23,7 @@ export default {
     ImageBubble,
     VideoBubble,
     Thumbnail,
+    VideoBubble,
     UserMessage,
     FileBubble,
     MessageReplyButton,
