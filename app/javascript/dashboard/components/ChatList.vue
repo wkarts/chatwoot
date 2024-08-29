@@ -1059,4 +1059,21 @@ export default {
 .conversations-list {
   @apply overflow-hidden hover:overflow-y-auto;
 }
+
+/* Skip context menu */
+.conversations-list div .skip-context-menu{
+ height:21px;
+ width:267px;
+}
+
+/* Image */
+.conversations-list span img{
+ height:25px;
+}
+
+/* Image */
+.conversations-list-wrap .conversations-list .overflow-auto div div .flex-grow-0 .group-hover\:border-transparent .conversation--message span div .message-text__wrap img{
+ width:16% !important;
+}
+
 </style>
