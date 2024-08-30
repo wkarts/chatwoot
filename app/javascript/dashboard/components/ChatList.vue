@@ -1047,7 +1047,7 @@ export default {
 </template>
 
 <!-- Estilos adicionados -->
-<style scoped>
+<style scoped lang="scss">
 /* Skip context menu */
 .conversations-list div .skip-context-menu {
     height: 21px;
