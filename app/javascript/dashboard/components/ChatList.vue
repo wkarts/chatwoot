@@ -1046,6 +1046,23 @@ export default {
   </div>
 </template>
 
+<style scoped>
+@tailwind components;
+@layer components {
+  .flex-basis-clamp {
+    flex-basis: clamp(20rem, 4vw + 21.25rem, 27.5rem);
+  }
+}
+</style>
+
+<!--
+<style scoped lang="scss">
+.conversations-list {
+  @apply overflow-hidden hover:overflow-y-auto;
+}
+</style>
+-->
+
 <!-- Estilos adicionados -->
 <style scoped lang="scss">
 /* Skip context menu */
@@ -1062,20 +1079,5 @@ export default {
 /* Image */
 .conversations-list-wrap .conversations-list .overflow-auto div div .flex-grow-0 .group-hover\:border-transparent .conversation--message span div .message-text__wrap img {
     width: 16% !important;
-}
-</style>
-
-<style scoped>
-@tailwind components;
-@layer components {
-  .flex-basis-clamp {
-    flex-basis: clamp(20rem, 4vw + 21.25rem, 27.5rem);
-  }
-}
-</style>
-
-<style scoped lang="scss">
-.conversations-list {
-  @apply overflow-hidden hover:overflow-y-auto;
 }
 </style>
