@@ -206,37 +206,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-  
-/* Span Tag */
-.ltr\:border-r .relative .relative span{
- font-size:6px;
-}
-
-/* Span Tag */
-.flex-grow-0 .overflow-hidden .w-full .ltr\:border-r .justify-between .items-center .relative .flex-col .justify-between .relative .justify-between span{
- width:44px !important;
-}
-
-/* Flex col */
-.ltr\:border-r .justify-between .items-center .relative > .flex-col{
- width:191px;
- transform:translatex(-21px) translatey(0px);
-}
-
-/* Flex col */
-.ltr\:border-r .relative .relative .flex-col{
- width:93px !important;
-}
-
-/* Font medium */
-.overflow-hidden .w-full .ltr\:border-r .justify-between .items-center .relative .flex-col .justify-between .relative .flex-col .justify-between .font-medium{
- width:69px !important;
-}
-
-/* Font medium */
-.relative .flex-col .justify-between .relative .flex-col .justify-between .font-medium{
- font-size:10px;
-}
-</style>
