@@ -1055,16 +1055,14 @@ export default {
 }
 </style>
 
-<!--
 <style scoped lang="scss">
 .conversations-list {
   @apply overflow-hidden hover:overflow-y-auto;
 }
 </style>
--->
 
 <!-- Estilos adicionados -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
 /* Skip context menu */
 .conversations-list div .skip-context-menu {
     height: 21px;
