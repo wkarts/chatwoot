@@ -1060,22 +1060,3 @@ export default {
   @apply overflow-hidden hover:overflow-y-auto;
 }
 </style>
-
-<!-- Estilos adicionados -->
-<style lang="scss" scoped>
-/* Image */
-.conversations-list span img{
- height:26px;
-}
-
-/* Image */
-.conversations-list-wrap .conversations-list .overflow-auto div div .flex-grow-0 .group-hover\:border-transparent .conversation--message span div .message-text__wrap img{
- width:16% !important;
-}
-
-/* Skip context menu */
-.conversations-list div .skip-context-menu{
- height:23px;
- width:267px;
-}
-</style>
