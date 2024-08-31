@@ -1,6 +1,6 @@
-# This file contains all the installation wide configuration which controls various settings in Chatwoot
+# This file contains all the installation wide configuration which controls various settings in 🅷🆄🅱
 # This is internal config and should not be modified by the user directly in database
-# Chatwoot might override and modify these values during the upgrade process
+# 🅷🆄🅱 might override and modify these values during the upgrade process
 # Configs which can be modified by the user are available in the dashboard under appropriate UI
 #
 # name: the name of the config referenced in the code
@@ -52,7 +52,7 @@
 - name: DISPLAY_MANIFEST
   value: true
   display_title: '🅷🆄🅱 Metadata'
-  description: 'Display default Chatwoot metadata like favicons and upgrade warnings'
+  description: 'Display default 🅷🆄🅱 metadata like favicons and upgrade warnings'
   type: boolean
 # ------- End of Branding Related Config ------- #
 
@@ -144,12 +144,12 @@
 - name: CHATWOOT_INBOX_TOKEN
   value:
   display_title: 'Inbox Token'
-  description: 'The Chatwoot Inbox Token for Contact Support in Cloud'
+  description: 'The 🅷🆄🅱 Inbox Token for Contact Support in Cloud'
   locked: false
 - name: CHATWOOT_INBOX_HMAC_KEY
   value:
   display_title: 'Inbox HMAC Key'
-  description: 'The Chatwoot Inbox HMAC Key for Contact Support in Cloud'
+  description: 'The 🅷🆄🅱 Inbox HMAC Key for Contact Support in Cloud'
   locked: false
 - name: CHATWOOT_CLOUD_PLANS
   display_title: 'Cloud Plans'
@@ -161,11 +161,11 @@
   description: 'Config to features and their associated plans'
 - name: DEPLOYMENT_ENV
   value: self-hosted
-  description: 'The deployment environment of the installation, to differentiate between Chatwoot cloud and self-hosted'
+  description: 'The deployment environment of the installation, to differentiate between 🅷🆄🅱 cloud and self-hosted'
 - name: ANALYTICS_TOKEN
   value:
   display_title: 'Analytics Token'
-  description: 'The June.so analytics token for Chatwoot cloud'
+  description: 'The June.so analytics token for 🅷🆄🅱 cloud'
 - name: CLEARBIT_API_KEY
   value:
   display_title: 'Clearbit API Key'
@@ -191,13 +191,13 @@
   description: 'The number of licenses purchased for the installation, retrieved from the billing API'
 - name: CHATWOOT_SUPPORT_WEBSITE_TOKEN
   value:
-  description: 'The Chatwoot website token, used to identify the Chatwoot inbox and display the "Contact Support" option on the billing page'
+  description: 'The 🅷🆄🅱 website token, used to identify the 🅷🆄🅱 inbox and display the "Contact Support" option on the billing page'
 - name: CHATWOOT_SUPPORT_SCRIPT_URL
   value:
-  description: 'The Chatwoot script base URL, to display the "Contact Support" option on the billing page'
+  description: 'The 🅷🆄🅱 script base URL, to display the "Contact Support" option on the billing page'
 - name: CHATWOOT_SUPPORT_IDENTIFIER_HASH
   value:
-  description: 'The Chatwoot identifier hash, to validate the contact in the live chat window.'
+  description: 'The 🅷🆄🅱 identifier hash, to validate the contact in the live chat window.'
 # ------- End of Chatwoot Internal Config for Self Hosted ----#
 
 ## ------ Configs added for enterprise clients ------ ##
