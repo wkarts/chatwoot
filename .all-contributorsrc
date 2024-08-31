@@ -6,10 +6,10 @@
   "commit": false,
   "contributors": [
     {
-      "login": "nithindavid",
-      "name": "Nithin David Thomas",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/1277421?v=4",
-      "profile": "http://nithindavid.me",
+      "login": "wkarts",
+      "name": "Wkarts",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57051272?s=400&u=e6c5790c7b2c416ff5c56dc068d3a7e77827b0f4&v=4",
+      "profile": "https://avatars.githubusercontent.com/u/57051272?s=400&u=e6c5790c7b2c416ff5c56dc068d3a7e77827b0f4&v=4",
       "contributions": [
         "bug",
         "blog",
@@ -18,62 +18,12 @@
         "design",
         "maintenance",
         "review"
-      ]
-    }
-    {
-      "login": "sojan-official",
-      "name": "Sojan Jose",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/73185?v=4",
-      "profile": "http://sojan.me",
-      "contributions": [
-        "bug",
-        "blog",
-        "code",
-        "doc",
-        "design",
-        "maintenance",
-        "review"
-      ]
-    },
-    {
-      "login": "pranavrajs",
-      "name": "Pranav Raj S",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/2246121?v=4",
-      "profile": "https://github.com/pranavrajs",
-      "contributions": [
-        "bug",
-        "blog",
-        "code",
-        "doc",
-        "design",
-        "maintenance",
-        "review"
-      ]
-    },
-    {
-      "login": "subintp",
-      "name": "Subin T P",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1742357?v=4",
-      "profile": "http://www.linkedin.com/in/subintp",
-      "contributions": [
-        "bug",
-        "code"
-      ]
-    },
-    {
-      "login": "manojmj92",
-      "name": "Manoj M J",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/4034241?v=4",
-      "profile": "https://github.com/manojmj92",
-      "contributions": [
-        "bug",
-        "code",
       ]
     }
   ],
   "contributorsPerLine": 7,
-  "projectName": "chatwoot",
-  "projectOwner": "chatwoot",
+  "projectName": "🅷🆄🅱",
+  "projectOwner": "wkarts",
   "repoType": "github",
   "repoHost": "https://github.com"
 }
