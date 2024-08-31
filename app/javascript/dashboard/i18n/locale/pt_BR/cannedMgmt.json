@@ -3,6 +3,7 @@
     "HEADER": "Atalhos",
     "HEADER_BTN_TXT": "Adicionar resposta pronta",
     "LOADING": "Buscando respostas prontas...",
+    "DESCRIPTION": "<p><b>Respostas Prontas</b></p> <p>As Respostas Prontas são modelos de respostas predefinidas que ajudam você a responder rapidamente a uma conversa. Para inserir uma resposta pronta durante um chat, os agentes podem digitar um código curto precedido por uma barra '/'.</p> <p>Você pode gerenciar suas respostas prontas desta página ou criar novas usando o botão ",
     "SEARCH_404": "Não existem itens correspondentes a esta consulta.",
     "SIDEBAR_TXT": "<p><b>Respostas Prontas</b></p> <p>As Respostas Prontas são modelos de respostas predefinidas que ajudam você a responder rapidamente a uma conversa. Para inserir uma resposta pronta durante um chat, os agentes podem digitar um código curto precedido por uma barra '/'.</p> <p>Você pode gerenciar suas respostas prontas desta página ou criar novas usando o botão ",
     "LIST": {
