@@ -72,8 +72,8 @@ export default {
       default: () => ({}),
     },
     inReplyTo: {
-      type: Object,
-      default: () => ({}),
+      type: Promise,
+      default: Promise.resolve({}),
     },
   },
   setup() {

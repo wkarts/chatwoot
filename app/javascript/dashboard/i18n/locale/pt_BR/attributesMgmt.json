@@ -3,6 +3,7 @@
     "HEADER": "Atributos Personalizados",
     "HEADER_BTN_TXT": "Criar atributo personalizado",
     "LOADING": "Buscando atributos",
+    "DESCRIPTION": "Um atributo personalizado permite rastrear informações específicas sobre seus contatos ou conversas, como o plano de assinatura ou a data da primeira compra. Para criar um novo atributo personalizado, clique em 'Criar atributo'. Também é possível editar ou excluir atributos existentes conforme necessário.",
     "SIDEBAR_TXT": "<p><b>Atributos personalizados</b> <p>Um atributo personalizado rastreia fatos sobre seus contatos/conversas — como o plano de inscrição, ou quando eles compraram o primeiro item, etc. <br /><br />Para criar um atributo personalizado, basta clicar em <b>\"Criar atributo\"</b> Você também pode editar ou apagar um atributo já criado.</p>",
     "ADD": {
       "TITLE": "Adicionar atributo personalizado",

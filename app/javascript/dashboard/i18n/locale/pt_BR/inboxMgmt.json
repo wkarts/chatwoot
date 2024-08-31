@@ -1,9 +1,10 @@
 {
   "INBOX_MGMT": {
     "HEADER": "Caixas de Entrada",
-    "SIDEBAR_TXT": "<p><b>Caixa de entrada</b></p> <p> Quando você conectar um site ou uma página de Facebook ao Chatwoot, é chamado de <b>caixa de entrada</b>. Você pode ter caixas de entrada ilimitadas na sua conta de Chatwoot. </p><p> Clique em <b>Adicionar caixa de entrada</b> para conectar um site ou uma página do Facebook. </p><p> No Painel, você pode ver todas as conversas de todas as suas caixas de entrada em um único lugar e responder a elas sob a guia `Conversations`. </p><p> Você também pode ver conversas específicas para uma caixa de entrada clicando no nome da caixa de entrada no painel esquerdo do painel. </p>",
-    "RECONNECTION_REQUIRED": "Your inbox is disconnected. You won't receive new messages until you reauthorize it.",
-    "CLICK_TO_RECONNECT": "Click here to reconnect.",
+    "DESCRIPTION": "Ao conectar um site ou página do Facebook ao 🅷🆄🅱, você cria uma caixa de entrada. Você pode adicionar quantas caixas de entrada desejar à sua conta. No Painel, todas as conversas das suas caixas de entrada são centralizadas na aba conversas, onde você pode gerenciá-las facilmente. Para visualizar as conversas de uma caixa de entrada específica, basta selecionar o nome dela no painel esquerdo.",
+    "SIDEBAR_TXT": "<p><b>Caixa de entrada</b></p> <p> Quando você conectar um site ou uma página de Facebook ao 🅷🆄🅱, é chamado de <b>caixa de entrada</b>. Você pode ter caixas de entrada ilimitadas na sua conta de 🅷🆄🅱. </p><p> Clique em <b>Adicionar caixa de entrada</b> para conectar um site ou uma página do Facebook. </p><p> No Painel, você pode ver todas as conversas de todas as suas caixas de entrada em um único lugar e responder a elas sob a guia `Conversations`. </p><p> Você também pode ver conversas específicas para uma caixa de entrada clicando no nome da caixa de entrada no painel esquerdo do painel. </p>",
+    "RECONNECTION_REQUIRED": "Sua caixa de entrada está desconectada. Você não receberá novas mensagens até reautorizar.",
+    "CLICK_TO_RECONNECT": "Clique aqui para reconectar.",
     "LIST": {
       "404": "Não há caixas de entrada anexadas a esta conta."
     },
@@ -11,7 +12,7 @@
       {
         "title": "Escolha o canal",
         "route": "settings_inbox_new",
-        "body": "Escolha o provedor que você deseja integrar com o Chatwoot."
+        "body": "Escolha o provedor que você deseja integrar com o 🅷🆄🅱."
       },
       {
         "title": "Criar Caixa de Entrada",
@@ -40,7 +41,7 @@
         "PLACEHOLDER": "Informe o nome do seu site (por exemplo: Acme Inc)"
       },
       "FB": {
-        "HELP": "Obs: ao fazer login, apenas temos acesso às mensagens da sua página. Suas mensagens privadas nunca podem ser acessadas pelo Chatwoot.",
+        "HELP": "Obs: ao fazer login, apenas temos acesso às mensagens da sua página. Suas mensagens privadas nunca podem ser acessadas pelo 🅷🆄🅱.",
         "CHOOSE_PAGE": "Escolher Página",
         "CHOOSE_PLACEHOLDER": "Selecione uma página da lista",
         "INBOX_NAME": "Nome da Caixa de Entrada",
@@ -466,7 +467,7 @@
       },
       "AUTH": {
         "TITLE": "Escolha um canal",
-        "DESC": "O Chatwoot suporta widgets de chats ao vivo, Facebook Messenger, perfis do Twitter, WhatsApp, E-mails, etc., como canais. Se você quiser criar um canal personalizado, você pode criá-lo usando o canal API. Para começar, escolha um dos canais abaixo."
+        "DESC": "O 🅷🆄🅱 suporta widgets de chats ao vivo, Facebook Messenger, perfis do Twitter, WhatsApp, E-mails, etc., como canais. Se você quiser criar um canal personalizado, você pode criá-lo usando o canal API. Para começar, escolha um dos canais abaixo."
       },
       "AGENTS": {
         "TITLE": "Agentes",
@@ -476,11 +477,11 @@
       },
       "DETAILS": {
         "TITLE": "Detalhes da Caixa de Entrada",
-        "DESC": "No menu abaixo, selecione a Página do Facebook que você deseja se conectar ao Chatwoot. Você também pode dar um nome personalizado para sua caixa de entrada para uma melhor identificação."
+        "DESC": "No menu abaixo, selecione a Página do Facebook que você deseja se conectar ao 🅷🆄🅱. Você também pode dar um nome personalizado para sua caixa de entrada para uma melhor identificação."
       },
       "FINISH": {
         "TITLE": "Tudo funcionando. Deu certo!",
-        "DESC": "Você concluiu a integração da sua página do Facebook com o Chatwoot. Na próxima vez que um cliente enviar uma mensagem para sua página, a conversa aparecerá automaticamente na sua caixa de entrada. <br> Também estamos fornecendo um script de widget que você pode adicionar facilmente ao seu site. Assim que estiver disponível no seu site, os clientes poderão enviar mensagens diretamente do seu site, sem a ajuda de nenhuma ferramenta externa, e a conversa aparecerá aqui, no Chatwoot. Legal, hein? Com certeza estamos tentamos ser :)"
+        "DESC": "Você concluiu a integração da sua página do Facebook com o 🅷🆄🅱. Na próxima vez que um cliente enviar uma mensagem para sua página, a conversa aparecerá automaticamente na sua caixa de entrada. <br> Também estamos fornecendo um script de widget que você pode adicionar facilmente ao seu site. Assim que estiver disponível no seu site, os clientes poderão enviar mensagens diretamente do seu site, sem a ajuda de nenhuma ferramenta externa, e a conversa aparecerá aqui, no 🅷🆄🅱. Legal, hein? Com certeza estamos tentamos ser :)"
       },
       "EMAIL_PROVIDER": {
         "TITLE": "Selecione seu provedor de e-mail",
@@ -871,7 +872,7 @@
         "USER_MESSAGE": "Oi",
         "AGENT_MESSAGE": "Olá"
       },
-      "BRANDING_TEXT": "Desenvolvido por Chatwoot",
+      "BRANDING_TEXT": "Desenvolvido por 🅷🆄🅱",
       "SCRIPT_SETTINGS": "\n      window.chatwootSettings = {options};"
     },
     "EMAIL_PROVIDERS": {
