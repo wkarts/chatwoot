@@ -168,25 +168,6 @@
         right: unset;
       }
     }
-
-    // Incorporando as novas regras de estilo
-
-    /* Overflow auto */
-    .conversations-list .overflow-auto {
-      transform: translateX(0px) translateY(0px);
-    }
-
-    /* Image */
-    .conversations-list span img {
-      height: 26px;
-      width: 56px;
-    }
-
-    /* Skip context menu */
-    .conversations-list div .skip-context-menu {
-      height: 25px;
-      width: 267px;
-    }
   }
 
   // Contact notes
