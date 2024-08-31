@@ -28,7 +28,7 @@ const i18nMap = {
   'Channel::Telegram': 'TELEGRAM',
   'Channel::Line': 'LINE',
   'Channel::Api': 'API',
-  'Channel::Internal': 'INTERNAL',
+  'Channel::Internal': 'INTERNAL_CHANNEL',
 };
 
 const twilioChannelName = () => {
