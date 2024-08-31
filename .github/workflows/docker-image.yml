@@ -1,8 +1,8 @@
-name: Docker Image CI
+name: Docker Image CI PR
 
 on:
-  push:
-    branches: [ "develop" ]
+#  push:
+#    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
@@ -21,3 +21,5 @@ jobs:
       - name: Push Docker image
         run: |
           docker push wkarts/hub:develop
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
