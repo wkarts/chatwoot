@@ -46,7 +46,7 @@ const readableChannelName = computed(() => {
     return twilioChannelName();
   }
   if (props.channelType === 'Channel::Internal') {
-    return t(`${i18nMap[props.channelType]}.TITLE`);
+    return t(`INBOX_MGMT.${i18nMap[props.channelType]}.TITLE`);
   }  
   return t(`INBOX_MGMT.CHANNELS.${i18nMap[props.channelType]}`);
 });
