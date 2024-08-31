@@ -1059,19 +1059,4 @@ export default {
 .conversations-list {
   @apply overflow-hidden hover:overflow-y-auto;
 }
-
-/* Novo código SCSS */
-.conversations-list-wrap .conversations-list .overflow-auto {
-  transform: translatex(0px) translatey(0px);
-}
-
-.conversations-list span img {
-  height: 26px;
-  width: 56px;
-}
-
-.conversations-list div .skip-context-menu {
-  height: 25px;
-  width: 267px;
-}
 </style>
