@@ -189,32 +189,32 @@ pt_BR:
   integration_apps:
     dashboard_apps:
       name: "Apps da Dashboard"
-      description: "Dashboard Apps allow you to create and embed applications that display user information, orders, or payment history, providing more context to your customer support agents."
+      description: "Dashboard Apps permitem que você crie e incorpore aplicativos que exibem informações do usuário, pedidos ou histórico de pagamentos, proporcionando mais contexto para seus agentes de suporte ao cliente."
     dyte:
       name: "Dyte"
-      description: "Dyte is a product that integrates audio and video functionalities into your application. With this integration, your agents can start video/voice calls with your customers directly from Chatwoot."
+      description: "Dyte é um produto que integra funcionalidades de áudio e vídeo em sua aplicação. Com esta integração, seus agentes podem iniciar chamadas de vídeo/voz com seus clientes diretamente no 🅷🆄🅱."
       meeting_name: "%{agent_name} começou a reunião"
     slack:
       name: "Slack"
-      description: "Integrate Chatwoot with Slack to keep your team in sync. This integration allows you to receive notifications for new conversations and respond to them directly within Slack's interface."
+      description: "Integre o 🅷🆄🅱 com o Slack para manter sua equipe sincronizada. Esta integração permite que você receba notificações de novas conversas e responda a elas diretamente na interface do Slack."
     webhooks:
       name: "Webhooks"
-      description: "Webhook events provide real-time updates about activities in your Chatwoot account. You can subscribe to your preferred events, and Chatwoot will send you HTTP callbacks with the updates."
+      description: "Eventos de Webhook fornecem atualizações em tempo real sobre atividades na sua conta do 🅷🆄🅱. Você pode se inscrever para seus eventos preferidos, e o 🅷🆄🅱 enviará callbacks HTTP com as atualizações."
     dialogflow:
-      name: "Fluxo de diálogo"
-      description: "Build chatbots with Dialogflow and easily integrate them into your inbox. These bots can handle initial queries before transferring them to a customer service agent."
+      name: "Dialogflow"
+      description: "Construa chatbots com o Dialogflow e os integre facilmente na sua caixa de entrada. Esses bots podem lidar com consultas iniciais antes de transferi-las para um agente de atendimento ao cliente."
     google_translate:
       name: "Tradutor do Google"
-      description: "Integrate Google Translate to help agents easily translate customer messages. This integration automatically detects the language and converts it to the agent's or admin's preferred language."
+      description: "Integre o Google Translate para ajudar os agentes a traduzir facilmente as mensagens dos clientes. Esta integração detecta automaticamente o idioma e o converte para o idioma preferido do agente ou administrador."
     openai:
       name: "OpenAI"
-      description: "Leverage the power of large language models from OpenAI with the features such as reply suggestions, summarization, message rephrasing, spell-checking, and label classification."
+      description: "Aproveite o poder dos modelos de linguagem avançados da OpenAI com funcionalidades como sugestões de resposta, resumo, reescrita de mensagens, correção ortográfica e classificação de etiquetas."
     linear:
       name: "Linear"
-      description: "Create issues in Linear directly from your conversation window. Alternatively, link existing Linear issues for a more streamlined and efficient issue tracking process."
+      description: "Crie issues no Linear diretamente da sua janela de conversa. Alternativamente, vincule issues existentes do Linear para um processo de rastreamento de issues mais eficiente."
     captain:
       name: "Captain"
-      description: "Captain is a native AI assistant built for your product and trained on your company's knowledge base. It responds like a human and resolves customer queries effectively. Configure it to your inboxes easily."
+      description: "Captain é um assistente de IA nativo construído para o seu produto e treinado na base de conhecimento da sua empresa. Ele responde como um humano e resolve consultas dos clientes de forma eficaz. Configure-o facilmente em suas caixas de entrada."
   public_portal:
     search:
       search_placeholder: Pesquisar por artigo por título ou corpo...
@@ -272,3 +272,4 @@ pt_BR:
     seconds:
       one: "%{count} segundo"
       other: "%{count} segundos"
+

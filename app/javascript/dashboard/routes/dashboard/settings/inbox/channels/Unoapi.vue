@@ -69,7 +69,7 @@
           style="flex: 0 0 auto; margin-right: 10px;"
         />
         {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.LABEL') }}
-        <span v-if="v$.url.$error" class="message">
+        <span v-if="v$.sendAgentName.$error" class="message">
           {{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_AGENT_NAME.ERROR') }}
         </span>
       </label>
@@ -116,13 +116,18 @@
         </span>
       </label>
     </div>
-
+    
     <div class="w-full" style="margin-top: 20px;">
       <woot-submit-button
         :loading="uiFlags.isCreating"
         :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.SUBMIT_BUTTON')"
       />
-    </div>
+      <woot-submit-button
+        :loading="uiFlags.isUpdating"          
+        :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+        @click="generateToken"
+      /> 
+    </div>    
   </form>
 </template>
 
@@ -143,7 +148,7 @@ export default {
       inboxName: '',
       phoneNumber: '',
       apiKey: '',
-      url: 'https://unoapi.cloud',
+      url: 'https://cloud.hub.seudominio.com.br',
       ignoreGroupMessages: true,
       ignoreHistoryMessages: true,
       sendAgentName: true,
@@ -227,3 +232,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.switch {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+.switch-label {
+  display: flex;
+  align-items: center;
+}
+</style>

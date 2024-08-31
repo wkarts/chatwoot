@@ -1,3 +1,4 @@
+
 class Whatsapp::UnoapiWebhookSetupService
   def perform(whatsapp_channel)
     return disconnect(whatsapp_channel) if whatsapp_channel.provider_config['disconnect']
@@ -44,7 +45,8 @@ class Whatsapp::UnoapiWebhookSetupService
       ],
       sendReactionAsReply: whatsapp_channel.provider_config['send_reaction_as_reply'],
       sendProfilePicture: whatsapp_channel.provider_config['send_profile_picture'],      
-      authToken: whatsapp_channel.provider_config['api_key']
+      authToken: whatsapp_channel.provider_config['api_key'],
+      useRejectCalls: whatsapp_channel.provider_config['use_reject_calls']
     }
     response = HTTParty.post("#{url(whatsapp_channel)}/register", headers: headers(whatsapp_channel), body: body.to_json)
     Rails.logger.debug { "Response #{response}" }
