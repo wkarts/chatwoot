@@ -1,10 +1,15 @@
-
 class Whatsapp::UnoapiWebhookSetupService
   def perform(whatsapp_channel)
-    return disconnect(whatsapp_channel) if whatsapp_channel.provider_config['disconnect']
-    return connect(whatsapp_channel) if whatsapp_channel.provider_config['connect']
+    if whatsapp_channel.provider_config['disconnect']
+      whatsapp_channel.provider_config.delete('connect')
+      whatsapp_channel.provider_config.delete('disconnect')
+      return disconnect(whatsapp_channel)
+    end
+    return unless whatsapp_channel.provider_config['connect']
 
-    true
+    whatsapp_channel.provider_config.delete('connect')
+    whatsapp_channel.provider_config.delete('disconnect')
+    connect(whatsapp_channel)
   end
 
   private
@@ -44,7 +49,7 @@ class Whatsapp::UnoapiWebhookSetupService
         header: :Authorization
       ],
       sendReactionAsReply: whatsapp_channel.provider_config['send_reaction_as_reply'],
-      sendProfilePicture: whatsapp_channel.provider_config['send_profile_picture'],      
+      sendProfilePicture: whatsapp_channel.provider_config['send_profile_picture'],
       authToken: whatsapp_channel.provider_config['api_key'],
       useRejectCalls: whatsapp_channel.provider_config['use_reject_calls']
     }
