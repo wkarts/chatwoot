@@ -72,6 +72,12 @@ class DashboardController < ActionController::Base
     }
   end
 
+  def integrations
+    @integrations = {
+      typebot: typebot_integration_enabled?
+    }
+  end
+  
   def set_application_pack
     @application_pack = if request.path.include?('/auth') || request.path.include?('/login')
                           'v3app'
