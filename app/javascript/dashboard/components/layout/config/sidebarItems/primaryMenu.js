@@ -26,7 +26,7 @@ const primaryMenuItems = accountId => [
     toStateName: 'captain',
   },
   {
-    icon: 'typebot',
+    icon: 'bot',
     key: 'typebot',
     label: 'TYPEBOT',
     featureFlag: FEATURE_FLAGS.TYPEBOT_INTEGRATION,
