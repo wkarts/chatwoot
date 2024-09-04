@@ -1,7 +1,6 @@
 /* global axios */
 
 import ApiClient from './ApiClient';
-import API from 'dashboard/api';
 
 class IntegrationsAPI extends ApiClient {
   constructor() {
@@ -39,17 +38,4 @@ class IntegrationsAPI extends ApiClient {
   }
 }
 
-const typebotAPI = {
-  createMessage(message) {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/create_message`, { message });
-  },
-  activate() {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/activate`);
-  },
-  deactivate() {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/deactivate`);
-  },
-};
-
 export default new IntegrationsAPI();
-export default typebotAPI;
