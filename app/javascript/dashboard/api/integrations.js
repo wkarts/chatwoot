@@ -1,6 +1,7 @@
 /* global axios */
 
 import ApiClient from './ApiClient';
+import API from 'dashboard/api';
 
 class IntegrationsAPI extends ApiClient {
   constructor() {
@@ -38,4 +39,32 @@ class IntegrationsAPI extends ApiClient {
   }
 }
 
+const typebotAPI = {
+  // Ativar a integração do Typebot
+  activate() {
+    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/activate`);
+  },
+
+  // Desativar a integração do Typebot
+  deactivate() {
+    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/deactivate`);
+  },
+
+  // Criar uma mensagem via Typebot
+  createMessage(message) {
+    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/create_message`, { message });
+  },
+
+  // Buscar as configurações do Typebot
+  getSettings() {
+    return API.get(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`);
+  },
+
+  // Salvar as configurações do Typebot
+  saveSettings(settings) {
+    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`, { settings });
+  }
+};
+
 export default new IntegrationsAPI();
+export default typebotAPI;
