@@ -1,7 +1,6 @@
 /* global axios */
 
 import ApiClient from './ApiClient';
-import API from 'dashboard/api';
 
 class IntegrationsAPI extends ApiClient {
   constructor() {
