@@ -16,7 +16,7 @@ class TypebotService
 
   def send_interactive_message(conversation_id, options)
     payload = {
-      content: "Please choose an option:",
+      content: "Por favor, escolha uma opção:",
       content_type: "input_select",
       content_attributes: {
         items: options
@@ -31,18 +31,47 @@ class TypebotService
     JSON.parse(response.body)
   end
 
+  def transfer_to_agent(conversation_id, agent_id = nil)
+    body = agent_id ? { agent_id: agent_id } : { group_id: default_group_id }
+    
+    response = HTTParty.post(
+      "#{@api_url}/conversations/#{conversation_id}/assignments",
+      headers: { "Authorization" => "Bearer #{@api_key}", "Content-Type" => "application/json" },
+      body: body.to_json
+    )
+    JSON.parse(response.body)
+  end
+
+  def resolve_conversation(conversation_id)
+    response = HTTParty.post(
+      "#{@api_url}/conversations/#{conversation_id}/resolve",
+      headers: { "Authorization" => "Bearer #{@api_key}", "Content-Type" => "application/json" }
+    )
+    JSON.parse(response.body)
+  end
+
   def process_widget_triggered(data)
     conversation_id = data['conversation_id']
     send_interactive_message(conversation_id, [
-      { "title" => "Support", "value" => "support" },
-      { "title" => "Sales", "value" => "sales" },
-      { "title" => "Other", "value" => "other" }
+      { "title" => "Suporte", "value" => "suporte" },
+      { "title" => "Vendas", "value" => "vendas" },
+      { "title" => "Outro", "value" => "outro" }
     ])
   end
 
   def process_message_created(data)
     message = data['message']
-    # Implementação da lógica de processamento
+    conversation_id = data['conversation_id']
+
+    if message.include?('suporte')
+      transfer_to_agent(conversation_id, default_group_id)
+      send_message("Você foi transferido para um agente de suporte. Aguarde.")
+    elsif message.include?('encerrar')
+      resolve_conversation(conversation_id)
+      send_message("Conversa encerrada. Se precisar de mais ajuda, entre em contato novamente.")
+    else
+      send_message("Obrigado pela mensagem. Como podemos ajudar?")
+    end
   end
 
   def activate_integration
@@ -64,4 +93,10 @@ class TypebotService
   private
 
   attr_reader :integration_hook
+
+  def default_group_id
+    group = Group.find_by(name: 'Suporte')
+    raise 'Grupo de suporte não encontrado.' unless group
+    group.id
+  end
 end
