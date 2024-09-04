@@ -241,7 +241,7 @@ dyte:
   ]
   visible_properties: ["organization_id"]
 
-  typebot:
+typebot:
   id: typebot
   logo: typebot.png
   i18n_key: typebot
@@ -281,4 +281,5 @@ dyte:
       validation: required
       multiple: true
   visible_properties: []
+
 
