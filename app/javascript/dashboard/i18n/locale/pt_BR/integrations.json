@@ -298,7 +298,7 @@
     }
   },
   "TYPEBOT": {
-    "HEADER": "Integração com Typebot",
+    "NAME": "Integração com Typebot",
     "DESCRIPTION": "Configure a integração com o Typebot para automatizar interações com clientes.",
     "CONFIGURE": "Configurar",
     "SETTINGS": {
