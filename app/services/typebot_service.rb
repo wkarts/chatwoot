@@ -2,9 +2,14 @@ class TypebotService
   def initialize(integration_hook)
     @api_key = integration_hook.settings['api_key']
     @project_id = integration_hook.settings['project_id']
-    @api_url = Rails.application.config_for(:installation_config)['typebot_api_url']
+    @api_url = integration_hook.settings['api_url']
+    @frontend_url = integration_hook.settings['frontend_url']    
   end
 
+  def frontend_link
+    "#{@frontend_url}/editor/#{@project_id}"
+  end
+  
   def send_message(message)
     response = HTTParty.post(
       "#{@api_url}/projects/#{@project_id}/messages",
