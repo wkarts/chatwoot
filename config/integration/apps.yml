@@ -240,7 +240,6 @@ dyte:
     },
   ]
   visible_properties: ["organization_id"]
-
 typebot:
   id: typebot
   logo: typebot.png
@@ -265,7 +264,15 @@ typebot:
         description: 'Selecione os Inboxes para a integração do Typebot'
         items:
           type: string
-    required: [api_key, project_id]
+      api_url:
+        type: string
+        title: 'API URL'
+        description: 'A URL da API do Typebot'
+      frontend_url:
+        type: string
+        title: 'Frontend URL'
+        description: 'A URL do frontend do Typebot'
+    required: [api_key, project_id, api_url, frontend_url]
   settings_form_schema:
     - label: "API Key"
       type: text
@@ -280,6 +287,12 @@ typebot:
       name: inbox_ids
       validation: required
       multiple: true
+    - label: "API URL"
+      type: text
+      name: api_url
+      validation: required
+    - label: "Frontend URL"
+      type: text
+      name: frontend_url
+      validation: required
   visible_properties: []
-
-
