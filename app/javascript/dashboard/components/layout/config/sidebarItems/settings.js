@@ -39,7 +39,6 @@ const settings = accountId => ({
     'settings_teams_list',
     'settings_teams_new',
     'sla_list',
-    'typebot',
   ],
   menuItems: [
     {
@@ -202,18 +201,7 @@ const settings = accountId => ({
       toState: frontendURL(`accounts/${accountId}/settings/billing`),
       toStateName: 'billing_settings_index',
       showOnlyOnCloud: true,
-    },
-    {
-      icon: 'bot',
-      label: 'TYPEBOT',
-      hasSubMenu: false,
-      meta: {
-        permissions: ['administrator'],
-      },      
-      toState: frontendURL(`accounts/${accountId}/settings/typebot`),
-      toStateName: 'typebot',
-      beta: true
-    },    
+    },   
   ],
 });
 
