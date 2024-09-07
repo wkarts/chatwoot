@@ -1,25 +1,24 @@
 <template>
   <div class="typebot-integration">
-    <h1>Typebot Integration</h1>
+    <h1>Integração com Typebot</h1>
     
-    <div v-if="loading" class="loading">Loading...</div>
+    <div v-if="loading" class="loading">Carregando...</div>
     
     <div v-else>
-      <!-- Formulário para configurar as informações do Typebot -->
       <form @submit.prevent="saveSettings">
         <div class="form-group">
-          <label for="api_key">API Key</label>
+          <label for="api_key">Chave API</label>
           <input
             type="text"
             id="api_key"
             v-model="settings.api_key"
-            placeholder="Digite sua chave de API do Typebot"
+            placeholder="Digite sua chave API do Typebot"
             required
           />
         </div>
 
         <div class="form-group">
-          <label for="project_id">Project ID</label>
+          <label for="project_id">ID do Projeto</label>
           <input
             type="text"
             id="project_id"
@@ -30,7 +29,7 @@
         </div>
 
         <div class="form-group">
-          <label for="api_url">API URL</label>
+          <label for="api_url">URL da API</label>
           <input
             type="text"
             id="api_url"
@@ -41,7 +40,7 @@
         </div>
 
         <div class="form-group">
-          <label for="frontend_url">Frontend URL</label>
+          <label for="frontend_url">URL do Frontend</label>
           <input
             type="text"
             id="frontend_url"
@@ -49,6 +48,19 @@
             placeholder="Digite a URL do Frontend do Typebot"
             required
           />
+        </div>
+
+        <div class="form-group">
+          <label for="inboxes">Selecionar Inboxes</label>
+          <multiselect
+            v-model="settings.inbox_ids"
+            :options="inboxes"
+            :multiple="true"
+            :close-on-select="false"
+            placeholder="Selecione as Inboxes"
+            label="name"
+            track-by="id"
+          ></multiselect>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar Configurações</button>
@@ -79,9 +91,11 @@
 
 <script>
 import typebotAPI from '@/dashboard/api/integrations';
+import Multiselect from 'vue-multiselect';
 
 export default {
   name: 'Typebot',
+  components: { Multiselect },
   data() {
     return {
       settings: {
@@ -89,7 +103,9 @@ export default {
         project_id: '',
         api_url: '',
         frontend_url: '',
+        inbox_ids: [], // Caixas de entrada selecionadas
       },
+      inboxes: [], // Lista de todas as inboxes disponíveis
       loading: true,
       integrationActive: false,
     };
@@ -104,6 +120,14 @@ export default {
       } catch (error) {
         console.error('Erro ao buscar configurações do Typebot:', error);
         this.loading = false;
+      }
+    },
+    async fetchInboxes() {
+      try {
+        const response = await typebotAPI.fetchInboxes(); // Chamada para buscar as inboxes
+        this.inboxes = response.data.inboxes;
+      } catch (error) {
+        console.error('Erro ao buscar as inboxes:', error);
       }
     },
     async saveSettings() {
@@ -132,6 +156,7 @@ export default {
   },
   async created() {
     await this.fetchSettings();
+    await this.fetchInboxes(); // Carregar as inboxes disponíveis
   },
 };
 </script>
@@ -157,7 +182,8 @@ export default {
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input,
+.multiselect {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
