@@ -297,21 +297,23 @@
       }
     }
   },
-  "TYPEBOT": {
-    "HEADER": "Integración de Typebot",
-    "DESCRIPTION": "Configure la integración de Typebot para automatizar interacciones con clientes.",
-    "SETTINGS": {
-      "API_KEY_LABEL": "Clave API",
-      "PROJECT_ID_LABEL": "ID del Proyecto",
-      "API_URL_LABEL": "URL de la API",
-      "FRONTEND_URL_LABEL": "URL del Frontend"
-    },
-    "ACTIONS": {
-      "SAVE_SETTINGS": "Guardar Configuraciones"
-    },
-    "NOTIFICATIONS": {
-      "SAVE_SUCCESS": "Configuraciones de Typebot guardadas con éxito.",
-      "SAVE_ERROR": "Error al guardar las configuraciones de Typebot. Inténtalo de nuevo."
+  "integration_apps": {
+    "typebot": {
+      "HEADER": "Integración con Typebot",
+      "DESCRIPTION": "Configure la integración de Typebot para automatizar interacciones con clientes.",
+      "SETTINGS": {
+        "api_key": "Clave API",
+        "project_id": "ID del Proyecto",
+        "api_url": "URL de la API",
+        "frontend_url": "URL del Frontend"
+      },
+      "ACTIONS": {
+        "save_settings": "Guardar Configuraciones"
+      },
+      "NOTIFICATIONS": {
+        "save_success": "Configuraciones de Typebot guardadas con éxito.",
+        "save_error": "Error al guardar las configuraciones de Typebot. Inténtalo de nuevo."
+      }
     }
   }
 }
