@@ -316,21 +316,23 @@
       }
     }
   },
-  "TYPEBOT": {
-    "HEADER": "Typebot Integration",
-    "DESCRIPTION": "Configure the Typebot integration to automate customer interactions.",
-    "SETTINGS": {
-      "API_KEY_LABEL": "API Key",
-      "PROJECT_ID_LABEL": "Project ID",
-      "API_URL_LABEL": "API URL",
-      "FRONTEND_URL_LABEL": "Frontend URL"
-    },
-    "ACTIONS": {
-      "SAVE_SETTINGS": "Save Settings"
-    },
-    "NOTIFICATIONS": {
-      "SAVE_SUCCESS": "Typebot settings saved successfully.",
-      "SAVE_ERROR": "Failed to save Typebot settings. Please try again."
+  "integration_apps": {
+    "typebot": {
+      "HEADER": "Typebot Integration",
+      "DESCRIPTION": "Configure the Typebot integration to automate customer interactions.",
+      "SETTINGS": {
+        "api_key": "API Key",
+        "project_id": "Project ID",
+        "api_url": "API URL",
+        "frontend_url": "Frontend URL"
+      },
+      "ACTIONS": {
+        "save_settings": "Save Settings"
+      },
+      "NOTIFICATIONS": {
+        "save_success": "Typebot settings saved successfully.",
+        "save_error": "Failed to save Typebot settings. Please try again."
+      }
     }
-  }  
+  } 
 }
