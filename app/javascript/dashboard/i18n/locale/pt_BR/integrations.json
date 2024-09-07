@@ -300,30 +300,18 @@
   "TYPEBOT": {
     "HEADER": "Integração com Typebot",
     "DESCRIPTION": "Configure a integração com o Typebot para automatizar interações com clientes.",
-    "CONFIGURE": "Configurar",
     "SETTINGS": {
       "API_KEY_LABEL": "Chave API",
-      "API_KEY_PLACEHOLDER": "Digite sua chave API do Typebot",
       "PROJECT_ID_LABEL": "ID do Projeto",
-      "PROJECT_ID_PLACEHOLDER": "Digite o ID do projeto do Typebot",
       "API_URL_LABEL": "URL da API",
-      "API_URL_PLACEHOLDER": "Digite a URL da API do Typebot",
-      "FRONTEND_URL_LABEL": "URL do Frontend",
-      "FRONTEND_URL_PLACEHOLDER": "Digite a URL do Frontend do Typebot",
-      "INBOX_IDS_LABEL": "IDs de Inboxes",
-      "INBOX_IDS_PLACEHOLDER": "Selecione as Inboxes para conectar ao Typebot"
+      "FRONTEND_URL_LABEL": "URL do Frontend"
     },
-    "ACTIVATE": {
-      "SUCCESS": "Integração do Typebot ativada com sucesso.",
-      "ERROR": "Não foi possível ativar a integração do Typebot."
+    "ACTIONS": {
+      "SAVE_SETTINGS": "Salvar Configurações"
     },
-    "DEACTIVATE": {
-      "SUCCESS": "Integração do Typebot desativada com sucesso.",
-      "ERROR": "Não foi possível desativar a integração do Typebot."
-    },
-    "SAVE_SETTINGS": {
-      "SUCCESS": "Configurações do Typebot salvas com sucesso.",
-      "ERROR": "Erro ao salvar as configurações do Typebot. Tente novamente."
+    "NOTIFICATIONS": {
+      "SAVE_SUCCESS": "Configurações do Typebot salvas com sucesso.",
+      "SAVE_ERROR": "Erro ao salvar as configurações do Typebot. Tente novamente."
     }
   }
 }
