@@ -1,18 +1,33 @@
 class Api::V1::Accounts::Integrations::TypebotController < Api::V1::Accounts::BaseController
   before_action :set_account
-  before_action :set_integration_hook, except: :fetch_inboxes
+  before_action :set_integration_hook
 
-  # Foco na configuração das URLs de frontend e API
-  def save_settings
-    if @integration_hook.update(settings_params)
-      render json: { message: 'Configurações salvas com sucesso' }, status: :ok
-    else
-      render json: { error: 'Erro ao salvar configurações' }, status: :unprocessable_entity
-    end
+  def create_message
+    response = TypebotService.new(@integration_hook).send_message(params[:message])
+    render json: response, status: :ok
   end
 
-  def fetch_settings
-    render json: { settings: @integration_hook.settings }, status: :ok
+  def activate
+    response = TypebotService.new(@integration_hook).activate_integration
+    render json: response, status: :ok
+  end
+
+  def deactivate
+    response = TypebotService.new(@integration_hook).deactivate_integration
+    render json: response, status: :ok
+  end
+
+  def webhook
+    event = params[:event]
+
+    case event
+    when 'widget_triggered'
+      handle_widget_triggered(params[:data])
+    when 'message_created'
+      handle_message_created(params[:data])
+    else
+      render json: { error: 'Unknown event' }, status: :bad_request
+    end
   end
 
   private
@@ -25,7 +40,11 @@ class Api::V1::Accounts::Integrations::TypebotController < Api::V1::Accounts::Ba
     @integration_hook = @account.integration_hooks.find_by!(app_id: 'typebot')
   end
 
-  def settings_params
-    params.require(:integration).permit(:api_key, :project_id, :api_url, :frontend_url)
+  def handle_widget_triggered(data)
+    TypebotService.new(@integration_hook).process_widget_triggered(data)
+  end
+
+  def handle_message_created(data)
+    TypebotService.new(@integration_hook).process_message_created(data)
   end
 end
