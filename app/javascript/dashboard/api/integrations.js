@@ -55,7 +55,10 @@ class IntegrationsAPI extends ApiClient {
 
   saveTypebotSettings(settings) {
     return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`, { settings });
-  }  
+  }
+  fetchInboxes() {
+    return API.get(`/api/v1/accounts/${window.accountId}/integrations/typebot/inboxes`);
+  }
 }
 
 export default new IntegrationsAPI();
