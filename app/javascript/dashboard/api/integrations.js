@@ -37,12 +37,12 @@ class IntegrationsAPI extends ApiClient {
     return axios.get(`${this.baseUrl()}/integrations/captain/sso_url`);
   }
 
-  getTypebotSettings() {
-    return API.get(`${this.baseUrl}/${window.accountId}/integrations/typebot/settings`);
+  getSettings() {
+    return axios.get(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`);
   }
 
-  saveTypebotSettings(settings) {
-    return API.post(`${this.baseUrl}/${window.accountId}/integrations/typebot/settings`, { settings });
+  saveSettings(settings) {
+    return axios.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`, { settings });
   }
 }
 
