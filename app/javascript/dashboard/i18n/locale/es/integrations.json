@@ -1,14 +1,14 @@
 {
   "INTEGRATION_SETTINGS": {
     "HEADER": "Integrations",
-    "DESCRIPTION": "Chatwoot integrates with multiple tools and services to improve your team's efficiency. Explore the list below to configure your favorite apps.",
+    "DESCRIPTION": "🅷🆄🅱 integrates with multiple tools and services to improve your team's efficiency. Explore the list below to configure your favorite apps.",
     "LEARN_MORE": "Learn more about integrations",
     "LOADING": "Fetching integrations",
     "WEBHOOK": {
       "SUBSCRIBED_EVENTS": "Eventos suscritos",
       "FORM": {
         "CANCEL": "Cancelar",
-        "DESC": "Los eventos Webhook te proporcionan la información en tiempo real sobre lo que está sucediendo en tu cuenta de Chatwoot. Por favor, introduce una URL válida para configurar un callback.",
+        "DESC": "Los eventos Webhook te proporcionan la información en tiempo real sobre lo que está sucediendo en tu cuenta de 🅷🆄🅱. Por favor, introduce una URL válida para configurar un callback.",
         "SUBSCRIPTIONS": {
           "LABEL": "Eventos",
           "EVENTS": {
@@ -37,7 +37,7 @@
       "HEADER_BTN_TXT": "Añadir nuevo webhook",
       "LOADING": "Obteniendo webhooks adjuntos",
       "SEARCH_404": "No hay elementos que coincidan con esta consulta",
-      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks son callbacks HTTP que se pueden definir para cada cuenta. Son activados por eventos como la creación de mensajes en Chatwoot. Puede crear más de un webhook para esta cuenta. <br /><br /> Para crear un webhook <b></b>, haga clic en el <b>Añadir un nuevo webhook</b> botón. También puede eliminar cualquier webhook existente haciendo clic en el botón Borrar.</p>",
+      "SIDEBAR_TXT": "<p><b>Webhooks</b> </p> <p>Webhooks son callbacks HTTP que se pueden definir para cada cuenta. Son activados por eventos como la creación de mensajes en 🅷🆄🅱. Puede crear más de un webhook para esta cuenta. <br /><br /> Para crear un webhook <b></b>, haga clic en el <b>Añadir un nuevo webhook</b> botón. También puede eliminar cualquier webhook existente haciendo clic en el botón Borrar.</p>",
       "LIST": {
         "404": "No hay webhooks configurados para esta cuenta.",
         "TITLE": "Administrar webhooks",
@@ -84,14 +84,14 @@
       },
       "HELP_TEXT": {
         "TITLE": "¿Cómo utilizar la Integración Slack?",
-        "BODY": "<br/><p>Chatwoot ahora sincronizará todas las conversaciones entrantes en el canal <b><i>de conversaciones del cliente</i></b> dentro de tu lugar de trabajo slack.</p><p>Respondiendo a un tema de conversación en <b><i>conversaciones de clientes</i></b> canal de slack creará una respuesta al cliente a través de chatwoot.</p><p>Inicie las respuestas con <b><i>nota:</i></b> para crear notas privadas en lugar de respuestas.</p><p>Si el respondente de slack tiene un perfil de agente en el chatwoot bajo el mismo correo electrónico, las respuestas se asociarán en consecuencia.</p><p>Cuando el replicador no tiene un perfil de agente asociado, las respuestas se harán con el perfil del bot.</p>",
+        "BODY": "<br/><p>🅷🆄🅱 ahora sincronizará todas las conversaciones entrantes en el canal <b><i>de conversaciones del cliente</i></b> dentro de tu lugar de trabajo slack.</p><p>Respondiendo a un tema de conversación en <b><i>conversaciones de clientes</i></b> canal de slack creará una respuesta al cliente a través de 🅷🆄🅱.</p><p>Inicie las respuestas con <b><i>nota:</i></b> para crear notas privadas en lugar de respuestas.</p><p>Si el respondente de slack tiene un perfil de agente en el 🅷🆄🅱 bajo el mismo correo electrónico, las respuestas se asociarán en consecuencia.</p><p>Cuando el replicador no tiene un perfil de agente asociado, las respuestas se harán con el perfil del bot.</p>",
         "SELECTED": "seleccionado"
       },
       "SELECT_CHANNEL": {
         "OPTION_LABEL": "Seleccione un canal",
         "UPDATE": "Actualizar",
         "BUTTON_TEXT": "Conectar canal",
-        "DESCRIPTION": "Su espacio de trabajo de Slack ahora esta enlazado con Chatwoot. Sin embarbo, la integración esta actualmente inactiva. Para activar la integración y conectar un canal a Chatwoot, por favor haga clic en el siguiente boton.\n\n**Nota.** Si esta intentando conectar un canal privado, agregue la aplicación Chatwoot al canal de Slack antes de proceder con este paso.",
+        "DESCRIPTION": "Su espacio de trabajo de Slack ahora esta enlazado con 🅷🆄🅱. Sin embarbo, la integración esta actualmente inactiva. Para activar la integración y conectar un canal a 🅷🆄🅱, por favor haga clic en el siguiente boton.\n\n**Nota.** Si esta intentando conectar un canal privado, agregue la aplicación 🅷🆄🅱 al canal de Slack antes de proceder con este paso.",
         "ATTENTION_REQUIRED": "Atención requerida",
         "EXPIRED": "Su integración de Slack ha caducado. Para continuar recibiendo mensajes en Slack, por favor elimine la integración y vuelva a conectar su área de trabajo."
       },
@@ -171,7 +171,7 @@
     "DASHBOARD_APPS": {
       "TITLE": "Panel de aplicaciones",
       "HEADER_BTN_TXT": "Añadir una nueva aplicación",
-      "SIDEBAR_TXT": "<p><b>Aplicaciones de panel</b></p><p>Aplicaciones de panel de control permiten a las organizaciones incrustar una aplicación dentro del panel de control de Chatwoot para proporcionar el contexto para los agentes de atención al cliente. Esta característica le permite crear una aplicación de forma independiente e incrustarla dentro del panel de control para proporcionar información de usuario, sus pedidos, o su historial de pagos anterior.</p><p>Cuando incrustas tu aplicación usando el panel de control en Chatwoot, tu aplicación obtendrá el contexto de la conversación y el contacto como un evento de ventana. Implementa un oyente para el evento del mensaje en tu página para recibir el contexto.</p><p>Para añadir una nueva aplicación de panel, haga clic en el botón 'Añadir una nueva aplicación de panel'.</p>",
+      "SIDEBAR_TXT": "<p><b>Aplicaciones de panel</b></p><p>Aplicaciones de panel de control permiten a las organizaciones incrustar una aplicación dentro del panel de control de 🅷🆄🅱 para proporcionar el contexto para los agentes de atención al cliente. Esta característica le permite crear una aplicación de forma independiente e incrustarla dentro del panel de control para proporcionar información de usuario, sus pedidos, o su historial de pagos anterior.</p><p>Cuando incrustas tu aplicación usando el panel de control en 🅷🆄🅱, tu aplicación obtendrá el contexto de la conversación y el contacto como un evento de ventana. Implementa un oyente para el evento del mensaje en tu página para recibir el contexto.</p><p>Para añadir una nueva aplicación de panel, haga clic en el botón 'Añadir una nueva aplicación de panel'.</p>",
       "DESCRIPTION": "Las aplicaciones de panel permiten a las organizaciones incrustar una aplicación dentro del panel de control para proporcionar el contexto para los agentes de soporte al cliente. Esta función le permite crear una aplicación de forma independiente e incrustada para proporcionar información de usuario, sus pedidos o su historial de pagos anterior.",
       "LEARN_MORE": "Learn more about Dashboard Apps",
       "LIST": {
@@ -295,6 +295,23 @@
         "SUCCESS": "Issue unlinked successfully",
         "ERROR": "There was an error unlinking the issue, please try again"
       }
+    }
+  },
+  "TYPEBOT": {
+    "HEADER": "Integración de Typebot",
+    "DESCRIPTION": "Configure la integración de Typebot para automatizar interacciones con clientes.",
+    "SETTINGS": {
+      "API_KEY_LABEL": "Clave API",
+      "PROJECT_ID_LABEL": "ID del Proyecto",
+      "API_URL_LABEL": "URL de la API",
+      "FRONTEND_URL_LABEL": "URL del Frontend"
+    },
+    "ACTIONS": {
+      "SAVE_SETTINGS": "Guardar Configuraciones"
+    },
+    "NOTIFICATIONS": {
+      "SAVE_SUCCESS": "Configuraciones de Typebot guardadas con éxito.",
+      "SAVE_ERROR": "Error al guardar las configuraciones de Typebot. Inténtalo de nuevo."
     }
   }
 }
