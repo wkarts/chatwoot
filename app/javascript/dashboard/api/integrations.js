@@ -36,28 +36,17 @@ class IntegrationsAPI extends ApiClient {
   fetchCaptainURL() {
     return axios.get(`${this.baseUrl()}/integrations/captain/sso_url`);
   }
+
+  getSettings() {
+    return API.get(`${this.baseUrl}/${window.accountId}/integrations/typebot/settings`);
+  }
+
+  saveSettings(settings) {
+    return API.post(`${this.baseUrl}/${window.accountId}/integrations/typebot/settings`, { settings });
+  }
   
-  activateTypebot() {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/activate`);
-  }
-
-  deactivateTypebot() {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/deactivate`);
-  }
-
-  createTypebotMessage(message) {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/create_message`, { message });
-  }
-
-  getTypebotSettings() {
-    return API.get(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`);
-  }
-
-  saveTypebotSettings(settings) {
-    return API.post(`/api/v1/accounts/${window.accountId}/integrations/typebot/settings`, { settings });
-  }
   fetchInboxes() {
-    return API.get(`/api/v1/accounts/${window.accountId}/integrations/typebot/inboxes`);
+    return API.get(`${this.baseUrl}/${window.accountId}/integrations/typebot/inboxes`);
   }
 }
 
