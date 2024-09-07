@@ -1,9 +1,11 @@
 <template>
-  <div class="typebot-iframe-container">
+  <div class="typebot-integration">
+    <h1>{{ $t('TYPEBOT.HEADER') }}</h1>
     <iframe
-      :src="typebotFrontendUrl"
+      v-if="settings.frontend_url"
+      :src="settings.frontend_url"
       width="100%"
-      height="100%"
+      height="800"
       frameborder="0"
       allowfullscreen
     ></iframe>
@@ -11,25 +13,28 @@
 </template>
 
 <script>
+import typebotAPI from '@/dashboard/api/integrations';
+
 export default {
   name: 'Typebot',
   data() {
     return {
-      typebotFrontendUrl: '', // URL do frontend Typebot será carregada aqui
+      settings: {
+        frontend_url: '',  // Apenas a URL do frontend
+      },
     };
   },
   async created() {
-    // Buscar as configurações do Typebot, incluindo a URL do frontend
-    const response = await this.$api.integrations.getTypebotSettings();
-    this.typebotFrontendUrl = response.data.settings.frontend_url;
+    const response = await typebotAPI.getSettings();  // Carrega as configurações
+    this.settings = response.data.settings;
   },
 };
 </script>
 
 <style scoped>
-.typebot-iframe-container {
-  width: 100%;
-  height: 100vh; /* Definir a altura total da janela para o iframe */
-  overflow: hidden;
+.typebot-integration {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
 }
 </style>
