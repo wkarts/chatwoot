@@ -1,6 +1,6 @@
 class Api::V1::Accounts::Integrations::TypebotController < Api::V1::Accounts::BaseController
   before_action :set_account
-  before_action :set_integration_hook
+  before_action :set_integration_hook, except: :fetch_inboxes
 
   def create_message
     response = TypebotService.new(@integration_hook).send_message(params[:message])
@@ -28,6 +28,12 @@ class Api::V1::Accounts::Integrations::TypebotController < Api::V1::Accounts::Ba
     else
       render json: { error: 'Unknown event' }, status: :bad_request
     end
+  end
+
+  # Nova ação para buscar as inboxes disponíveis para a conta
+  def fetch_inboxes
+    inboxes = @account.inboxes.select(:id, :name)
+    render json: { inboxes: inboxes }, status: :ok
   end
 
   private
