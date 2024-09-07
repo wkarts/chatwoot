@@ -32,7 +32,7 @@ const primaryMenuItems = accountId => [
     toState: frontendURL(`accounts/${accountId}/typebot`),
     toStateName: 'typebot',
     roles: ['administrator'],
-  },  
+  }, 
   {
     icon: 'book-contacts',
     key: 'contacts',
