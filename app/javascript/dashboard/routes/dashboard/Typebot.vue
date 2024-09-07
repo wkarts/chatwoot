@@ -37,4 +37,9 @@ export default {
   margin: 0 auto;
   padding: 20px;
 }
+
+iframe {
+  width: 100%;
+  height: 800px;
+}
 </style>
