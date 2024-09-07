@@ -298,7 +298,7 @@
     }
   },
   "TYPEBOT": {
-    "NAME": "Integração com Typebot",
+    "HEADER": "Integração com Typebot",
     "DESCRIPTION": "Configure a integração com o Typebot para automatizar interações com clientes.",
     "CONFIGURE": "Configurar",
     "SETTINGS": {
@@ -306,8 +306,12 @@
       "API_KEY_PLACEHOLDER": "Digite sua chave API do Typebot",
       "PROJECT_ID_LABEL": "ID do Projeto",
       "PROJECT_ID_PLACEHOLDER": "Digite o ID do projeto do Typebot",
+      "API_URL_LABEL": "URL da API",
+      "API_URL_PLACEHOLDER": "Digite a URL da API do Typebot",
+      "FRONTEND_URL_LABEL": "URL do Frontend",
+      "FRONTEND_URL_PLACEHOLDER": "Digite a URL do Frontend do Typebot",
       "INBOX_IDS_LABEL": "IDs de Inboxes",
-      "INBOX_IDS_PLACEHOLDER": "Selecione os Inboxes para conectar ao Typebot"
+      "INBOX_IDS_PLACEHOLDER": "Selecione as Inboxes para conectar ao Typebot"
     },
     "ACTIVATE": {
       "SUCCESS": "Integração do Typebot ativada com sucesso.",
