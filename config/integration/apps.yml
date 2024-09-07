@@ -240,3 +240,48 @@ dyte:
     },
   ]
   visible_properties: ["organization_id"]
+typebot:
+  id: typebot
+  logo: typebot.png
+  i18n_key: typebot
+  action: '/integrations/typebot'
+  hook_type: account
+  allow_multiple_hooks: false
+  settings_json_schema:
+    type: object
+    properties:
+      api_key:
+        type: string
+        title: 'API Key'
+        description: 'Sua chave de API do Typebot.'
+      project_id:
+        type: string
+        title: 'Project ID'
+        description: 'O ID do projeto Typebot que você deseja usar.'
+      api_url:
+        type: string
+        title: 'API URL'
+        description: 'A URL da API do Typebot'
+      frontend_url:
+        type: string
+        title: 'Frontend URL'
+        description: 'A URL do frontend do Typebot'
+    required: [api_key, project_id, api_url, frontend_url]
+  settings_form_schema:
+    - label: "API Key"
+      type: text
+      name: api_key
+      validation: required
+    - label: "Project ID"
+      type: text
+      name: project_id
+      validation: required
+    - label: "API URL"
+      type: text
+      name: api_url
+      validation: required
+    - label: "Frontend URL"
+      type: text
+      name: frontend_url
+      validation: required
+  visible_properties: []
