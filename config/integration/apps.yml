@@ -253,7 +253,7 @@ typebot:
       frontend_url:
         type: string
         title: 'Frontend URL'
-        description: 'A URL do frontend do Typebot que será carregada no Chatwoot'
+        description: 'A URL do frontend do Typebot que será carregada no 🅷🆄🅱'
     required: [frontend_url]
   settings_form_schema:
     - label: "Frontend URL"
