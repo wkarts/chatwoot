@@ -233,6 +233,8 @@ en:
     typebot:
       name: "Typebot"
       description: "Typebot is an open-source chatbot builder. It lets you create advanced chatbots visually, embed them in 🅷🆄🅱, and collect results in real-time."
+      settings:
+        frontend_url: "Frontend URL"
   public_portal:
     search:
       search_placeholder: Search for article by title or body...
