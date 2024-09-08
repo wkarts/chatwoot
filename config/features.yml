@@ -122,4 +122,6 @@
 - name: channel_internal
   enabled: true
 - name: captain_integration
-  enabled: true
+  enabled: false
+- name: typebot_integration
+  enabled: false
