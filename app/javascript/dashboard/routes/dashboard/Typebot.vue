@@ -1,14 +1,7 @@
 <template>
   <div class="typebot-integration">
-    <h1>{{ $t('TYPEBOT.HEADER') }}</h1>
-    <iframe
-      v-if="settings.frontend_url"
-      :src="settings.frontend_url"
-      width="100%"
-      height="800"
-      frameborder="0"
-      allowfullscreen
-    ></iframe>
+    <h1>{{ $t('typebot.name') }}</h1>
+    <iframe v-if="settings.frontend_url" :src="settings.frontend_url" class="typebot-iframe"></iframe>
   </div>
 </template>
 
@@ -20,13 +13,13 @@ export default {
   data() {
     return {
       settings: {
-        frontend_url: '',  // Apenas a URL do frontend
+        frontend_url: '',
       },
     };
   },
   async created() {
-    const response = await typebotAPI.getSettings();  // Carrega as configurações
-    this.settings = response.data.settings;
+    const response = await typebotAPI.getSettings();
+    this.settings = response.data;
   },
 };
 </script>
@@ -34,12 +27,11 @@ export default {
 <style scoped>
 .typebot-integration {
   max-width: 100%;
-  margin: 0 auto;
-  padding: 20px;
+  height: 100%;
 }
-
-iframe {
+.typebot-iframe {
   width: 100%;
-  height: 800px;
+  height: 600px;
+  border: none;
 }
 </style>
