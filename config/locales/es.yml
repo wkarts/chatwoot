@@ -218,6 +218,8 @@ es:
     typebot:
       name: "Typebot"
       description: "Typebot es un creador de chatbots de código abierto. Le permite crear visualmente chatbots avanzados, incrustarlos en 🅷🆄🅱 y recopilar resultados en tiempo real."
+    settings:
+      frontend_url: "URL del Frontend"
   public_portal:
     search:
       search_placeholder: Buscar artículo por título o cuerpo...
