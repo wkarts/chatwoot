@@ -31,7 +31,6 @@ const primaryMenuItems = accountId => [
     label: 'TYPEBOT.HEADER',
     toState: frontendURL(`accounts/${accountId}/typebot`),
     toStateName: 'typebot',
-    roles: ['administrator'],
   }, 
   {
     icon: 'book-contacts',
