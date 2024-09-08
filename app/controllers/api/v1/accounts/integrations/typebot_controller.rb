@@ -2,14 +2,6 @@ class Api::V1::Accounts::Integrations::TypebotController < Api::V1::Accounts::Ba
   before_action :set_account
   before_action :set_integration_hook
 
-  def activate
-    render json: { success: true }
-  end
-
-  def deactivate
-    render json: { success: true }
-  end
-
   def settings
     render json: { frontend_url: @integration_hook.settings['frontend_url'] }
   end
