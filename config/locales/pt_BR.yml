@@ -215,6 +215,9 @@ pt_BR:
     captain:
       name: "Captain"
       description: "Captain é um assistente de IA nativo construído para o seu produto e treinado na base de conhecimento da sua empresa. Ele responde como um humano e resolve consultas dos clientes de forma eficaz. Configure-o facilmente em suas caixas de entrada."
+    typebot:
+      name: "Typebot"
+      description: "Typebot é um construtor de chatbot de código aberto. Ele permite que você crie chatbots avançados visualmente, incorpore-os ao 🅷🆄🅱 e colete resultados em tempo real."
   public_portal:
     search:
       search_placeholder: Pesquisar por artigo por título ou corpo...
