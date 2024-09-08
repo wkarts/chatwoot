@@ -26,9 +26,9 @@ const primaryMenuItems = accountId => [
     toStateName: 'captain',
   },
   {
-    icon: 'typebot',
+    icon: 'bot',
     key: 'typebot',
-    label: 'Typebot',
+    label: 'TYPEBOT.HEADER',
     toState: frontendURL(`accounts/${accountId}/typebot`),
     toStateName: 'typebot',
     roles: ['administrator'],
