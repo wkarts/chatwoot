@@ -99,28 +99,6 @@
         </label>
       </div>
 
-      <!-- Adicionando campos de webhooks -->
-      
-      <div v-for="(webhook, index) in webhooks" :key="index" class="w-3/4 pb-4 config-helptext">
-        <label>
-          <span>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID.LABEL') }} {{ index + 1 }}</span>
-          <input v-model="webhook.id" type="text" :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID.PLACEHOLDER')" />
-        </label>
-        <label>
-          <span>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL.LABEL') }}</span>
-          <input v-model="webhook.url" type="text" :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL.PLACEHOLDER')" />
-        </label>
-        <label>
-          <woot-switch v-model="webhook.sendNewMessages" />
-          {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_SEND_NEW_MESSAGES.LABEL') }}
-        </label>
-        <button @click.prevent="removeWebhook(index)">{{ $t('INBOX_MGMT.ADD.WHATSAPP.REMOVE_WEBHOOK') }}</button>
-      </div>
-
-      <button @click.prevent="addWebhook">{{ $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
-
-      <!-- Continuando com a configuração original -->
-
       <div class="w-3/4 pb-4 config-helptext">
         <label :class="{ error: v$.ignoreGroupMessages.$error }" style="display: flex; align-items: center;">
           <woot-switch
@@ -289,6 +267,61 @@
         </label>
       </div>
 
+      <!-- Lista de Webhooks -->
+      <div class="w-3/4 pb-4 config-helptext">
+        <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS') }}</h3>
+        <table class="webhook-table">
+          <thead>
+            <tr>
+              <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_NICKNAME') }}</th>
+              <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}</th>
+              <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.ACTIONS') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(webhook, index) in webhooks" :key="index">
+              <td>{{ webhook.nickname }}</td>
+              <td>{{ webhook.id }}</td>
+              <td>
+                <button @click.prevent="editWebhook(index)">
+                  {{ $t('INBOX_MGMT.ADD.WHATSAPP.EDIT') }}
+                </button>
+                <button @click.prevent="removeWebhook(index)">
+                  {{ $t('INBOX_MGMT.ADD.WHATSAPP.REMOVE') }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button @click.prevent="showAddWebhookModal">
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}
+        </button>
+      </div>
+
+      <!-- Modal de Adicionar/Editar Webhook -->
+      <modal v-if="showWebhookModal" @close="closeWebhookModal">
+        <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.EDIT_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</h3>
+        <form @submit.prevent="submitWebhook">
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_NICKNAME') }}
+            <input v-model="webhookForm.nickname" type="text" required />
+          </label>
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}
+            <input v-model="webhookForm.id" type="text" required />
+          </label>
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL') }}
+            <input v-model="webhookForm.url" type="text" required />
+          </label>
+          <label>
+            <woot-switch v-model="webhookForm.sendNewMessages" />
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_SEND_NEW_MESSAGES') }}
+          </label>
+          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
+        </form>
+      </modal>
+
       <div class="w-3/4 pb-4 config-helptext">
         <img v-if="qrcode" :src="qrcode" />
         <div v-if="notice">{{ notice }}</div>
@@ -324,13 +357,14 @@ import { useAlert } from 'dashboard/composables';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import { required } from '@vuelidate/validators';
 import { mapGetters } from 'vuex';
+import modal from 'components/Modal.vue';
 // import { createConsumer } from '@rails/actioncable';
 
 export default {
   setup() {
     return { v$: useVuelidate() };
   },
-  components: {},
+  components: { modal },
   mixins: [inboxMixin],
   props: {
     inbox: {
@@ -363,6 +397,14 @@ export default {
       rejectCalls: '',
       messageCallsWebhook: '',
       webhooks: [],
+      showWebhookModal: false,
+      editingWebhook: false,
+      webhookForm: {
+        nickname: '',
+        id: '',
+        url: '',
+        sendNewMessages: false,
+      },
     };
   },
   watch: {
@@ -482,12 +524,37 @@ export default {
         this.apiKey = token;
       }
     },
-    addWebhook() {
-      this.webhooks.push({
-        id: 'new-webhook',
+    showAddWebhookModal() {
+      this.resetWebhookForm();
+      this.showWebhookModal = true;
+    },
+    closeWebhookModal() {
+      this.showWebhookModal = false;
+    },
+    resetWebhookForm() {
+      this.webhookForm = {
+        nickname: '',
+        id: '',
         url: '',
         sendNewMessages: false,
-      });
+      };
+      this.editingWebhook = false;
+    },
+    editWebhook(index) {
+      this.webhookForm = { ...this.webhooks[index] };
+      this.editingWebhook = true;
+      this.showWebhookModal = true;
+    },
+    submitWebhook() {
+      if (this.editingWebhook) {
+        const index = this.webhooks.findIndex(w => w.id === this.webhookForm.id);
+        if (index !== -1) {
+          this.webhooks.splice(index, 1, { ...this.webhookForm });
+        }
+      } else {
+        this.webhooks.push({ ...this.webhookForm });
+      }
+      this.closeWebhookModal();
     },
     removeWebhook(index) {
       this.webhooks.splice(index, 1);
@@ -552,6 +619,19 @@ export default {
 .switch-label {
   display: flex;
   align-items: center;
+}
+
+.webhook-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.webhook-table th,
+.webhook-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 .flex-shrink div .messagingServiceHelptext{
