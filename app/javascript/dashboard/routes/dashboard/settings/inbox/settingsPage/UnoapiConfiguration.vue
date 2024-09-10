@@ -99,6 +99,28 @@
         </label>
       </div>
 
+      <!-- Adicionando campos de webhooks -->
+      
+      <div v-for="(webhook, index) in webhooks" :key="index" class="w-3/4 pb-4 config-helptext">
+        <label>
+          <span>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID.LABEL') }} {{ index + 1 }}</span>
+          <input v-model="webhook.id" type="text" :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID.PLACEHOLDER')" />
+        </label>
+        <label>
+          <span>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL.LABEL') }}</span>
+          <input v-model="webhook.url" type="text" :placeholder="$t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL.PLACEHOLDER')" />
+        </label>
+        <label>
+          <woot-switch v-model="webhook.sendNewMessages" />
+          {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_SEND_NEW_MESSAGES.LABEL') }}
+        </label>
+        <button @click.prevent="removeWebhook(index)">{{ $t('INBOX_MGMT.ADD.WHATSAPP.REMOVE_WEBHOOK') }}</button>
+      </div>
+
+      <button @click.prevent="addWebhook">{{ $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
+
+      <!-- Continuando com a configuração original -->
+
       <div class="w-3/4 pb-4 config-helptext">
         <label :class="{ error: v$.ignoreGroupMessages.$error }" style="display: flex; align-items: center;">
           <woot-switch
@@ -339,7 +361,8 @@ export default {
       qrcode: '',
       notice: '',
       rejectCalls: '',
-      messageCallsWebhook: '',      
+      messageCallsWebhook: '',
+      webhooks: [],
     };
   },
   watch: {
@@ -401,6 +424,7 @@ export default {
       this.useRejectCalls = this.inbox.provider_config.use_reject_calls;
       this.rejectCalls = this.inbox.provider_config.reject_calls;
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
+      this.webhooks = this.inbox.provider_config.webhooks || [];
       this.connect = false;
       this.disconnect = false;
     },
@@ -458,6 +482,16 @@ export default {
         this.apiKey = token;
       }
     },
+    addWebhook() {
+      this.webhooks.push({
+        id: 'new-webhook',
+        url: '',
+        sendNewMessages: false,
+      });
+    },
+    removeWebhook(index) {
+      this.webhooks.splice(index, 1);
+    },
     async updateInbox() {
       try {
         const payload = {
@@ -483,7 +517,8 @@ export default {
               send_profile_picture: this.sendProfilePicture,
               use_reject_calls: this.useRejectCalls,
               reject_calls: this.rejectCalls,
-              message_calls_webhook: this.messageCallsWebhook,              
+              message_calls_webhook: this.messageCallsWebhook,
+              webhooks: this.webhooks,
               connect: this.connect,
               disconnect: this.disconnect,
             },
