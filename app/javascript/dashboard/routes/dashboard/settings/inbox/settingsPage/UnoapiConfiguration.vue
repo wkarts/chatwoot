@@ -266,32 +266,14 @@
           </span>
         </label>
       </div>
-      
+
       <div class="w-3/4 pb-4 config-helptext">
         <img v-if="qrcode" :src="qrcode" />
         <div v-if="notice">{{ notice }}</div>
       </div>
 
-      <div class="my-4 w-auto">
-        <woot-submit-button
-          :loading="uiFlags.isUpdating"
-          :button-text="`${$t(
-          'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
-          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}`"
-          @click="connect = true"
-        />
-        <woot-submit-button
-          :loading="uiFlags.isUpdating"
-          :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
-          @click="disconnect = true"
-        />
-        <woot-submit-button
-          :loading="uiFlags.isUpdating"          
-          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
-          @click="generateToken"
-        />
-      </div>
-      
+      <!-- Outros campos de configuração... -->
+
       <!-- Lista de Webhooks -->
       <div class="w-3/4 pb-4 config-helptext">
         <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS') }}</h3>
@@ -323,7 +305,7 @@
         </button>
       </div>
 
-      <!-- Modal de Adicionar/Editar Webhook -->
+      <!-- Modal para adicionar/editar webhook -->
       <modal v-if="showWebhookModal" @close="closeWebhookModal">
         <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.EDIT_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</h3>
         <form @submit.prevent="submitWebhook">
@@ -343,21 +325,23 @@
             <woot-switch v-model="webhookForm.sendNewMessages" />
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_SEND_NEW_MESSAGES') }}
           </label>
-          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
+          <button type="submit">
+            {{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}
+          </button>
         </form>
-      </modal>      
+      </modal>
 
       <div class="my-4 w-auto">
         <woot-submit-button
           :loading="uiFlags.isUpdating"
           :button-text="`${$t(
           'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
-          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP.CONNECT')}`"
+          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_CONNECT')}`"
           @click="connect = true"
         />
         <woot-submit-button
           :loading="uiFlags.isUpdating"
-          :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP.DISCONNECT')"
+          :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_DISCONNECT')"
           @click="disconnect = true"
         />
         <woot-submit-button
@@ -620,6 +604,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .whatsapp-settings--content {
   ::v-deep input {
@@ -639,19 +624,6 @@ export default {
 .switch-label {
   display: flex;
   align-items: center;
-}
-
-.webhook-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-}
-
-.webhook-table th,
-.webhook-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
 }
 
 .flex-shrink div .messagingServiceHelptext{
@@ -699,4 +671,17 @@ export default {
  margin-top:-20px;
  font-size:11px;
 }  
+
+.webhook-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.webhook-table th,
+.webhook-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 </style>
