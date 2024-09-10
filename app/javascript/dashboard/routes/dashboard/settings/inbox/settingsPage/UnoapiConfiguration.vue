@@ -346,7 +346,26 @@
           <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
         </form>
       </modal>      
-      
+
+      <div class="my-4 w-auto">
+        <woot-submit-button
+          :loading="uiFlags.isUpdating"
+          :button-text="`${$t(
+          'INBOX_MGMT.SETTINGS_POPUP.WHATSAPP_SECTION_UPDATE_BUTTON'
+          )} and ${$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP.CONNECT')}`"
+          @click="connect = true"
+        />
+        <woot-submit-button
+          :loading="uiFlags.isUpdating"
+          :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.WHATSAPP.DISCONNECT')"
+          @click="disconnect = true"
+        />
+        <woot-submit-button
+          :loading="uiFlags.isUpdating"          
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.GENERATE_API_KEY.LABEL')"
+          @click="generateToken"
+        />
+      </div>
     </form>
   </div>
 </template>
