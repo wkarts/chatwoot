@@ -72,6 +72,20 @@ class Whatsapp::UnoapiWebhookSetupService
 
   # rubocop:disable Metrics/MethodLength
   def params(provider_config, phone_number)
+    # Verificar se existe um webhook com id 'default'
+    default_webhook = provider_config['webhooks'].find { |webhook| webhook['id'] == 'default' }
+
+    unless default_webhook
+      # Adicionar webhook padrão se não existir
+      provider_config['webhooks'] << {
+        sendNewMessages: provider_config['webhook_send_new_messages'] || true,
+        id: 'default',
+        urlAbsolute: "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/whatsapp/#{phone_number}",
+        token: provider_config['webhook_verify_token'],
+        header: 'Authorization'
+      }
+    end
+
     {
       ignoreGroupMessages: provider_config['ignore_group_messages'],
       ignoreBroadcastStatuses: provider_config['ignore_broadcast_statuses'],
@@ -84,17 +98,11 @@ class Whatsapp::UnoapiWebhookSetupService
       composingMessage: provider_config['composing_message'],
       rejectCalls: provider_config['reject_calls'],
       messageCallsWebhook: provider_config['message_calls_webhook'],
-      webhooks: [
-        sendNewMessages: provider_config['webhook_send_new_messages'],
-        id: 'default',
-        urlAbsolute: "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/whatsapp/#{phone_number}",
-        token: provider_config['webhook_verify_token'],
-        header: :Authorization
-      ],
+      webhooks: provider_config['webhooks'],
       sendReactionAsReply: provider_config['send_reaction_as_reply'],
       sendProfilePicture: provider_config['send_profile_picture'],
       authToken: provider_config['api_key'],
-      useRejectCalls: provider_config['use_reject_calls'] # Mantido da V1
+      useRejectCalls: provider_config['use_reject_calls']
     }
   end
   # rubocop:enable Metrics/MethodLength
