@@ -333,10 +333,10 @@
               />
             </td>
             <td>
-              <button @click.prevent="editWebhook(index)">
+              <button @click.prevent="editWebhook(index)" style="display: inline-block;">
                 <i class="fas fa-edit"></i>
               </button>
-              <button @click.prevent="removeWebhook(index)">
+              <button @click.prevent="removeWebhook(index)" style="display: inline-block;">
                 <i class="fas fa-trash"></i>
               </button>
             </td>
@@ -476,6 +476,7 @@ export default {
       this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
       this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages;
+      this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages;
       this.sendAgentName = this.inbox.provider_config.send_agent_name;
       this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_broadcast_statuses;
       this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_broadcast_messages;
@@ -608,40 +609,43 @@ export default {
         });
       }
 
-      const payload = {
-        id: this.inbox.id,
-        formData: false,
-        channel: {
-          provider_config: {
-            ...this.inbox.provider_config, // Copiar o restante das propriedades
-            api_key: this.apiKey,
-            url: this.url,
-            ignore_group_messages: this.ignoreGroupMessages,
-            ignore_history_messages: this.ignoreHistoryMessages,
-            send_agent_name: this.sendAgentName,
-            webhook_send_new_messages: this.webhookSendNewMessages,
-            ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
-            ignore_broadcast_messages: this.ignoreBroadcastMessages,
-            ignore_own_messages: this.ignoreOwnMessages,
-            ignore_yourself_messages: this.ignoreYourselfMessages,
-            send_connection_status: this.sendConnectionStatus,
-            notify_failed_messages: this.notifyFailedMessages,
-            composing_message: this.composingMessage,
-            send_reaction_as_reply: this.sendReactionAsReply,
-            send_profile_picture: this.sendProfilePicture,
-            use_reject_calls: this.useRejectCalls,
-            reject_calls: this.rejectCalls,
-            message_calls_webhook: this.messageCallsWebhook,
-            webhooks: this.webhooks, // Webhooks atualizados
-          },
-        },
-      };
-
       try {
+        const payload = {
+          id: this.inbox.id,
+          formData: false,
+          channel: {
+            provider_config: {
+              ...this.inbox.provider_config,
+              api_key: this.apiKey,
+              ignore_history_messages: this.ignoreHistoryMessages,
+              ignore_group_messages: this.ignoreGroupMessages,
+              send_agent_name: this.sendAgentName,
+              webhook_send_new_messages: this.webhookSendNewMessages,
+              url: this.url,
+              ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
+              ignore_broadcast_messages: this.ignoreBroadcastMessages,
+              ignore_own_messages: this.ignoreOwnMessages,
+              ignore_yourself_messages: this.ignoreYourselfMessages,
+              send_connection_status: this.sendConnectionStatus,
+              notify_failed_messages: this.notifyFailedMessages,
+              composing_message: this.composingMessage,
+              send_reaction_as_reply: this.sendReactionAsReply,
+              send_profile_picture: this.sendProfilePicture,
+              use_reject_calls: this.useRejectCalls,
+              reject_calls: this.rejectCalls,
+              message_calls_webhook: this.messageCallsWebhook,
+              connect: this.connect,
+              disconnect: this.disconnect,
+              webhooks: this.webhooks, // Adiciona os webhooks ao payload
+            },
+          },
+        };
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        this.alert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));  // Usar a instância do alert
+        const alert = useAlert();
+        alert.success(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        this.alert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));  // Usar a instância do alert
+        const alert = useAlert();
+        alert.error(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
