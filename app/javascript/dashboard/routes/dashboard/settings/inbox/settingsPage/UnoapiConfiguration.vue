@@ -302,11 +302,71 @@
       </form>
     </div>
 
-    <!-- Aba de Webhooks (vazia por enquanto) -->
+    <!-- Aba de Webhooks -->
     <div v-else>
-      <h3>{{ $t('INBOX_MGMT.TABS.WEBHOOKS') }}</h3>
-      <p>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS_EMPTY_MESSAGE') }}</p>
-      <!-- Aqui será implementado o componente de webhooks no futuro -->
+      <div class="flex justify-between items-center mb-4">
+        <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS') }}</h3>
+        <woot-submit-button
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK')"
+          @click="showAddWebhookModal"
+        />
+      </div>
+
+      <table class="webhook-table">
+        <thead>
+          <tr>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_NEW_MESSAGES') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.ACTIONS') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(webhook, index) in webhooks" :key="index">
+            <td>{{ webhook.id }}</td>
+            <td>{{ webhook.url }}</td>
+            <td>
+              <woot-switch
+                v-model="webhook.sendNewMessages"
+                :value="webhook.sendNewMessages"
+                @change="toggleSendNewMessages(index)"
+              />
+            </td>
+            <td>
+              <button @click.prevent="editWebhook(index)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button @click.prevent="removeWebhook(index)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Modal para Adicionar/Editar Webhook -->
+      <modal v-if="showWebhookModal" @close="closeWebhookModal">
+        <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.EDIT_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</h3>
+        <form @submit.prevent="submitWebhook">
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}
+            <input v-model="webhookForm.id" type="text" required />
+          </label>
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL') }}
+            <input v-model="webhookForm.url" type="text" required />
+          </label>
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_TOKEN') }}
+            <input v-model="webhookForm.token" type="text" />
+          </label>
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_HEADER') }}
+            <input v-model="webhookForm.header" type="text" />
+          </label>
+          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
+        </form>
+      </modal>
     </div>
   </div>
 </template>
@@ -355,6 +415,16 @@ export default {
       notice: '',
       rejectCalls: '',
       messageCallsWebhook: '',
+      webhooks: [], // Lista de webhooks
+      showWebhookModal: false,
+      editingWebhook: false,
+      webhookForm: {
+        id: '',
+        url: '',
+        sendNewMessages: true,
+        token: '',
+        header: '',
+      },
       activeTab: 0, // Controla a aba ativa
     };
   },
@@ -406,7 +476,6 @@ export default {
       this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
       this.ignoreHistoryMessages = this.inbox.provider_config.ignore_history_messages;
-      this.webhookSendNewMessages = this.inbox.provider_config.webhook_send_new_messages;
       this.sendAgentName = this.inbox.provider_config.send_agent_name;
       this.ignoreBroadcastStatuses = this.inbox.provider_config.ignore_broadcast_statuses;
       this.ignoreBroadcastMessages = this.inbox.provider_config.ignore_broadcast_messages;
@@ -422,6 +491,43 @@ export default {
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
       this.disconnect = false;
+      this.webhooks = this.inbox.provider_config.webhooks || []; // Carrega os webhooks da configuração
+    },
+    showAddWebhookModal() {
+      this.showWebhookModal = true;
+      this.webhookForm = {
+        id: '',
+        url: '',
+        sendNewMessages: true,
+        token: '',
+        header: '',
+      };
+      this.editingWebhook = false;
+    },
+    editWebhook(index) {
+      this.showWebhookModal = true;
+      this.webhookForm = { ...this.webhooks[index] };
+      this.editingWebhook = true;
+    },
+    removeWebhook(index) {
+      this.webhooks.splice(index, 1);
+    },
+    closeWebhookModal() {
+      this.showWebhookModal = false;
+    },
+    submitWebhook() {
+      if (this.editingWebhook) {
+        const index = this.webhooks.findIndex(w => w.id === this.webhookForm.id);
+        if (index !== -1) {
+          this.webhooks.splice(index, 1, this.webhookForm);
+        }
+      } else {
+        this.webhooks.push(this.webhookForm);
+      }
+      this.closeWebhookModal();
+    },
+    toggleSendNewMessages(index) {
+      this.webhooks[index].sendNewMessages = !this.webhooks[index].sendNewMessages;
     },
     listenerQrCode() {
       const url = `${this.inbox.provider_config.url}`
@@ -489,7 +595,6 @@ export default {
               ignore_history_messages: this.ignoreHistoryMessages,
               ignore_group_messages: this.ignoreGroupMessages,
               send_agent_name: this.sendAgentName,
-              webhook_send_new_messages: this.webhookSendNewMessages,
               url: this.url,
               ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
               ignore_broadcast_messages: this.ignoreBroadcastMessages,
@@ -505,6 +610,7 @@ export default {
               message_calls_webhook: this.messageCallsWebhook,
               connect: this.connect,
               disconnect: this.disconnect,
+              webhooks: this.webhooks, // Atualiza os webhooks no payload
             },
           },
         };
@@ -583,5 +689,14 @@ export default {
 .flex-shrink div .message {
   margin-top: -20px;
   font-size: 11px;
+}
+
+.webhook-table {
+  width: 100%;
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+  }
 }
 </style>
