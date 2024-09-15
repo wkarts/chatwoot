@@ -595,55 +595,57 @@ export default {
         this.apiKey = token;
       }
     },
-async updateInbox() {
-  // Verificar e adicionar o webhook padrão antes de enviar os dados
-  const defaultWebhook = this.webhooks.find(w => w.id === 'default');
-  if (!defaultWebhook) {
-    this.webhooks.push({
-      sendNewMessages: true,
-      id: 'default',
-      urlAbsolute: `${process.env.FRONTEND_URL}/webhooks/whatsapp/${this.inbox.provider_config.phone_number_id}`,
-      token: this.inbox.provider_config.webhook_verify_token || '',
-      header: 'Authorization',
-    });
-  }
+    async updateInbox() {
+      // Verificar e adicionar o webhook padrão antes de enviar os dados
+      const defaultWebhook = this.webhooks.find(w => w.id === 'default');
+      if (!defaultWebhook) {
+        this.webhooks.push({
+          sendNewMessages: true,
+          id: 'default',
+          urlAbsolute: `${process.env.FRONTEND_URL}/webhooks/whatsapp/${this.inbox.provider_config.phone_number_id}`,
+          token: this.inbox.provider_config.webhook_verify_token || '',
+          header: 'Authorization',
+        });
+      }
 
-  const payload = {
-    id: this.inbox.id,
-    formData: false,
-    channel: {
-      provider_config: {
-        api_key: this.apiKey,
-        url: this.url,
-        ignore_group_messages: this.ignoreGroupMessages,
-        ignore_history_messages: this.ignoreHistoryMessages,
-        send_agent_name: this.sendAgentName,
-        webhook_send_new_messages: this.webhookSendNewMessages,
-        ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
-        ignore_broadcast_messages: this.ignoreBroadcastMessages,
-        ignore_own_messages: this.ignoreOwnMessages,
-        ignore_yourself_messages: this.ignoreYourselfMessages,
-        send_connection_status: this.sendConnectionStatus,
-        notify_failed_messages: this.notifyFailedMessages,
-        composing_message: this.composingMessage,
-        send_reaction_as_reply: this.sendReactionAsReply,
-        send_profile_picture: this.sendProfilePicture,
-        use_reject_calls: this.useRejectCalls,
-        reject_calls: this.rejectCalls,
-        message_calls_webhook: this.messageCallsWebhook,
-        webhooks: this.webhooks, // Webhooks atualizados
-      },
+      const payload = {
+        id: this.inbox.id,
+        formData: false,
+        channel: {
+          provider_config: {
+            ...this.inbox.provider_config, // Copiar o restante das propriedades
+            api_key: this.apiKey,
+            url: this.url,
+            ignore_group_messages: this.ignoreGroupMessages,
+            ignore_history_messages: this.ignoreHistoryMessages,
+            send_agent_name: this.sendAgentName,
+            webhook_send_new_messages: this.webhookSendNewMessages,
+            ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
+            ignore_broadcast_messages: this.ignoreBroadcastMessages,
+            ignore_own_messages: this.ignoreOwnMessages,
+            ignore_yourself_messages: this.ignoreYourselfMessages,
+            send_connection_status: this.sendConnectionStatus,
+            notify_failed_messages: this.notifyFailedMessages,
+            composing_message: this.composingMessage,
+            send_reaction_as_reply: this.sendReactionAsReply,
+            send_profile_picture: this.sendProfilePicture,
+            use_reject_calls: this.useRejectCalls,
+            reject_calls: this.rejectCalls,
+            message_calls_webhook: this.messageCallsWebhook,
+            webhooks: this.webhooks, // Webhooks atualizados
+          },
+        },
+      };
+
+      try {
+        await this.$store.dispatch('inboxes/updateInbox', payload);
+        this.alert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));  // Usar a instância do alert
+      } catch (error) {
+        this.alert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));  // Usar a instância do alert
+      }
     },
-  };
-
-  try {
-    await this.$store.dispatch('inboxes/updateInbox', payload);
-    useAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
-  } catch (error) {
-    useAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
-  }
-}
-
+  },
+};  
 </script>
 
 <style lang="scss" scoped>
