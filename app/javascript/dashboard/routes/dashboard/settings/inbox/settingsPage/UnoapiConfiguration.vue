@@ -6,8 +6,8 @@
       :index="activeTab"
       @change="onTabChange"
     >
-      <woot-tabs-item :name="$t('INBOX_MGMT.TABS.PARAMETERS')" :show-badge="false" />
-      <woot-tabs-item :name="$t('INBOX_MGMT.TABS.WEBHOOKS')" :show-badge="false" />
+      <woot-tabs-item :name="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_PARAMS.LABEL')" :show-badge="false" />
+      <woot-tabs-item :name="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.LABEL')" :show-badge="false" />
     </woot-tabs>
 
     <!-- Aba de Parâmetros Inicio -->
@@ -306,9 +306,9 @@
     <!-- Aba de Webhooks Inicio-->
     <div v-else>
       <div class="flex justify-between items-center mb-4">
-        <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS') }}</h3>
+        <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DESCRIPTION') }}</h3>
         <woot-submit-button
-          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK')"
+          :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
           @click="showAddWebhookModal"
         />
       </div>
@@ -316,10 +316,10 @@
       <table class="webhook-table">
         <thead>
           <tr>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}</th>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL') }}</th>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.SEND_NEW_MESSAGES') }}</th>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.ACTIONS') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.BUTTON') }}</th>
+            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ACTIONS') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -347,25 +347,25 @@
 
       <!-- Modal para Adicionar/Editar Webhook -->
       <modal v-if="showWebhookModal" @close="closeWebhookModal">
-        <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.EDIT_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</h3>
+        <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</h3>
         <form @submit.prevent="submitWebhook">
           <label>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_ID') }}
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}
             <input v-model="webhookForm.id" type="text" required />
           </label>
           <label>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_URL') }}
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}
             <input v-model="webhookForm.urlAbsolute" type="text" required />
           </label>
           <label>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_TOKEN') }}
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.TOKEN') }}
             <input v-model="webhookForm.token" type="text" />
           </label>
           <label>
-            {{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOK_HEADER') }}
+            {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.HEADER') }}
             <input v-model="webhookForm.header" type="text" />
           </label>
-          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.UPDATE_WEBHOOK') : $t('INBOX_MGMT.ADD.WHATSAPP.ADD_WEBHOOK') }}</button>
+          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</button>
         </form>
       </modal>
     </div>
