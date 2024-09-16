@@ -231,19 +231,19 @@
           },
           "TAB_WEBHOOK": {
             "LABEL": "Webhooks",
-            "DESCRIPTION":"Lista de Webhooks Disponíveis - Evite criar webhooks com o mesmo ID e URL de outro já existente.",
+            "DESCRIPTION": "Lista de Webhooks Disponíveis - Evite criar webhooks com o mesmo ID e URL de outro já existente.",
             "ID": "ID",
             "URL_ABSOLUT": "URL Absoluta",
-            "BUTTON": "Enviar novas mensagens ao Webhook",
-            "ACTIONS": "Editar / Excluir",
+            "BUTTON": "Enviar novas mensagens para o Webhook",
+            "ACTIONS": "Editar / Eliminar",
             "EDIT": "Editar",
-            "DELETE": "Excluir",
+            "DELETE": "Eliminar",
             "TOKEN": "Token",
             "HEADER": "Cabeçalho do Token",
-            "SAVE": "Salvar",
+            "SAVE": "Guardar",
             "ADD": "Adicionar"
           }
-        },        
+        },
         "SEND_AGENT_NAME": {
           "LABEL": "Enviar nome do agente",
           "PLACEHOLDER": "Marque para enviar o nome do agente.",
