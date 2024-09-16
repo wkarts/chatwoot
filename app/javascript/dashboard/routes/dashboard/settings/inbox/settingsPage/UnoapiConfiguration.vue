@@ -324,7 +324,7 @@
         <tbody>
           <tr v-for="(webhook, index) in webhooks" :key="index">
             <td>{{ webhook.id }}</td>
-            <td>{{ webhook.urlAbsolute }}</td>
+            <td>{{ webhook.url || webhook.urlAbsolute }}</td>
             <td>
               <woot-switch
                 v-model="webhook.sendNewMessages"
@@ -415,7 +415,7 @@ export default {
       notice: '',
       rejectCalls: '',
       messageCallsWebhook: '',
-      webhooks: [], // Lista de webhooks
+      webhooks: [],
       showWebhookModal: false,
       editingWebhook: false,
       webhookForm: {
@@ -472,6 +472,16 @@ export default {
       this.activeTab = index; // Altera a aba ativa
     },
     setDefaults() {
+      // Verificar se o webhooks já existe e se está bem definido
+      if (this.inbox.provider_config.webhooks) {
+        this.webhooks = this.inbox.provider_config.webhooks.map((webhook) => ({
+          ...webhook,
+          urlAbsolute: webhook.url || webhook.urlAbsolute, // Captura o campo correto do backend
+        }));
+      } else {
+        this.webhooks = [];
+      }
+
       this.apiKey = this.inbox.provider_config.api_key;
       this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
@@ -492,7 +502,6 @@ export default {
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
       this.disconnect = false;
-      this.webhooks = this.inbox.provider_config.webhooks || [];
 
       // Garantir que o webhook padrão exista ao carregar a configuração
       const defaultWebhook = this.webhooks.find(w => w.id === 'default');
@@ -609,47 +618,44 @@ export default {
         });
       }
 
-      try {
-        const payload = {
-          id: this.inbox.id,
-          formData: false,
-          channel: {
-            provider_config: {
-              ...this.inbox.provider_config,
-              api_key: this.apiKey,
-              ignore_history_messages: this.ignoreHistoryMessages,
-              ignore_group_messages: this.ignoreGroupMessages,
-              send_agent_name: this.sendAgentName,
-              webhook_send_new_messages: this.webhookSendNewMessages,
-              url: this.url,
-              ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
-              ignore_broadcast_messages: this.ignoreBroadcastMessages,
-              ignore_own_messages: this.ignoreOwnMessages,
-              ignore_yourself_messages: this.ignoreYourselfMessages,
-              send_connection_status: this.sendConnectionStatus,
-              notify_failed_messages: this.notifyFailedMessages,
-              composing_message: this.composingMessage,
-              send_reaction_as_reply: this.sendReactionAsReply,
-              send_profile_picture: this.sendProfilePicture,
-              use_reject_calls: this.useRejectCalls,
-              reject_calls: this.rejectCalls,
-              message_calls_webhook: this.messageCallsWebhook,
-              connect: this.connect,
-              disconnect: this.disconnect,
-              webhooks: this.webhooks, // Adiciona os webhooks ao payload
-            },
+      const payload = {
+        id: this.inbox.id,
+        formData: false,
+        channel: {
+          provider_config: {
+            ...this.inbox.provider_config, // Copiar o restante das propriedades
+            api_key: this.apiKey,
+            url: this.url,
+            ignore_group_messages: this.ignoreGroupMessages,
+            ignore_history_messages: this.ignoreHistoryMessages,
+            send_agent_name: this.sendAgentName,
+            webhook_send_new_messages: this.webhookSendNewMessages,
+            ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
+            ignore_broadcast_messages: this.ignoreBroadcastMessages,
+            ignore_own_messages: this.ignoreOwnMessages,
+            ignore_yourself_messages: this.ignoreYourselfMessages,
+            send_connection_status: this.sendConnectionStatus,
+            notify_failed_messages: this.notifyFailedMessages,
+            composing_message: this.composingMessage,
+            send_reaction_as_reply: this.sendReactionAsReply,
+            send_profile_picture: this.sendProfilePicture,
+            use_reject_calls: this.useRejectCalls,
+            reject_calls: this.rejectCalls,
+            message_calls_webhook: this.messageCallsWebhook,
+            webhooks: this.webhooks, // Webhooks atualizados
           },
-        };
+        },
+      };
+
+      try {
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        const alert = useAlert();
-        alert.success(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        const alert = useAlert();
-        alert.error(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
-};  
+};
 </script>
 
 <style lang="scss" scoped>
