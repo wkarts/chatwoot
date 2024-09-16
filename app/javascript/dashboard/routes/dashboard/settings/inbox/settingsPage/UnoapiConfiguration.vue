@@ -10,7 +10,7 @@
       <woot-tabs-item :name="$t('INBOX_MGMT.TABS.WEBHOOKS')" :show-badge="false" />
     </woot-tabs>
 
-    <!-- Aba de Parâmetros -->
+    <!-- Aba de Parâmetros Inicio -->
     <div v-if="activeTab === 0">
       <form class="flex flex-col" @submit.prevent="updateInbox()">
         <div class="w-1/4">
@@ -301,8 +301,9 @@
         </div>
       </form>
     </div>
+    <!-- Aba de Parâmetros Fim -->
 
-    <!-- Aba de Webhooks -->
+    <!-- Aba de Webhooks Inicio-->
     <div v-else>
       <div class="flex justify-between items-center mb-4">
         <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.WEBHOOKS') }}</h3>
@@ -324,7 +325,7 @@
         <tbody>
           <tr v-for="(webhook, index) in webhooks" :key="index">
             <td>{{ webhook.id }}</td>
-            <td>{{ webhook.url || webhook.urlAbsolute }}</td>
+            <td>{{ webhook.urlAbsolute }}</td>
             <td>
               <woot-switch
                 v-model="webhook.sendNewMessages"
@@ -368,6 +369,8 @@
         </form>
       </modal>
     </div>
+    <!-- Aba de Webhooks Fim-->
+    
   </div>
 </template>
 
@@ -472,16 +475,6 @@ export default {
       this.activeTab = index;
     },
     setDefaults() {
-      // Verificar se os webhooks já existem e se estão bem definidos
-      if (this.inbox.provider_config.webhooks) {
-        this.webhooks = this.inbox.provider_config.webhooks.map((webhook) => ({
-          ...webhook,
-          urlAbsolute: webhook.url || webhook.urlAbsolute, // Captura o campo correto do backend
-        }));
-      } else {
-        this.webhooks = [];
-      }
-
       this.apiKey = this.inbox.provider_config.api_key;
       this.url = this.inbox.provider_config.url;
       this.ignoreGroupMessages = this.inbox.provider_config.ignore_group_messages;
@@ -502,8 +495,8 @@ export default {
       this.messageCallsWebhook = this.inbox.provider_config.message_calls_webhook;
       this.connect = false;
       this.disconnect = false;
+      this.webhooks = this.inbox.provider_config.webhooks || [];
 
-      // Garantir que o webhook padrão exista ao carregar a configuração
       const defaultWebhook = this.webhooks.find(w => w.id === 'default');
       if (!defaultWebhook) {
         this.webhooks.push({
@@ -606,7 +599,6 @@ export default {
       }
     },
     async updateInbox() {
-      // Verificar e adicionar o webhook padrão antes de enviar os dados
       const defaultWebhook = this.webhooks.find(w => w.id === 'default');
       if (!defaultWebhook) {
         this.webhooks.push({
@@ -623,13 +615,13 @@ export default {
         formData: false,
         channel: {
           provider_config: {
-            ...this.inbox.provider_config, // Copiar o restante das propriedades
+            ...this.inbox.provider_config,
             api_key: this.apiKey,
-            url: this.url,
-            ignore_group_messages: this.ignoreGroupMessages,
             ignore_history_messages: this.ignoreHistoryMessages,
+            ignore_group_messages: this.ignoreGroupMessages,
             send_agent_name: this.sendAgentName,
             webhook_send_new_messages: this.webhookSendNewMessages,
+            url: this.url,
             ignore_broadcast_statuses: this.ignoreBroadcastStatuses,
             ignore_broadcast_messages: this.ignoreBroadcastMessages,
             ignore_own_messages: this.ignoreOwnMessages,
@@ -642,22 +634,21 @@ export default {
             use_reject_calls: this.useRejectCalls,
             reject_calls: this.rejectCalls,
             message_calls_webhook: this.messageCallsWebhook,
-            webhooks: this.webhooks, // Webhooks atualizados
+            connect: this.connect,
+            disconnect: this.disconnect,
+            webhooks: this.webhooks,
           },
         },
       };
-
       try {
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        const alert = useAlert(); // Inicializar o alert corretamente
-        alert.success(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        const alert = useAlert();
-        alert.error(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
-};
+}; 
 </script>
 
 <style lang="scss" scoped>
