@@ -415,7 +415,7 @@ export default {
       notice: '',
       rejectCalls: '',
       messageCallsWebhook: '',
-      webhooks: [],
+      webhooks: [], // Lista de webhooks
       showWebhookModal: false,
       editingWebhook: false,
       webhookForm: {
@@ -425,7 +425,7 @@ export default {
         token: '',
         header: 'Authorization',
       },
-      activeTab: 0, // Controla a aba ativa
+      activeTab: 0,
     };
   },
   watch: {
@@ -469,10 +469,10 @@ export default {
   },
   methods: {
     onTabChange(index) {
-      this.activeTab = index; // Altera a aba ativa
+      this.activeTab = index;
     },
     setDefaults() {
-      // Verificar se o webhooks já existe e se está bem definido
+      // Verificar se os webhooks já existem e se estão bem definidos
       if (this.inbox.provider_config.webhooks) {
         this.webhooks = this.inbox.provider_config.webhooks.map((webhook) => ({
           ...webhook,
@@ -649,9 +649,11 @@ export default {
 
       try {
         await this.$store.dispatch('inboxes/updateInbox', payload);
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
+        const alert = useAlert(); // Inicializar o alert corretamente
+        alert.success(this.$t('INBOX_MGMT.EDIT.API.SUCCESS_MESSAGE'));
       } catch (error) {
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
+        const alert = useAlert();
+        alert.error(this.$t('INBOX_MGMT.EDIT.API.ERROR_MESSAGE'));
       }
     },
   },
