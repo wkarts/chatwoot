@@ -334,16 +334,16 @@
               />
             </td>
             <td>
-              <woot-submit-button
+              <button 
                 :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT')"
-                @click="editWebhook(index)" style="display: inline-block;"
+                @click.prevent="editWebhook(index)" style="display: inline-block;">
                 <i class="fas fa-edit"></i>
-              /> 
-              <woot-submit-button
+              </button>
+              <button 
                 :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DELETE')"
-                @click="removeWebhook(index)" style="display: inline-block;"
+                @click.prevent="removeWebhook(index)" style="display: inline-block;">
                 <i class="fas fa-trash"></i>
-              />                 
+              </button>                
             </td>
           </tr>
         </tbody>
