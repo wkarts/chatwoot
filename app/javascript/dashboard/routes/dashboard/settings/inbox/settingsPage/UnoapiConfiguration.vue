@@ -336,12 +336,12 @@
             <td>
               <woot-submit-button 
                 :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT')"
-                @click.prevent="editWebhook(index)"
+                @click="editWebhook(index)"
                 style="display: inline-block;"
               />
               <woot-submit-button 
                 :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DELETE')"
-                @click.prevent="removeWebhook(index)"
+                @click="removeWebhook(index)"
                 style="display: inline-block;"
               />              
             </td>
@@ -369,7 +369,10 @@
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.HEADER') }}
             <input v-model="webhookForm.header" type="text" />
           </label>
-          <button type="submit">{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</button>
+          <woot-submit-button 
+            :button-text="editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
+            @click="submitWebhook"
+          />
         </form>
       </modal>
     </div>
