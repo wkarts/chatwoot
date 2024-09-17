@@ -318,8 +318,8 @@
           <tr>
             <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}</th>
             <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}</th>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.BUTTON') }}</th>
-            <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ACTIONS') }}</th>
+            <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.BUTTON') }}</th> -->
+            <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ACTIONS') }}</th> -->
           </tr>
         </thead>
         <tbody>
@@ -732,5 +732,14 @@ export default {
     padding: 8px;
     text-align: left;
   }
+}
+
+#app .flex-grow-0 .overflow-hidden .justify-between .flex-shrink div .text-base > div{
+ width:63% !important;
+}
+
+.flex-shrink modal h3{
+ background-color:#369eff;
+ color:#369eff;
 }
 </style>
