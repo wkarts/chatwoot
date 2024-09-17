@@ -241,7 +241,8 @@
             "TOKEN": "Token",
             "HEADER": "Cabeçalho do Token",
             "SAVE": "Guardar",
-            "ADD": "Adicionar"
+            "ADD": "Adicionar",
+            "CANCEL": "Cancelar"
           }
         },
         "SEND_AGENT_NAME": {
