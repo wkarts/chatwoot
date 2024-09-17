@@ -351,7 +351,7 @@
 
       <!-- Modal para Adicionar/Editar Webhook -->
       <modal v-if="showWebhookModal" @close="closeWebhookModal">
-        <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</h3>
+        <h3> </h3> <!-- <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</h3> -->
         <form @submit.prevent="submitWebhook">
           <label>
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}
@@ -372,6 +372,11 @@
           <woot-submit-button 
             :button-text="editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
             @click="submitWebhook"
+          />
+          <woot-submit-button 
+            :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.CANCEL')"
+            @click="closeWebhookModal"
+            style="margin-left: 10px;"
           />
         </form>
       </modal>
