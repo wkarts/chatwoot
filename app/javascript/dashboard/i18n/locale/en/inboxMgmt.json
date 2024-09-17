@@ -242,7 +242,8 @@
             "TOKEN": "Token",
             "HEADER": "Token Header",
             "SAVE": "Save",
-            "ADD": "Add"
+            "ADD": "Add",
+            "CANCEL": "Cancel"
           }
         },        
         "SEND_AGENT_NAME": {
