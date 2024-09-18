@@ -752,4 +752,23 @@ export default {
  background-color:#369eff;
  color:#369eff;
 }
+
+#app .overflow-hidden .flex-shrink{
+ transform:translatex(0px) translatey(0px);
+}
+
+.webhook-table tr .button{
+ min-height:21px;
+ height:21px;
+}
+
+.webhook-table .button span{
+ position:relative;
+ top:-5px;
+}
+
+.webhook-table tr td{
+ min-height:-100px;
+ height:-100px;
+}  
 </style>
