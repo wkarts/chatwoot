@@ -303,91 +303,91 @@
     </div>
     <!-- Aba de Parâmetros Fim -->
 
-  	<!-- Aba de Webhooks Inicio-->
-  	<div v-else>
-  	  <div class="flex justify-between items-center mb-4">
-  	    <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DESCRIPTION') }}</h3>
-  	    <woot-submit-button
-  	      :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
-  	      @click="showAddWebhookModal"
-  	    />
-  	  </div>  	
-  	  <table class="webhook-table">
-  	    <thead>
-  	      <tr>
-  	        <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}</th>
-  	        <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}</th>
-              <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.BUTTON') }}</th> -->
-              <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ACTIONS') }}</th> -->
-  	      </tr>
-  	    </thead>
-  	    <tbody>
-  	      <tr v-for="(webhook, index) in webhooks" :key="index">
-  	        <td>{{ webhook.id }}</td>
-  	
-  	        <!-- URL com truncagem e tooltip -->
-  	        <td :title="webhook.urlAbsolute">
-  	          {{ webhook.urlAbsolute.length > 80 ? webhook.urlAbsolute.substring(0, 80) + '...' : webhook.urlAbsolute }}
-  	        </td>	
-  	        <td>
-  	          <woot-switch
-  	            v-model="webhook.sendNewMessages"
-  	            :value="webhook.sendNewMessages"
-  	            @change="toggleSendNewMessages(index)"
-  	          />
-  	        </td>
-  	        <td>
-  	          <woot-submit-button 
-  	            :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT')"
-  	            @click="editWebhook(index)"
-  	            style="display: inline-block;"
-  	          />
-  	        </td>
-  	        <td>
-  	          <woot-submit-button 
-  	            :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DELETE')"
-  	            @click="removeWebhook(index)"
-  	            style="display: inline-block;"
-  	          />
-  	        </td>
-  	      </tr>
-  	    </tbody>
-  	  </table>
-  	
-  	  <!-- Modal para Adicionar/Editar Webhook -->
-  	  <modal v-if="showWebhookModal" @close="closeWebhookModal">
-  	    <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</h3>
-  	    <form @submit.prevent="submitWebhook">
-  	      <label>
-  	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}
-  	        <input v-model="webhookForm.id" type="text" required />
-  	      </label>
-  	      <label>
-  	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}
-  	        <input v-model="webhookForm.urlAbsolute" type="text" required />
-  	      </label>
-  	      <label>
-  	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.TOKEN') }}
-  	        <input v-model="webhookForm.token" type="text" />
-  	      </label>
-  	      <label>
-  	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.HEADER') }}
-  	        <input v-model="webhookForm.header" type="text" />
-  	      </label>
-  	      <woot-submit-button 
-  	        :button-text="editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
-  	        @click="submitWebhook"
-  	      />
-  	      <woot-submit-button 
-  	        :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.CANCEL')"
-  	        @click="closeWebhookModal"
-  	        style="margin-left: 10px;"
-  	      />
-  	    </form>
-  	  </modal>
-  	</div>
-  	<!-- Aba de Webhooks Fim-->
-    
+	<!-- Aba de Webhooks Inicio-->
+	<div v-else>
+	  <div class="flex justify-between items-center mb-4">
+	    <h3>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DESCRIPTION') }}</h3>
+	    <woot-submit-button
+	      :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
+	      @click="showAddWebhookModal"
+	    />
+	  </div>
+	  <table class="webhook-table">
+	    <thead>
+	      <tr>
+	        <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}</th>
+	        <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}</th>
+            <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.BUTTON') }}</th> -->
+            <th></th> <!-- <th>{{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ACTIONS') }}</th> -->
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr v-for="(webhook, index) in webhooks" :key="index">
+	        <td>{{ webhook.id }}</td>
+
+	        <!-- URL com truncagem e tooltip -->
+	        <td :title="webhook.urlAbsolute">
+	          {{ webhook.urlAbsolute.length > 80 ? webhook.urlAbsolute.substring(0, 80) + '...' : webhook.urlAbsolute }}
+	        </td>
+	        <td>
+	          <woot-switch
+	            v-model="webhook.sendNewMessages"
+	            :value="webhook.sendNewMessages"
+	            @change="toggleSendNewMessages(index)"
+	          />
+	        </td>
+	        <td>
+	          <woot-submit-button 
+	            :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT')"
+	            @click="editWebhook(index)"
+	            style="display: inline-block;"
+	          />
+	        </td>
+	        <td>
+	          <woot-submit-button 
+	            :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DELETE')"
+	            @click="removeWebhook(index)"
+	            style="display: inline-block;"
+	          />
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+	
+	  <!-- Modal para Adicionar/Editar Webhook -->
+	  <modal v-if="showWebhookModal" @close="closeWebhookModal">
+	    <h3>{{ editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.EDIT') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD') }}</h3>
+	    <form @submit.prevent="submitWebhook">
+	      <label>
+	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ID') }}
+	        <input v-model="webhookForm.id" type="text" required />
+	      </label>
+	      <label>
+	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.URL_ABSOLUT') }}
+	        <input v-model="webhookForm.urlAbsolute" type="text" required />
+	      </label>
+	      <label>
+	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.TOKEN') }}
+	        <input v-model="webhookForm.token" type="text" />
+	      </label>
+	      <label>
+	        {{ $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.HEADER') }}
+	        <input v-model="webhookForm.header" type="text" />
+	      </label>
+	      <woot-submit-button 
+	        :button-text="editingWebhook ? $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.SAVE') : $t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ADD')"
+	        @click="submitWebhook"
+	      />
+	      <woot-submit-button 
+	        :button-text="$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.CANCEL')"
+	        @click="closeWebhookModal"
+	        style="margin-left: 10px;"
+	      />
+	    </form>
+	  </modal>
+	</div>
+	<!-- Aba de Webhooks Fim-->
+
   </div>
 </template>
 
@@ -435,7 +435,7 @@ export default {
       notice: '',
       rejectCalls: '',
       messageCallsWebhook: '',
-      webhooks: [], // Lista de webhooks
+      webhooks: [],
       showWebhookModal: false,
       editingWebhook: false,
       webhookForm: {
@@ -542,12 +542,22 @@ export default {
       this.editingWebhook = true;
     },
     removeWebhook(index) {
-      this.webhooks.splice(index, 1);
+      if (this.webhooks[index].id !== 'default') {
+        this.webhooks.splice(index, 1);
+      } else {
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.CANNOT_DELETE_DEFAULT_WEBHOOK'));
+      }
     },
     closeWebhookModal() {
       this.showWebhookModal = false;
     },
     submitWebhook() {
+      const existingWebhook = this.webhooks.find(w => w.urlAbsolute === this.webhookForm.urlAbsolute && w.id !== this.webhookForm.id);
+      if (existingWebhook) {
+        useAlert(this.$t('INBOX_MGMT.EDIT.API.DUPLICATE_WEBHOOK_URL'));
+        return;
+      }
+
       if (this.editingWebhook) {
         const index = this.webhooks.findIndex(w => w.id === this.webhookForm.id);
         if (index !== -1) {
@@ -665,7 +675,7 @@ export default {
       }
     },
   },
-}; 
+};
 </script>
 
 <style lang="scss" scoped>
@@ -744,31 +754,31 @@ export default {
   }
 }
 
-#app .flex-grow-0 .overflow-hidden .justify-between .flex-shrink div .text-base > div{
- width:63% !important;
+#app .flex-grow-0 .overflow-hidden .justify-between .flex-shrink div .text-base > div {
+  width: 63% !important;
 }
 
-.flex-shrink modal h3{
- background-color:#369eff;
- color:#369eff;
+.flex-shrink modal h3 {
+  background-color: #369eff;
+  color: #369eff;
 }
 
-#app .overflow-hidden .flex-shrink{
- transform:translatex(0px) translatey(0px);
+#app .overflow-hidden .flex-shrink {
+  transform: translatex(0px) translatey(0px);
 }
 
-.webhook-table tr .button{
- min-height:21px;
- height:21px;
+.webhook-table tr .button {
+  min-height: 21px;
+  height: 21px;
 }
 
-.webhook-table .button span{
- position:relative;
- top:-5px;
+.webhook-table .button span {
+  position: relative;
+  top: -6px;
 }
 
-.webhook-table tr td{
- min-height:-100px;
- height:-100px;
-}  
+.webhook-table tr td {
+  min-height: -100px;
+  height: -100px;
+}
 </style>
