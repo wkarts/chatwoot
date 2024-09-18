@@ -76,11 +76,16 @@ class Whatsapp::UnoapiWebhookSetupService
     default_webhook = provider_config['webhooks'].find { |webhook| webhook['id'] == 'default' }
 
     unless default_webhook
+      frontend_url = ENV.fetch('FRONTEND_URL', nil)
+      unless frontend_url
+        raise "FRONTEND_URL not configured"
+      end
+
       # Adicionar webhook padrão se não existir
       provider_config['webhooks'] << {
         sendNewMessages: provider_config['webhook_send_new_messages'] || true,
         id: 'default',
-        urlAbsolute: "#{ENV.fetch('FRONTEND_URL', nil)}/webhooks/whatsapp/#{phone_number}",
+        urlAbsolute: "#{frontend_url}/webhooks/whatsapp/#{phone_number}",
         token: provider_config['webhook_verify_token'],
         header: 'Authorization'
       }
