@@ -243,7 +243,9 @@
             "HEADER": "Token Header",
             "SAVE": "Save",
             "ADD": "Add",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "DUPLICATE": "URL already exists",
+            "ERROR_DELETE": "It is not possible to remove this webhook"
           }
         },        
         "SEND_AGENT_NAME": {
