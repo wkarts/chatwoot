@@ -242,7 +242,9 @@
             "HEADER": "Cabeçalho do Token",
             "SAVE": "Guardar",
             "ADD": "Adicionar",
-            "CANCEL": "Cancelar"
+            "CANCEL": "Cancelar",
+            "DUPLICATE": "A URL já existe",
+            "ERROR_DELETE": "Não é possível remover este webhook"
           }
         },
         "SEND_AGENT_NAME": {
