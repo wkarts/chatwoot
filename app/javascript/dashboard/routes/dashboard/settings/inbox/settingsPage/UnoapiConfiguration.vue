@@ -513,17 +513,6 @@ export default {
       this.connect = false;
       this.disconnect = false;
       this.webhooks = this.inbox.provider_config.webhooks || [];
-
-      const defaultWebhook = this.webhooks.find(w => w.id === 'default');
-      if (!defaultWebhook) {
-        this.webhooks.push({
-          sendNewMessages: this.inbox.provider_config.webhook_send_new_messages || true,
-          id: 'default',
-          urlAbsolute: `${process.env.FRONTEND_URL}/webhooks/whatsapp/${this.inbox.provider_config.phone_number_id}`,
-          token: this.inbox.provider_config.webhook_verify_token || '',
-          header: 'Authorization',
-        });
-      }
     },
     showAddWebhookModal() {
       this.showWebhookModal = true;
@@ -545,7 +534,7 @@ export default {
       if (this.webhooks[index].id !== 'default') {
         this.webhooks.splice(index, 1);
       } else {
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.CANNOT_DELETE_DEFAULT_WEBHOOK'));
+        useAlert(this.$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.ERROR_DELETE'));
       }
     },
     closeWebhookModal() {
@@ -554,7 +543,7 @@ export default {
     submitWebhook() {
       const existingWebhook = this.webhooks.find(w => w.urlAbsolute === this.webhookForm.urlAbsolute && w.id !== this.webhookForm.id);
       if (existingWebhook) {
-        useAlert(this.$t('INBOX_MGMT.EDIT.API.DUPLICATE_WEBHOOK_URL'));
+        useAlert(this.$t('INBOX_MGMT.ADD.WHATSAPP.TAB_NAME.TAB_WEBHOOK.DUPLICATE'));
         return;
       }
 
@@ -626,17 +615,6 @@ export default {
       }
     },
     async updateInbox() {
-      const defaultWebhook = this.webhooks.find(w => w.id === 'default');
-      if (!defaultWebhook) {
-        this.webhooks.push({
-          sendNewMessages: true,
-          id: 'default',
-          urlAbsolute: `${process.env.FRONTEND_URL}/webhooks/whatsapp/${this.inbox.provider_config.phone_number_id}`,
-          token: this.inbox.provider_config.webhook_verify_token || '',
-          header: 'Authorization',
-        });
-      }
-
       const payload = {
         id: this.inbox.id,
         formData: false,
@@ -765,20 +743,5 @@ export default {
 
 #app .overflow-hidden .flex-shrink {
   transform: translatex(0px) translatey(0px);
-}
-
-.webhook-table tr .button {
-  min-height: 21px;
-  height: 21px;
-}
-
-.webhook-table .button span {
-  position: relative;
-  top: -6px;
-}
-
-.webhook-table tr td {
-  min-height: -100px;
-  height: -100px;
 }
 </style>
