@@ -71,25 +71,34 @@ class Whatsapp::UnoapiWebhookSetupService
   end
 
   # rubocop:disable Metrics/MethodLength
+  
+  # Função que adiciona webhooks sem duplicar
+  def create_webhook(provider_config, phone_number, id_base, url_base)
+    webhooks = provider_config['webhooks']
+
+    # Verifica duplicidade por id e urlAbsolute
+    id_exists = webhooks.any? { |wh| wh['id'] == id_base }
+    url_exists = webhooks.any? { |wh| wh['urlAbsolute'] == url_base }
+
+    return if id_exists || url_exists # Evita duplicidade
+
+    # Adiciona o webhook no provider_config
+    webhooks << {
+      sendNewMessages: provider_config['webhook_send_new_messages'] || true,
+      id: id_base,
+      urlAbsolute: url_base,
+      token: provider_config['webhook_verify_token'],
+      header: 'Authorization'
+    }
+  end
+
+  # Exemplo de configuração para múltiplos webhooks
   def params(provider_config, phone_number)
-    # Verificar se existe um webhook com id 'default'
-    default_webhook = provider_config['webhooks'].find { |webhook| webhook['id'] == 'default' }
+    # Webhook padrão
+    create_webhook(provider_config, phone_number, 'default', "#{ENV.fetch('FRONTEND_URL', '')}/webhooks/whatsapp/#{phone_number}")
 
-    unless default_webhook
-      frontend_url = ENV.fetch('FRONTEND_URL', nil)
-      unless frontend_url
-        raise "FRONTEND_URL not configured"
-      end
-
-      # Adicionar webhook padrão se não existir
-      provider_config['webhooks'] << {
-        sendNewMessages: provider_config['webhook_send_new_messages'] || true,
-        id: 'default',
-        urlAbsolute: "#{frontend_url}/webhooks/whatsapp/#{phone_number}",
-        token: provider_config['webhook_verify_token'],
-        header: 'Authorization'
-      }
-    end
+    # Webhook Typebot
+    create_webhook(provider_config, phone_number, 'typebot', "#{ENV.fetch('FRONTEND_URL', '')}/webhooks/typebot/#{phone_number}")
 
     {
       ignoreGroupMessages: provider_config['ignore_group_messages'],
