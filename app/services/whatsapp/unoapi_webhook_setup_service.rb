@@ -98,7 +98,7 @@ class Whatsapp::UnoapiWebhookSetupService
     create_webhook(provider_config, phone_number, 'default', "#{ENV.fetch('FRONTEND_URL', '')}/webhooks/whatsapp/#{phone_number}")
 
     # Webhook Typebot
-    create_webhook(provider_config, phone_number, 'typebot', "#{ENV.fetch('FRONTEND_URL', '')}/webhooks/typebot/#{phone_number}")
+    # create_webhook(provider_config, phone_number, 'typebot', "#{ENV.fetch('FRONTEND_URL', '')}/webhooks/typebot/#{phone_number}")
 
     {
       ignoreGroupMessages: provider_config['ignore_group_messages'],
